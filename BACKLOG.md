@@ -16,3 +16,8 @@ Ideas have no promised delivery date.
 ## Deferred
 
 Restore/editing, live position/inventory synchronization, automatic background imports and store submission require separate design and validation. Do not assume that a 2D APK grants access to another app's storage.
+
+## Demo download follow-ups
+
+- Support additional explicitly published demo worlds through a reviewed versioned catalog.
+- Add map rendering for imported worlds; current Android snapshots expose metadata and files only.

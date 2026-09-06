@@ -1,5 +1,10 @@
 # Update log
 
+## 0.1.2 — 2026-09-06
+
+- Add an explicit GitHub demo download and import action with a pinned SHA-256 checksum, HTTPS redirect restrictions, timeouts and a bounded download.
+- Link to the Android GitHub repository and explain snapshot-only inspection in English and German. The offline synthetic sample remains available.
+
 ## 0.1.1 — 2026-09-06
 
 - Prefixed the launcher label with `! ★` for alphabetically sorted sideloaded apps. Launcher-specific ordering still applies.

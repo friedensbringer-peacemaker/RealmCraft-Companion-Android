@@ -15,6 +15,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
     public MainActivityTest() { super(MainActivity.class); }
 
+    public void testPublicDemoActionsAreAvailableWithoutStartingDownload() throws Exception {
+        MainActivity activity = getActivity();
+        awaitReady(activity);
+        getInstrumentation().runOnMainSync(() -> {
+            Button download = activity.findViewById(MainActivity.GITHUB_DEMO_BUTTON);
+            Button repository = activity.findViewById(MainActivity.REPOSITORY_BUTTON);
+            assertNotNull(download); assertTrue(download.isEnabled());
+            assertTrue(download.getText().toString().contains("RealmCraft Companion Demo"));
+            assertNotNull(repository); assertTrue(repository.isEnabled());
+        });
+    }
+
     public void testSampleImportSurvivesActivityRelaunch() throws Exception {
         MainActivity first = getActivity();
         awaitReady(first);

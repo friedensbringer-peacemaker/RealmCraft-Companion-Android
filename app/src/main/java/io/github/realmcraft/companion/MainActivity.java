@@ -11,6 +11,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import io.github.realmcraft.companion.core.SnapshotStore;
+import io.github.realmcraft.companion.core.DemoDownload;
 import io.github.realmcraft.companion.core.SnapshotStore.Snapshot;
 import org.json.*;
 import rikka.shizuku.Shizuku;
@@ -21,7 +22,7 @@ import java.util.concurrent.*;
 
 /** Small native 2D panel; all archive and device operations stay off the UI thread. */
 public final class MainActivity extends Activity {
-    public static final int DEMO_BUTTON = 1001, ZIP_BUTTON = 1002, LIBRARY_VIEW = 1003, STATUS_VIEW = 1004;
+    public static final int DEMO_BUTTON = 1001, ZIP_BUTTON = 1002, LIBRARY_VIEW = 1003, STATUS_VIEW = 1004, GITHUB_DEMO_BUTTON = 1005, REPOSITORY_BUTTON = 1006;
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private final Handler main = new Handler(Looper.getMainLooper());
     private final List<Button> actions = new ArrayList<>();
@@ -95,6 +96,19 @@ public final class MainActivity extends Activity {
         Button demo = button(intro, tr("Try synthetic sample", "Synthetische Testwelt öffnen"), () -> runWork(tr("Creating sample…", "Testwelt wird erstellt…"), () -> store.createDemo(), this::imported));
         demo.setId(DEMO_BUTTON);
         Button zip = button(intro, tr("Import world ZIP", "Welt-ZIP importieren"), this::chooseZip); zip.setId(ZIP_BUTTON);
+        button(intro, tr("Download RealmCraft Companion Demo · 2.2 MB", "RealmCraft Companion Demo laden · 2,2 MB"), () ->
+            runWork(tr("Downloading and verifying demo…", "Demo wird geladen und geprüft…"), () -> {
+                byte[] archive = DemoDownload.download();
+                if (destroyed) throw new InterruptedIOException("Download cancelled.");
+                return store.importZip(new ByteArrayInputStream(archive));
+            }, this::imported)).setId(GITHUB_DEMO_BUTTON);
+        button(intro, tr("GitHub project & downloads", "GitHub-Projekt & Downloads"), () -> {
+            try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(DemoDownload.REPOSITORY))); }
+            catch (ActivityNotFoundException e) { message(tr("No browser is available.", "Kein Browser verfügbar.")); }
+        }).setId(REPOSITORY_BUTTON);
+        addText(intro, tr("The shared demo downloads from GitHub only when tapped. SHA-256 is checked before importing an independent copy. No Shizuku is needed. You can inspect metadata and files here; this does not add the world to RealmCraft or render a map.",
+            "Die freigegebene Demo wird erst beim Antippen von GitHub geladen. Vor dem Import einer eigenständigen Kopie wird SHA-256 geprüft. Shizuku ist nicht nötig. Hier kannst du Metadaten und Dateien ansehen; die Welt wird weder in RealmCraft eingesetzt noch als Karte dargestellt."), 14, 0xffaac1b8, false);
+
         addText(intro, tr("One world per ZIP · Up to 1 GiB · Version 9 metadata", "Eine Welt pro ZIP · Bis 1 GiB · Metadaten-Version 9"), 13, 0xffaac1b8, false);
         LinearLayout device = card(page);
         addText(device, tr("Direct Quest import · Experimental", "Direktimport auf Quest · Experimentell"), 20, Color.WHITE, true);
