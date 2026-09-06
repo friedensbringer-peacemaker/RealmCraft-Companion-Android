@@ -4,6 +4,9 @@ import java.io.*;
 /** Deliberately incomplete, non-playable fixtures for the offline feature preview. */
 public final class SyntheticFeatureData {
     private SyntheticFeatureData() { }
+    public static byte[] wideArchive()throws IOException{
+        ByteArrayOutputStream bytes=new ByteArrayOutputStream();try(java.util.zip.ZipOutputStream zip=new java.util.zip.ZipOutputStream(bytes)){byte[] name="Synthetic wide world".getBytes(java.nio.charset.StandardCharsets.UTF_8);java.nio.ByteBuffer data=java.nio.ByteBuffer.allocate(17+name.length+105);data.put((byte)9).putInt(43);data.position(9);data.putInt(34567).putInt(name.length).put(name);zip.putNextEntry(new java.util.zip.ZipEntry("world_data"));zip.write(data.array());zip.closeEntry();zip.putNextEntry(new java.util.zip.ZipEntry("player_data"));zip.write(player());zip.closeEntry();for(int i=0;i<300;i++){zip.putNextEntry(new java.util.zip.ZipEntry("o."+(i*16)+",0"));zip.write(chunk(i*16,0,0));zip.closeEntry();}}return bytes.toByteArray();
+    }
     public static byte[] player() throws IOException {
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
         out.write(new byte[]{2,0,0,0,1});out.writeInt(0);out.write(new byte[129]);out.write(new byte[]{0,13,1,0,0,0,7});

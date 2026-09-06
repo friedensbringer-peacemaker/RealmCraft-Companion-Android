@@ -123,3 +123,19 @@ Deutsch: Unter **Karte → Mehr** findest du Markierungen/Favoriten, eine manuel
 Snapshot comparisons now list up to 100 changed chests with coordinates and item quantity deltas. A property-only change is labeled when quantities remain equal. Missing or unreadable containers still do not imply removed or empty chests.
 
 Deutsch: **Karte → Mehr → Packliste** verwaltet Zielmengen je Gegenstand, zeigt den lesbaren Truhenbestand und fehlende Mengen und öffnet die Truhensuche. **Karten-Lesezeichen** speichert benannte Ausschnitte samt Ebene, Darstellung und Filter. Der Spielstandsvergleich nennt geänderte Truhen mit Koordinaten und Mengenänderungen. Alles bezieht sich auf geladene, lesbare Kopien und verändert keine Spieldateien.
+
+### Streaming, transfer and planning (0.8.0)
+
+Worlds with more than 256 stored chunks load the map around the visible viewport by default. Dragging or zooming schedules a background window update after a short pause. The camera stays in place. Windows are bounded to a 512-block radius, 1,024 chunks, 64 MiB of source work and 5,000 points, also respecting the selected render-area limits. Zoom in when limits are reached. Small worlds continue to load their bounded overview in one pass. Disable **Load around visible map when panning** in Settings for a broader fixed-area search. Searches, packing totals and routes cover loaded data only.
+
+A disposable decoded-terrain cache in Android's cache directory survives ordinary app restarts and is bounded to 128 MiB. Every source file still passes its saved checksum before reuse; damaged cache entries are rebuilt. Android may reclaim cached data. **More → Clear map cache** clears decoded caches; displaying terrain can immediately populate them again.
+
+After a snapshot comparison, orange overlays show changed columns and current-only chunks within the compared coverage. **Clear comparison overlay** hides them. One-sided coverage is not proof of newly built or removed terrain.
+
+**Export snapshot ZIP** prepares a verified archive before opening the document picker. **Export notebook / Import notebook** transfer markers, bookmarks, packing targets and named build projects separately. Transfers are bounded to 1 MiB and must match the current world ID and seed. Import validates all entries and asks before replacing local notes; export existing notes first if needed. Game files are never restored or modified. A document picker/provider must be available on the device.
+
+Create material targets in the packing list, then use **Build projects** to save or load named material lists. Packing totals can optionally include readable saved player inventory. **Collection route** orders useful readable chests greedily by horizontal distance from the manual reference or map center; it is not obstacle-aware pathfinding, stays in the current loaded dimension, and reports unmet targets.
+
+Imports display received/extracted bytes, check free storage and can be cancelled. Cancelled staging is not published as a snapshot. **Map guide & legend** provides four interactive pages for navigation, symbols, coverage and tools.
+
+Deutsch: Große Welten laden beim Verschieben die sichtbare Umgebung nach; der Kartenausschnitt bleibt stabil. Unter **Mehr** findest du Cache-Löschung, ZIP-/Notizexport, Notizimport, Bauvorhaben, Sammelroute und eine schrittweise Kartenhilfe. Orange Vergleichsfarben gelten nur im verglichenen Bereich. Import zeigt Datenmengen, prüft freien Speicher und bietet Abbrechen. Automatische Spielerkoordinaten sind weiterhin nicht verifiziert; die manuelle Referenz bleibt ausdrücklich so bezeichnet.

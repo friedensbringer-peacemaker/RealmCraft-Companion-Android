@@ -1,5 +1,15 @@
 # Update log
 
+## 0.8.0 — 2026-09-06
+
+- Load large-world terrain around the visible map during panning, prioritize the latest viewport and retain camera position while replacing bounded windows.
+- Add a disposable 128 MiB persistent decoded-terrain cache with corruption checks, source checksum verification and explicit clearing.
+- Highlight compared columns and current-only chunks on the map; retain explicit coverage limits.
+- Export verified snapshot ZIPs and transfer bounded per-world markers, bookmarks, packing lists and projects through Android document pickers.
+- Add named material projects, optional saved inventory in stock totals and greedy same-dimension collection routes.
+- Add byte progress, free-space checks and cancellation for imports, with staging cleanup.
+- Add a four-step interactive map guide and legend. Automatic player position remains unverified in the current macOS reference and is not fabricated.
+
 ## 0.7.0 — 2026-09-06
 
 - Add per-world packing targets with readable chest-stock totals, missing quantities and direct chest search.

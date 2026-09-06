@@ -32,6 +32,6 @@ Restore/editing, live position/inventory synchronization, automatic background i
 
 - Validate an automatic saved player-position decoder against known records; manual reference coordinates are available now and are never labeled as player data.
 - Validate the guided Shizuku flow on a real authorized service, including reconnect and permission denial; no real worlds are imported in automated tests.
-- Visualize terrain differences directly on the map. Per-chest quantity deltas are available in 0.7.0.
-- Add progressive chunk streaming and a versioned disk cache.
-- Extend notebook import/export and multi-world management.
+- Add side-by-side terrain comparison; map overlays are available in 0.8.0.
+- Extend window streaming with lower-detail overviews at extreme zoom-out; current streaming and a versioned disk cache are available in 0.8.0.
+- Extend notebook transfer with merge previews and explicit cross-world mapping; same-world replacement transfer is available in 0.8.0.

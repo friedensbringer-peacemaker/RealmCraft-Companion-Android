@@ -36,9 +36,14 @@ public final class SnapshotStore {
             files = Collections.unmodifiableList(paths);
         }
     }
+    public interface Progress {void update(String phase,long bytes);}
+    private Progress progress;private long transferred;private String phase;
+    public void setProgress(Progress progress){this.progress=progress;}
+    private void space(long needed)throws IOException{long free=root.getUsableSpace();if(free>0&&free<needed+8L*1024*1024)throw new IOException("Not enough free storage / Nicht genug freier Speicher");}
     public Snapshot importZip(InputStream source) throws IOException { return importZip(source, false); }
     private Snapshot importZip(InputStream source, boolean synthetic) throws IOException {
         if (source == null) throw new IOException("No archive input provided");
+        space(16L*1024*1024);transferred=0;phase="archive";
         String id = UUID.randomUUID().toString();
         File stage = new File(root, ".staging-" + id), payload = new File(stage, "world");
         try {
@@ -55,6 +60,7 @@ public final class SnapshotStore {
             long total = 0; int entries = 0;
             // ZipFile requires a complete central directory; ZipInputStream alone accepts truncated archives.
             try (ZipFile zip = new ZipFile(archive)) {
+                long required=0;Enumeration<? extends ZipEntry> sizes=zip.entries();while(sizes.hasMoreElements()){long size=sizes.nextElement().getSize();if(size>0){if(size>limit-required)throw new IOException("Archive exceeds import size limit");required+=size;}}space(required);phase="extract";transferred=0;
                 Enumeration<? extends ZipEntry> all = zip.entries();
                 while (all.hasMoreElements()) {
                     checkCancelled();
@@ -165,9 +171,9 @@ public final class SnapshotStore {
         }
         return importZip(new ByteArrayInputStream(bytes.toByteArray()), true);
     }
-    private static long copy(InputStream in, OutputStream out, long max, MessageDigest digest, CRC32 crc) throws IOException {
+    private long copy(InputStream in, OutputStream out, long max, MessageDigest digest, CRC32 crc) throws IOException {
         byte[] buffer = new byte[32768]; long total = 0; int read;
-        while (true) { checkCancelled(); read = in.read(buffer); checkCancelled(); if (read == -1) break; if (read == 0) continue; if (read > max - total) throw new IOException("Archive exceeds import size limit"); total += read; out.write(buffer, 0, read); if (digest != null) digest.update(buffer, 0, read); if (crc != null) crc.update(buffer, 0, read); }
+        while (true) { checkCancelled(); read = in.read(buffer); checkCancelled(); if (read == -1) break; if (read == 0) continue; if (read > max - total) throw new IOException("Archive exceeds import size limit"); total += read; space(read);out.write(buffer, 0, read);transferred+=read;if(progress!=null)progress.update(phase,transferred); if (digest != null) digest.update(buffer, 0, read); if (crc != null) crc.update(buffer, 0, read); }
         return total;
     }
     private static void checkCancelled() throws InterruptedIOException {

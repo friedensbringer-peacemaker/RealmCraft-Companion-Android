@@ -32,7 +32,7 @@ public final class MainActivity extends Activity {
     private ProgressBar progress;
     private volatile InputStream activeInput;
     private IWorldAccess bridge;
-    private boolean busy, binding,pendingImport;
+    private boolean busy, binding,pendingImport;private volatile boolean cancelRequested;private volatile Thread runningWork;private Button cancelButton;private long lastProgress;
     private volatile boolean destroyed;
     private final Shizuku.UserServiceArgs serviceArgs = new Shizuku.UserServiceArgs(
         new ComponentName(BuildConfig.APPLICATION_ID, WorldAccessService.class.getName()))
@@ -68,7 +68,7 @@ public final class MainActivity extends Activity {
         Shizuku.addBinderDeadListener(died);
         Shizuku.addRequestPermissionResultListener(permission);
         runWork(tr("Opening library…", "Bibliothek wird geöffnet…"), () -> {
-            store = new SnapshotStore(new File(getFilesDir(), "snapshots"));
+            store = new SnapshotStore(new File(getFilesDir(), "snapshots"));store.setProgress((phase,bytes)->{long now=android.os.SystemClock.elapsedRealtime();if(now-lastProgress<200)return;lastProgress=now;main.post(()->{if(!destroyed&&busy)status.setText((phase.equals("archive")?tr("Receiving ZIP: ","ZIP wird empfangen: "):tr("Extracting and verifying: ","Entpacken und prüfen: "))+size(bytes));});});
             return store.list();
         }, this::showLibrary);
     }
@@ -125,6 +125,7 @@ public final class MainActivity extends Activity {
         progress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         progress.setIndeterminate(true); progress.setVisibility(View.GONE); page.addView(progress);
         status = addText(page, tr("Ready.", "Bereit."), 15, 0xffa9e8bc, false); status.setId(STATUS_VIEW);
+        cancelButton=button(page,tr("Cancel current operation","Aktuellen Vorgang abbrechen"),()->{cancelRequested=true;closeActiveInput();Thread thread=runningWork;if(thread!=null)thread.interrupt();message(tr("Cancelling…","Wird abgebrochen …"));});actions.remove(cancelButton);cancelButton.setVisibility(View.GONE);
         addText(page, tr("Your snapshots", "Deine Spielstand-Kopien"), 23, Color.WHITE, true);
         library = new LinearLayout(this); library.setOrientation(LinearLayout.VERTICAL); library.setId(LIBRARY_VIEW); page.addView(library);
         addText(page, tr("Offline storage · No account · No analytics\nMap, player and inventory views read saved copies. Restore and live sync are not included.",
@@ -287,18 +288,18 @@ public final class MainActivity extends Activity {
     private interface Result<T> { void accept(T result); }
     private <T> void runWork(String label, Job<T> job, Result<T> success) {
         if (busy || destroyed) return;
-        setBusy(true); message(label);
+        cancelRequested=false;setBusy(true); message(label);
         worker.execute(() -> {
             try {
-                T result = job.call();
+                runningWork=Thread.currentThread();if(cancelRequested)throw new InterruptedIOException("Cancelled / Abgebrochen");T result = job.call();
                 main.post(() -> { if (!destroyed) { setBusy(false); success.accept(result); } });
             } catch (Exception error) {
-                main.post(() -> { if (!destroyed) { setBusy(false); failure(error); } });
-            }
+                main.post(() -> { if (!destroyed) { setBusy(false); if(cancelRequested)message(tr("Operation cancelled. Existing copies are preserved.","Vorgang abgebrochen. Vorhandene Kopien bleiben erhalten."));else failure(error); } });
+            }finally{runningWork=null;Thread.interrupted();}
         });
     }
     private void setBusy(boolean value) {
-        busy = value;
+        busy = value;if(cancelButton!=null)cancelButton.setVisibility(value?View.VISIBLE:View.GONE);
         for (Button button : actions) button.setEnabled(!value);
         progress.setVisibility(value ? View.VISIBLE : View.GONE);
     }

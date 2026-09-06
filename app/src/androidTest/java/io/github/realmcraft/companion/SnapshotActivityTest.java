@@ -43,6 +43,15 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             ExplorationPlans plans=new ExplorationPlans(c.getSharedPreferences("map-world-42-12345",0));assertEquals(1,plans.read("packing").length());assertEquals(1,plans.read("bookmarks").length());plans.remove("packing","3157");assertEquals(0,plans.read("packing").length());
         }finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
     }
+    public void testStreamingPanLoadsDistantChunksWithoutMovingCamera()throws Exception{
+        Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-world-43-34567",0).edit().clear().commit();SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).importZip(new ByteArrayInputStream(io.github.realmcraft.companion.core.SyntheticFeatureData.wideArchive()));
+        SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try{await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");SurfaceMapView map=a.findViewById(SnapshotActivity.MAP_VIEW);assertFalse(map.hasChunk(4000,0));getInstrumentation().runOnMainSync(()->map.centerOn(4000,0));await(()->map.hasChunk(4000,0));assertEquals(4000,map.viewport()[0],.001);getInstrumentation().runOnMainSync(()->{long time=android.os.SystemClock.uptimeMillis();float x=map.getWidth()/2f,y=map.getHeight()/2f,dx=(float)(800*map.viewport()[2]);MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,x,y,0),move=MotionEvent.obtain(time,time+20,MotionEvent.ACTION_MOVE,x+dx,y,0),up=MotionEvent.obtain(time,time+40,MotionEvent.ACTION_UP,x+dx,y,0);map.onTouchEvent(down);map.onTouchEvent(move);map.onTouchEvent(up);down.recycle();move.recycle();up.recycle();});await(()->map.hasChunk(3200,0));assertEquals(3200,map.viewport()[0],.001);
+        }finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-world-43-34567",0).edit().clear().commit();}
+    }
+    public void testNotebookTransferRejectsWrongWorldAndInvalidTargets()throws Exception{
+        org.json.JSONObject root=new org.json.JSONObject().put("format",1).put("world","42").put("seed","12345");for(String key:new String[]{"markers","bookmarks","packing","projects"})root.put(key,new org.json.JSONArray());assertNotNull(NotebookTransfer.validate(root.toString(),"42","12345"));try{NotebookTransfer.validate(root.toString(),"43","12345");fail();}catch(org.json.JSONException expected){}root.getJSONArray("packing").put(new org.json.JSONObject().put("id","3157").put("item",3157).put("needed",-1));try{NotebookTransfer.validate(root.toString(),"42","12345");fail();}catch(org.json.JSONException expected){}
+    }
     public void testMapPlayerInventoryAndReopen() throws Exception {
         Context context=getInstrumentation().getTargetContext();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(context.getFilesDir(),"snapshots")).createDemo();

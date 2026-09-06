@@ -16,10 +16,10 @@ public final class SnapshotAnalysis {
     public final List<MapPoint> points=new ArrayList<>();
     public MapOptions options;
     private final SnapshotStore.Snapshot snapshot;
-    private final Map<String,String> hashes=new TreeMap<>();
+    private final Map<String,String> hashes;
     private final String prefix;
     private SnapshotAnalysis(SnapshotStore.Snapshot snapshot) throws IOException {
-        this.snapshot=snapshot;
+        this.snapshot=snapshot;hashes=new TreeMap<>();
         Properties p=new Properties();p.load(new ByteArrayInputStream(readBounded(new File(snapshot.directory,"manifest.properties"),32*1024*1024)));
         String metadata=p.getProperty("metadataPath","");safePath(metadata);
         if(!metadata.endsWith("world_data"))throw new IOException("Invalid world metadata path");
@@ -35,6 +35,18 @@ public final class SnapshotAnalysis {
             if(!hex(digest.digest()).equals(snapshot.sha256))throw new IOException("Snapshot manifest checksum mismatch");
         }catch(NumberFormatException e){throw new IOException("Invalid snapshot manifest",e);}
     }
+    private SnapshotAnalysis(SnapshotAnalysis source){snapshot=source.snapshot;prefix=source.prefix;hashes=source.hashes;player=source.player;playerIssue=source.playerIssue;}
+    public static SnapshotAnalysis open(SnapshotStore.Snapshot s)throws IOException{SnapshotAnalysis a=new SnapshotAnalysis(s);try{a.player=PlayerReader.parse(a.read(a.prefix+"player_data",4000000));}catch(IOException e){if(e instanceof InterruptedIOException)throw e;a.playerIssue=e.getMessage();}a.totalChunks=a.chunkPaths().size();return a;}
+    private List<String> chunkPaths(){List<String> result=new ArrayList<>();for(String path:hashes.keySet())if(path.startsWith(prefix)&&path.substring(prefix.length()).matches("[on]\\.-?\\d+,-?\\d+"))result.add(path);return result;}
+    public int[] initialCenter(int dimension){for(String p:chunkPaths()){String n=p.substring(prefix.length());if(n.charAt(0)!=(dimension==0?'o':'n'))continue;try{String[] xy=n.substring(2).split(",");return new int[]{Integer.parseInt(xy[0]),Integer.parseInt(xy[1])};}catch(NumberFormatException ignored){}}return new int[]{0,0};}
+    public SnapshotAnalysis window(MapOptions options,int dimension,double x,double z,int radius)throws IOException{
+        SnapshotAnalysis result=new SnapshotAnalysis(this);result.options=options;List<String> paths=new ArrayList<>();for(String p:chunkPaths()){String n=p.substring(prefix.length());if(n.charAt(0)!=(dimension==0?'o':'n'))continue;try{String[] xy=n.substring(2).split(",");int cx=Integer.parseInt(xy[0]),cz=Integer.parseInt(xy[1]);if(options.includes(cx,cz)&&Math.abs((double)cx+8-x)<=radius+16&&Math.abs((double)cz+8-z)<=radius+16)paths.add(p);}catch(NumberFormatException ignored){}}result.totalChunks=paths.size();
+        paths.sort(Comparator.comparingDouble(p->{String[] xy=p.substring(prefix.length()+2).split(",");return Math.hypot(Double.parseDouble(xy[0])-x,Double.parseDouble(xy[1])-z);}));long bytes=0;
+        for(String p:paths){checkCancelled();if(result.chunks.size()+result.skippedChunks>=Math.min(1024,options.chunks)||bytes>=Math.min(options.byteLimit,64L*1024*1024)){result.limited=true;break;}try{byte[] b=result.read(p,4*1024*1024);bytes+=b.length;ChunkSurface c=SurfaceDecodeCache.decode(b,hashes.get(p),p.substring(prefix.length()),options.ceiling,options.slice);for(MapPoint point:c.points){if(result.points.size()<5000)result.points.add(point);else result.pointsLimited=true;}result.pointsLimited|=c.pointsLimited;c.points.clear();result.chunks.add(c);}catch(IOException e){if(e instanceof InterruptedIOException)throw e;result.skippedChunks++;}}
+        return result;
+    }
+    public void exportZip(OutputStream output)throws IOException{long total=0;try(java.util.zip.ZipOutputStream zip=new java.util.zip.ZipOutputStream(output)){for(String path:hashes.keySet()){checkCancelled();safePath(path);File file=new File(new File(snapshot.directory,"world"),path);if(!file.isFile()||!file.getCanonicalFile().equals(file.getAbsoluteFile()))throw new IOException("File unavailable");MessageDigest digest=sha();zip.putNextEntry(new java.util.zip.ZipEntry(path));try(InputStream in=new FileInputStream(file)){byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1){checkCancelled();total+=n;if(total>1024L*1024*1024)throw new IOException("Export exceeds size limit");digest.update(buffer,0,n);zip.write(buffer,0,n);}}if(!hex(digest.digest()).equals(hashes.get(path)))throw new IOException("Snapshot checksum mismatch");zip.closeEntry();}}}
+
     public static SnapshotAnalysis load(SnapshotStore.Snapshot snapshot) throws IOException {
         return load(snapshot,MapOptions.defaults());
     }
