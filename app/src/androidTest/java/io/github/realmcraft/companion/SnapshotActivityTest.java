@@ -36,7 +36,7 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         try{await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");
             getInstrumentation().runOnMainSync(()->{a.packingItem(3157,12);a.featureDialog.getButton(-1).performClick();});
-            assertTrue(contains(a.featureDialog.getWindow().getDecorView(),"5 / 12"));
+            assertTrue(contains(a.featureDialog.getWindow().getDecorView(),"5 / 12"));assertTrue("Packing materials need resource icons",hasIcon(a.featureDialog.getWindow().getDecorView()));
             getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(18,22);a.saveBookmark();((android.widget.EditText)a.featureDialog.findViewById(R.id.bookmark_name)).setText("Synthetic view");a.featureDialog.getButton(-1).performClick();});
             getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(-15,-20);a.bookmarks();a.featureDialog.getListView().performItemClick(null,0,0);a.featureDialog.getListView().performItemClick(null,0,0);});
             await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");assertEquals(18,((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],.001);

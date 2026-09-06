@@ -6,7 +6,7 @@
 - Open readable point details immediately on selection; use a side inspector in wide windows and normal dialogs in narrow windows.
 - Replace letter markers with pictograms and collision-aware labels, including sign text and chest slot counts.
 - Bundle 686 mapped Pixel Perfection item/block icons from the macOS catalog with original credits and license notices; use explicit ID tiles for missing artwork.
-- Show icons in inventory, equipment and chest contents; use responsive inventory columns and larger controls.
+- Show icons in inventory, equipment, chest contents, resource stock selection and packing/material lists; use responsive inventory columns and larger controls.
 - Preserve the selected point index across streamed map refreshes.
 
 ## 0.8.0 — 2026-09-06
