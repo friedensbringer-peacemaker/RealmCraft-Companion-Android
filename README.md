@@ -71,4 +71,4 @@ MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD-PARTY-NOTIC
 
 ## Downloadable demo
 
-Tap **Download RealmCraft Companion Demo** to fetch the owner-shared world from [GitHub](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/tag/demo-world-v2). The app pins the ZIP SHA-256, limits the download to 4 MiB and imports through the existing bounded ZIP validator. Internet is required; Shizuku is not. The imported copy supports metadata/file inspection, not map rendering or restoration into RealmCraft. The separate synthetic sample still works offline.
+Tap **Download RealmCraft Companion Demo** to fetch the owner-shared world from [GitHub](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/tag/demo-world-v1). The app pins the ZIP SHA-256, limits the download to 4 MiB and imports through the existing bounded ZIP validator. Internet is required; Shizuku is not. The imported copy supports metadata/file inspection, not map rendering or restoration into RealmCraft. The separate synthetic sample still works offline.
