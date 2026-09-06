@@ -1,5 +1,11 @@
 # Update log
 
+## 0.4.0 — 2026-09-06
+
+- Add a large map that fills the app panel, with optional tools and Back to exit.
+- Keep zoom and center when resizing, enlarging or switching feature tabs; remember each dimension independently.
+- Add direct X/Z navigation and pinch zoom anchored at the gesture position.
+
 ## 0.3.0 — 2026-09-06
 
 - Add per-snapshot deletion with confirmation for downloaded, imported and synthetic copies.

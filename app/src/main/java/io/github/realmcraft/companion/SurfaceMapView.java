@@ -29,17 +29,22 @@ public final class SurfaceMapView extends View {
                 pixels[i]=c.heights[i]<0?0xff172b30:Color.rgb(Math.min(255,(int)(Color.red(base)*light)),Math.min(255,(int)(Color.green(base)*light)),Math.min(255,(int)(Color.blue(base)*light)));}
             tiles.add(new Tile(c,Bitmap.createBitmap(pixels,16,16,Bitmap.Config.ARGB_8888)));
         }
-        gestures=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoom(d.getScaleFactor());moved=true;return true;}});
+        gestures=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoomAt(d.getScaleFactor(),d.getFocusX(),d.getFocusY());moved=true;return true;}});
     }
     public void setDimension(int value){dimension=value;fit();}
-    public void zoom(double factor){scale=Math.max(0.005,Math.min(48,scale*factor));invalidate();}
+    double[] viewport(){return ready?new double[]{centerX,centerZ,scale}:null;}
+    void restoreViewport(double[] v){if(v!=null&&v.length==3&&Double.isFinite(v[0])&&Double.isFinite(v[1])&&Double.isFinite(v[2])&&v[2]>0){centerX=v[0];centerZ=v[1];scale=v[2];ready=true;invalidate();}}
+    public void centerOn(int x,int z){centerX=x;centerZ=z;scale=Math.max(scale,4);ready=true;invalidate();}
+    public void zoom(double factor){zoomAt(factor,getWidth()/2f,getHeight()/2f);}
+    private void zoomAt(double factor,float x,float y){double before=scale;scale=Math.max(0.00000001,Math.min(48,scale*factor));centerX+=(x-getWidth()/2.0)*(1/before-1/scale);centerZ+=(y-getHeight()/2.0)*(1/before-1/scale);invalidate();}
     public void fit(){
+        if(getWidth()<=32||getHeight()<=32){ready=false;return;}
         double minX=Double.POSITIVE_INFINITY,minZ=minX,maxX=Double.NEGATIVE_INFINITY,maxZ=maxX;
         for(Tile t:tiles)if(t.chunk.dimension==dimension){minX=Math.min(minX,t.chunk.x);minZ=Math.min(minZ,t.chunk.z);maxX=Math.max(maxX,(double)t.chunk.x+16);maxZ=Math.max(maxZ,(double)t.chunk.z+16);}
         if(Double.isFinite(minX)){centerX=(minX+maxX)/2;centerZ=(minZ+maxZ)/2;scale=Math.max(0.00000001,Math.min((getWidth()-32)/Math.max(16,maxX-minX),(getHeight()-32)/Math.max(16,maxZ-minZ)));}
         ready=true;invalidate();
     }
-    @Override protected void onSizeChanged(int w,int h,int oldW,int oldH){fit();}
+    @Override protected void onSizeChanged(int w,int h,int oldW,int oldH){if(!ready)fit();}
     @Override protected void onDraw(Canvas canvas){
         canvas.drawColor(0xff0d191e);if(!ready)fit();int shown=0;paint.setFilterBitmap(false);
         for(Tile t:tiles){ChunkSurface c=t.chunk;if(c.dimension!=dimension)continue;shown++;

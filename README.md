@@ -91,3 +91,7 @@ Every library entry, including the synthetic sample, has **Delete copy…**. Con
 **Map settings** persist on this device: select Companion colors or Kenney Voxel Pack textures, chunk budget, square map area around X/Z, and highest rendered Y. Textures appear at close zoom; unmatched blocks retain colors. Kenney artwork is independent CC0 artwork also supported by the Mac Companion, not original RealmCraft graphics. See third-party notices.
 
 Filter the point navigator to signs, chests, beds or crafting tables. Previous/Next centers each point; tap a marker or open Point details for its coordinates, inscription or chest slots. Points include underground locations regardless of the selected surface height. Nearby markers may overlap; the navigator still reaches every indexed point. Bed halves are separate saved blocks. Unsupported/missing sign or chest records are shown as unavailable, never as empty.
+
+### Large map
+
+Open a snapshot, select Map, then **Large map**. The map fills the app panel; **Show tools** reveals dimensions, settings, coordinate navigation and point filters. Zoom and Fit remain available with tools hidden. Use **Small map** or Android Back to return. The map keeps its center and zoom when the panel resizes or when returning from another feature tab. **Go to X/Z** centers on a location within the saved map; excluded areas remain blank.

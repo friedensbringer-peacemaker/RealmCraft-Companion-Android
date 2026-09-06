@@ -39,6 +39,25 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         Activity reopened=getInstrumentation().startActivitySync(intent);
         try{await(()->reopened.findViewById(SnapshotActivity.MAP_VIEW)!=null);}finally{getInstrumentation().runOnMainSync(reopened::finish);}
     }
+    public void testLargeMapPreservesViewportAndBack()throws Exception {
+        Context c=getInstrumentation().getTargetContext();
+        SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
+        Activity a=getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try {
+            await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"qa-small.png");
+            SurfaceMapView map=a.findViewById(SnapshotActivity.MAP_VIEW);int smallHeight=map.getHeight();
+            getInstrumentation().runOnMainSync(()->{map.centerOn(8,12);map.zoom(2);a.findViewById(SnapshotActivity.LARGE_MAP).performClick();});
+            double[] before=map.viewport();capture(a,"qa-large.png");
+            assertTrue("Large map must gain substantial height",map.getHeight()>smallHeight+150);
+            assertEquals(before[0],map.viewport()[0],0.0001);assertEquals(before[2],map.viewport()[2],0.0001);
+            getInstrumentation().runOnMainSync(()->a.findViewById(SnapshotActivity.MAP_TOOLS).performClick());capture(a,"qa-large-tools.png");
+            getInstrumentation().runOnMainSync(a::onBackPressed);capture(a,"qa-restored.png");
+            assertEquals(smallHeight,map.getHeight());
+            getInstrumentation().runOnMainSync(()->{a.findViewById(SnapshotActivity.PLAYER_TAB).performClick();a.findViewById(SnapshotActivity.MAP_TAB).performClick();});capture(a,"qa-return.png");
+            SurfaceMapView restored=a.findViewById(SnapshotActivity.MAP_VIEW);
+            assertEquals(before[0],restored.viewport()[0],0.0001);assertEquals(before[2],restored.viewport()[2],0.0001);
+        }finally{getInstrumentation().runOnMainSync(a::finish);}
+    }
     public void testRenderPreferencesAndTextures()throws Exception {
         Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-settings",0).edit().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();

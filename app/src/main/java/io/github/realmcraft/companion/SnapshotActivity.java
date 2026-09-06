@@ -13,9 +13,11 @@ import java.util.concurrent.*;
 
 /** Read-only feature pages for one immutable imported snapshot. */
 public final class SnapshotActivity extends Activity {
-    public static final int MAP_TAB=2101,PLAYER_TAB=2102,INVENTORY_TAB=2103,DETAILS_TAB=2104,CONTENT=2105,MAP_VIEW=2106;
+    public static final int MAP_TAB=2101,PLAYER_TAB=2102,INVENTORY_TAB=2103,DETAILS_TAB=2104,CONTENT=2105,MAP_VIEW=2106,LARGE_MAP=2107,MAP_TOOLS=2108;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();private final Handler main=new Handler(Looper.getMainLooper());
     private boolean destroyed,german;private String selected="map";private int dimension;
+    private boolean largeMap,showTools;private View libraryButton,tabsView;private SurfaceMapView activeMap;
+    private final double[][] viewports=new double[2][];private final List<View> mapTools=new ArrayList<>();
     private LinearLayout root;private FrameLayout content;private TextView status;private SnapshotStore.Snapshot snapshot;
     private SnapshotAnalysis analysis;private WorldCatalog catalog;
     private MapOptions options;private boolean textures;private String pointKind="all";
@@ -25,12 +27,12 @@ public final class SnapshotActivity extends Activity {
     @Override public void onCreate(Bundle saved){super.onCreate(saved);german=Locale.getDefault().getLanguage().equals("de");
         preferences=getSharedPreferences("map-settings",0);
         options=new MapOptions(preferences.getInt("chunks",4096),preferences.getInt("ceiling",255),preferences.getInt("radius",0),preferences.getInt("centerX",0),preferences.getInt("centerZ",0));textures=preferences.getBoolean("textures",false);
-        if(saved!=null){selected=saved.getString("tab","map");dimension=saved.getInt("dimension",0);}
+        if(saved!=null){selected=saved.getString("tab","map");dimension=saved.getInt("dimension",0);largeMap=saved.getBoolean("largeMap");showTools=saved.getBoolean("showTools");for(int i=0;i<2;i++)viewports[i]=saved.getDoubleArray("viewport"+i);}
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(dp(16),dp(12),dp(16),dp(12));root.setBackgroundColor(0xff101a19);
         root.setOnApplyWindowInsetsListener((v,insets)->{v.setPadding(dp(16)+insets.getSystemWindowInsetLeft(),dp(12)+insets.getSystemWindowInsetTop(),dp(16)+insets.getSystemWindowInsetRight(),dp(12)+insets.getSystemWindowInsetBottom());return insets;});setContentView(root);
-        button(root,t("‹ Library","‹ Bibliothek"),this::finish);
+        libraryButton=button(root,t("‹ Library","‹ Bibliothek"),this::finish);
         status=text(root,t("Reading snapshot…","Spielstand-Kopie wird gelesen…"),15);status.setContentDescription("Analysis status");
-        LinearLayout tabs=new LinearLayout(this);root.addView(tabs);
+        LinearLayout tabs=new LinearLayout(this);root.addView(tabs);tabsView=tabs;
         tab(tabs,t("Map","Karte"),"map",MAP_TAB);tab(tabs,t("Player","Spieler"),"player",PLAYER_TAB);tab(tabs,t("Inventory","Inventar"),"inventory",INVENTORY_TAB);tab(tabs,t("Details","Details"),"details",DETAILS_TAB);
         content=new FrameLayout(this);content.setId(CONTENT);root.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         String id=getIntent().getStringExtra("snapshot");
@@ -44,7 +46,7 @@ public final class SnapshotActivity extends Activity {
         }catch(Exception e){main.post(()->{if(!destroyed)status.setText(t("Cannot read snapshot: ","Kopie nicht lesbar: ")+e.getMessage());});}});
     }
     private void tab(LinearLayout row,String title,String key,int id){Button b=button(row,title,()->{selected=key;render();});b.setId(id);b.setTextSize(13);b.setMinWidth(0);b.setPadding(0,0,0,0);b.setLayoutParams(new LinearLayout.LayoutParams(0,dp(48),1));}
-    private void render(){content.removeAllViews();if(analysis==null)return;
+    private void render(){rememberMap();activeMap=null;mapTools.clear();content.removeAllViews();if(analysis==null)return;
         for(int id:new int[]{MAP_TAB,PLAYER_TAB,INVENTORY_TAB,DETAILS_TAB}) {
             boolean active=id==(selected.equals("map")?MAP_TAB:selected.equals("player")?PLAYER_TAB:selected.equals("inventory")?INVENTORY_TAB:DETAILS_TAB);
             Button tab=findViewById(id);tab.setSelected(active);
@@ -73,20 +75,26 @@ public final class SnapshotActivity extends Activity {
     }
     private void showMap(){
         LinearLayout page=new LinearLayout(this);page.setOrientation(LinearLayout.VERTICAL);content.addView(page);
-        LinearLayout dimensions=new LinearLayout(this);page.addView(dimensions);
-        Button overworld=button(dimensions,"Overworld",()->{dimension=0;pointIndex=-1;render();});
-        Button nether=button(dimensions,"Nether",()->{dimension=1;pointIndex=-1;render();});
+        LinearLayout toolbar=new LinearLayout(this);page.addView(toolbar);
+        Button expand=button(toolbar,"",()->{largeMap=!largeMap;applyMapMode();});expand.setId(LARGE_MAP);
+        Button tools=button(toolbar,"",()->{showTools=!showTools;applyMapMode();});tools.setId(MAP_TOOLS);
+        LinearLayout dimensions=new LinearLayout(this);page.addView(dimensions);mapTools.add(dimensions);
+        Button overworld=button(dimensions,"Overworld",()->{rememberMap();activeMap=null;dimension=0;pointIndex=-1;render();});
+        Button nether=button(dimensions,"Nether",()->{rememberMap();activeMap=null;dimension=1;pointIndex=-1;render();});
         button(dimensions,t("Settings…","Einstellungen …"),this::mapSettings);
         overworld.setEnabled(dimension!=0);nether.setEnabled(dimension!=1);
         TextView coords=text(page,t("Top block up to Y ","Oberster Block bis Y ")+options.ceiling+t(" · drag / zoom / tap"," · ziehen / zoomen / antippen"),13);
         SurfaceMapView map=new SurfaceMapView(this,analysis.chunks,catalog,german,coords::setText);map.setId(MAP_VIEW);map.setTextures(textures);
-        page.addView(map,new LinearLayout.LayoutParams(-1,0,1));map.setDimension(dimension);
-        LinearLayout controls=new LinearLayout(this);page.addView(controls);
-        button(controls,"−",()->map.zoom(1/1.6));button(controls,"+",()->map.zoom(1.6));button(controls,t("Fit","Einpassen"),map::fit);
+        activeMap=map;page.addView(map,new LinearLayout.LayoutParams(-1,0,1));map.setDimension(dimension);map.restoreViewport(viewports[dimension]);
+        button(toolbar,"−",()->map.zoom(1/1.6));button(toolbar,"+",()->map.zoom(1.6));button(toolbar,t("Fit","Einpassen"),map::fit);
+        for(int i=0;i<toolbar.getChildCount();i++){Button b=(Button)toolbar.getChildAt(i);b.setMinWidth(0);b.setTextSize(13);b.setPadding(dp(4),0,dp(4),0);b.setLayoutParams(new LinearLayout.LayoutParams(0,dp(48),i<2?2:1));}
+        mapTools.add(coords);
+        LinearLayout controls=new LinearLayout(this);page.addView(controls);mapTools.add(controls);
+        button(controls,t("Go to X/Z…","Zu X/Z …"),()->goTo(map));
         Spinner filter=new Spinner(this);String[] kinds={"all","sign","chest","bed","crafting"};String[] labels=german?new String[]{"Alle Punkte","Schilder","Truhen","Betten","Werkbänke"}:new String[]{"All points","Signs","Chests","Beds","Crafting tables"};
         filter.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,labels));controls.addView(filter,new LinearLayout.LayoutParams(0,-2,1));filter.setSelection(Arrays.asList(kinds).indexOf(pointKind));
-        TextView info=text(page,"",14);info.setMaxLines(2);
-        LinearLayout navigation=new LinearLayout(this);page.addView(navigation);
+        TextView info=text(page,"",14);info.setMaxLines(2);mapTools.add(info);
+        LinearLayout navigation=new LinearLayout(this);page.addView(navigation);mapTools.add(navigation);
         Button prev=button(navigation,t("‹ Previous","‹ Zurück"),()->{}),next=button(navigation,t("Next ›","Weiter ›"),()->{}),details=button(navigation,t("Point details","Punktdetails"),()->{if(pointIndex>=0&&pointIndex<filtered.size())showPoint(filtered.get(pointIndex));});
         Runnable refresh=()->{
             filtered=new ArrayList<>();for(MapPoint point:analysis.points)if(point.dimension==dimension&&(pointKind.equals("all")||point.kind.equals(pointKind)))filtered.add(point);
@@ -96,7 +104,23 @@ public final class SnapshotActivity extends Activity {
         };
         filter.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onNothingSelected(android.widget.AdapterView<?> p){}public void onItemSelected(android.widget.AdapterView<?> p,View v,int position,long id){pointKind=kinds[position];refresh.run();}});
         prev.setOnClickListener(v->cyclePoint(-1,map,info,details));next.setOnClickListener(v->cyclePoint(1,map,info,details));refresh.run();
-        text(page,analysis.chunks.size()+" / "+analysis.totalChunks+t(" chunks · "," Chunks · ")+analysis.skippedChunks+t(" unreadable"," nicht lesbar")+(analysis.limited?t(" · render limit reached"," · Renderlimit erreicht"):"")+(analysis.pointsLimited?t(" · point limit reached"," · Punktlimit erreicht"):""),12);
+        mapTools.add(text(page,analysis.chunks.size()+" / "+analysis.totalChunks+t(" chunks · "," Chunks · ")+analysis.skippedChunks+t(" unreadable"," nicht lesbar")+(analysis.limited?t(" · render limit reached"," · Renderlimit erreicht"):"")+(analysis.pointsLimited?t(" · point limit reached"," · Punktlimit erreicht"):""),12));applyMapMode();
+    }
+    private void rememberMap(){if(activeMap!=null)viewports[dimension]=activeMap.viewport();}
+    private void applyMapMode(){
+        libraryButton.setVisibility(largeMap?View.GONE:View.VISIBLE);status.setVisibility(largeMap?View.GONE:View.VISIBLE);tabsView.setVisibility(largeMap?View.GONE:View.VISIBLE);
+        for(View v:mapTools)v.setVisibility(!largeMap||showTools?View.VISIBLE:View.GONE);
+        Button expand=findViewById(LARGE_MAP),tools=findViewById(MAP_TOOLS);
+        if(expand!=null)expand.setText(largeMap?t("‹ Small map","‹ Kleine Karte"):t("⛶ Large map","⛶ Große Karte"));
+        if(tools!=null){tools.setVisibility(largeMap?View.VISIBLE:View.GONE);tools.setText(showTools?t("Hide tools","Werkzeuge aus"):t("Show tools","Werkzeuge ein"));}
+    }
+    @Override public void onBackPressed(){if(largeMap){largeMap=false;applyMapMode();}else super.onBackPressed();}
+    private void goTo(SurfaceMapView map){
+        LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(16),0,dp(16),0);
+        double[] viewport=map.viewport();EditText x=numberField(form,"X",viewport==null?0:(int)viewport[0]),z=numberField(form,"Z",viewport==null?0:(int)viewport[1]);
+        text(form,t("Centers the map. Unsaved or excluded areas stay blank.","Zentriert die Karte. Nicht gespeicherte oder ausgeblendete Bereiche bleiben leer."),14);
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle(t("Go to coordinates","Zu Koordinaten springen")).setView(form).setNegativeButton(android.R.string.cancel,null).setPositiveButton(t("Go","Anzeigen"),null).create();dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{try{map.centerOn(Integer.parseInt(x.getText().toString()),Integer.parseInt(z.getText().toString()));dialog.dismiss();}catch(NumberFormatException e){x.setError(t("Enter whole-number X/Z coordinates","Ganzzahlige X/Z-Koordinaten eingeben"));}});
     }
     private void cyclePoint(int step,SurfaceMapView map,TextView info,Button details){if(filtered.isEmpty())return;pointIndex=pointIndex<0?(step>0?0:filtered.size()-1):Math.floorMod(pointIndex+step,filtered.size());MapPoint p=filtered.get(pointIndex);map.focus(p);info.setText((pointIndex+1)+" / "+filtered.size()+" · "+pointDescription(p));details.setEnabled(true);}
     private String pointDescription(MapPoint p){return catalog.name(p.blockId,german)+" · X "+p.x+" · Y "+p.y+" · Z "+p.z+(p.kind.equals("sign")&&p.readable?"\n"+p.text:"");}
@@ -137,6 +161,6 @@ public final class SnapshotActivity extends Activity {
     private TextView text(LinearLayout parent,String value,int size){TextView v=new TextView(this);v.setText(value);v.setTextColor(Color.rgb(218,235,224));v.setTextSize(size);v.setPadding(dp(4),dp(8),dp(4),dp(8));parent.addView(v);return v;}
     private Button button(LinearLayout parent,String title,Runnable action){Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setOnClickListener(v->action.run());parent.addView(b);return b;}
     private int dp(int n){return Math.round(n*getResources().getDisplayMetrics().density);}
-    @Override protected void onSaveInstanceState(Bundle b){b.putString("tab",selected);b.putInt("dimension",dimension);super.onSaveInstanceState(b);}
+    @Override protected void onSaveInstanceState(Bundle b){rememberMap();b.putBoolean("largeMap",largeMap);b.putBoolean("showTools",showTools);for(int i=0;i<2;i++)b.putDoubleArray("viewport"+i,viewports[i]);b.putString("tab",selected);b.putInt("dimension",dimension);super.onSaveInstanceState(b);}
     @Override protected void onDestroy(){destroyed=true;worker.shutdownNow();main.removeCallbacksAndMessages(null);super.onDestroy();}
 }
