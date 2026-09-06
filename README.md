@@ -10,7 +10,7 @@ Download the APK from [Releases](https://github.com/friedensbringer-peacemaker/R
 
 - **Android phone:** open the downloaded APK and allow installation from that source when Android asks.
 - **Quest:** enable developer mode and authorize USB debugging, then install with SideQuest or `adb install -r RealmCraft-Companion-Android-0.2.0.apk`. Open **! ★ RealmCraft Companion Lab** from the headset's installed/unknown-source apps. The exact launcher label depends on Horizon OS.
-- The release also includes a synthetic ZIP for testing the document picker. It contains placeholder data and must never be restored into the game. Recreate it with `python3 tools/create_test_zip.py synthetic-test-world.zip`.
+- Generate a synthetic ZIP for testing the document picker with `python3 tools/create_test_zip.py synthetic-test-world.zip`. It contains placeholder data and must never be restored into the game. Use the built-in sample for the map/player preview.
 - Choose **Try synthetic sample** / **Synthetische Testwelt öffnen** first. No game data or Shizuku is needed for this test.
 - Resize the panel, inspect the sample, close the Companion and reopen it. The sample should remain in the local library.
 
@@ -19,7 +19,7 @@ The app follows the device language for English/German. See the [device test gui
 ## What works in the prototype
 
 - Native, resizable 2D Android activity with large controls, usable on a phone or a Quest panel.
-- Built-in **synthetic, non-playable** test metadata. No real savegames are distributed.
+- Built-in **synthetic, non-playable** test terrain and player records. The owner-shared real demo downloads only after tapping the demo action; no real savegame is embedded in the APK.
 - Import one world's ZIP using the system document picker. Accepts a world at the ZIP root or inside a nested folder; multiple-world archives are rejected with an explanation.
 - Store an independent snapshot in the Companion's own private files directory, inspect v9 world metadata and a bounded file listing, and reopen imports after restart.
 - Calculate per-file SHA-256 and a deterministic manifest digest. Verify ZIP integrity, reject unsafe paths, enforce entry/size limits and avoid replacing existing snapshots.
