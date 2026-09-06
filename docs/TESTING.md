@@ -7,7 +7,7 @@ The Android prototype reads copies and never restores files to RealmCraft. The g
 - Local APK and instrumentation-APK compilation passed.
 - 13 synthetic JVM tests passed; Android Lint completed successfully.
 - APK v2 signature verified.
-- Emulator UI/persistence validation is run by GitHub Actions; consult the workflow result for the exact commit.
+- Android API 32 emulator UI/persistence test passed for the initial release: [GitHub Actions result](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/actions/runs/34038626829). The local APK and CI APK contain identical DEX code, manifest and compiled resources.
 - Physical Quest/phone and Shizuku directory access: not yet tested.
 
 ## Automated checks

@@ -40,7 +40,8 @@ jobs:
           disable-animations: true
           script: |
             ./gradlew connectedDebugAndroidTest --no-daemon
-            adb shell am start -n io.github.realmcraft.companion/.MainActivity
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb shell am start -W -n io.github.realmcraft.companion/.MainActivity
             sleep 2
             adb exec-out screencap -p > app/build/synthetic-panel.png
       - name: Upload APK and validation reports
