@@ -96,7 +96,7 @@ public final class MainActivity extends Activity {
         Button demo = button(intro, tr("Try synthetic sample", "Synthetische Testwelt öffnen"), () -> runWork(tr("Creating sample…", "Testwelt wird erstellt…"), () -> store.createDemo(), this::imported));
         demo.setId(DEMO_BUTTON);
         Button zip = button(intro, tr("Import world ZIP", "Welt-ZIP importieren"), this::chooseZip); zip.setId(ZIP_BUTTON);
-        button(intro, tr("Download RealmCraft Companion Demo · 2.2 MB", "RealmCraft Companion Demo laden · 2,2 MB"), () ->
+        button(intro, tr("Download RealmCraft Companion Demo · 3.4 MB", "RealmCraft Companion Demo laden · 3,4 MB"), () ->
             runWork(tr("Downloading and verifying demo…", "Demo wird geladen und geprüft…"), () -> {
                 byte[] archive = DemoDownload.download();
                 if (destroyed) throw new InterruptedIOException("Download cancelled.");

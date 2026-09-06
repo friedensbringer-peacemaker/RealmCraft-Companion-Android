@@ -8,8 +8,8 @@ import java.util.Locale;
 /** Explicit, bounded public demo download. Never reads or uploads device data. */
 public final class DemoDownload {
     public static final String REPOSITORY = "https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android";
-    public static final String ZIP_URL = REPOSITORY + "/releases/download/demo-world-v1/RealmCraft-Companion-Demo.zip";
-    public static final String SHA256 = "6ad864bc2e569242318dbebf1b48246c20a6243851b6b2a9040e43c55c03d406";
+    public static final String ZIP_URL = REPOSITORY + "/releases/download/demo-world-v2/RealmCraft-Companion-Demo.zip";
+    public static final String SHA256 = "6b2cfdf2bc678b70f61d223d04ced557e0d9565a7d3ef6fe66112f49ce5cfae1";
     private static final int MAX_BYTES = 4 * 1024 * 1024;
     private DemoDownload() { }
 

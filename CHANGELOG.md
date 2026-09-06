@@ -1,5 +1,10 @@
 # Update log
 
+## 0.1.3 — 2026-09-06
+
+- Use the larger owner-shared demo snapshot from the versioned `demo-world-v2` release, with 1,025 files and a newly pinned SHA-256 checksum.
+- Update the displayed download size to 3.4 MB. Import continues to create an independent copy without replacing existing snapshots.
+
 ## 0.1.2 — 2026-09-06
 
 - Add an explicit GitHub demo download and import action with a pinned SHA-256 checksum, HTTPS redirect restrictions, timeouts and a bounded download.

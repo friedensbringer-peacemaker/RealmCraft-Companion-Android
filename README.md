@@ -2,14 +2,14 @@
 
 A small, independent Android prototype for testing a Companion window on Meta Quest and Android phones. This repository is separate from the [macOS Companion](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion) because its UI, toolchain and device permissions differ.
 
-**Status: 0.1.2 experimental.** This is a metadata and file-import test app, not the complete Mac Companion. It is not affiliated with Tellurion Mobile or Meta.
+**Status: 0.1.3 experimental.** This is a metadata and file-import test app, not the complete Mac Companion. It is not affiliated with Tellurion Mobile or Meta.
 
 ## Try the APK
 
 Download the APK from [Releases](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases). The first APK is a debug-signed test build for sideloading, not a store release.
 
 - **Android phone:** open the downloaded APK and allow installation from that source when Android asks.
-- **Quest:** enable developer mode and authorize USB debugging, then install with SideQuest or `adb install -r RealmCraft-Companion-Android-0.1.2.apk`. Open **! ★ RealmCraft Companion Lab** from the headset's installed/unknown-source apps. The exact launcher label depends on Horizon OS.
+- **Quest:** enable developer mode and authorize USB debugging, then install with SideQuest or `adb install -r RealmCraft-Companion-Android-0.1.3.apk`. Open **! ★ RealmCraft Companion Lab** from the headset's installed/unknown-source apps. The exact launcher label depends on Horizon OS.
 - The release also includes a synthetic ZIP for testing the document picker. It contains placeholder data and must never be restored into the game. Recreate it with `python3 tools/create_test_zip.py synthetic-test-world.zip`.
 - Choose **Try synthetic sample** / **Synthetische Testwelt öffnen** first. No game data or Shizuku is needed for this test.
 - Resize the panel, inspect the sample, close the Companion and reopen it. The sample should remain in the local library.
@@ -71,4 +71,4 @@ MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD-PARTY-NOTIC
 
 ## Downloadable demo
 
-Tap **Download RealmCraft Companion Demo** to fetch the owner-shared world from [GitHub](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/tag/demo-world-v1). The app pins the ZIP SHA-256, limits the download to 4 MiB and imports through the existing bounded ZIP validator. Internet is required; Shizuku is not. The imported copy supports metadata/file inspection, not map rendering or restoration into RealmCraft. The separate synthetic sample still works offline.
+Tap **Download RealmCraft Companion Demo** to fetch the owner-shared world from [GitHub](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/tag/demo-world-v2). The app pins the ZIP SHA-256, limits the download to 4 MiB and imports through the existing bounded ZIP validator. Internet is required; Shizuku is not. The imported copy supports metadata/file inspection, not map rendering or restoration into RealmCraft. The separate synthetic sample still works offline.
