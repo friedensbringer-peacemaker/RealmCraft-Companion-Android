@@ -39,7 +39,7 @@ The helper is restricted to the fixed RealmCraft world root and numeric world se
 
 No map renderer, inventory/chest decoding, editing, restore, automatic sync or phone-to-Quest transfer yet. Archive input and expanded content are each limited to 1 GiB, with at most 100,000 entries. Import temporarily needs room for both archive and extracted files. Only the observed version-9 metadata layout is accepted. Unsupported worlds remain unmodified.
 
-The app requests internet permission only for the explicitly tapped GitHub demo download. It requests no broad-storage permission and contains no analytics or upload code. Opening the setup guide delegates to the browser. Android backup is disabled for the app. Uninstalling the app removes its private snapshots, so retain original backups externally. Debug signing identities can differ between local and CI builds; Android may reject an in-place update signed by a different key. Stable release signing is future work.
+The app requests no internet or broad-storage permission and contains no analytics or upload code. Opening the setup guide delegates to the browser. Android backup is disabled for the app. Uninstalling the app removes its private snapshots, so retain original backups externally. Debug signing identities can differ between local and CI builds; Android may reject an in-place update signed by a different key. Stable release signing is future work.
 
 ## Build
 
@@ -68,7 +68,3 @@ Open the repository in Android Studio or configure `ANDROID_HOME` locally. Never
 - [Shizuku API and user services](https://github.com/RikkaApps/Shizuku-API)
 
 MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD-PARTY-NOTICES.md).
-
-## Downloadable demo
-
-Tap **Download RealmCraft Companion Demo** to fetch the owner-shared world from [GitHub](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/tag/demo-world-v1). The app pins the ZIP SHA-256, limits the download to 4 MiB and imports through the existing bounded ZIP validator. Internet is required; Shizuku is not. The imported copy supports metadata/file inspection, not map rendering or restoration into RealmCraft. The separate synthetic sample still works offline.
