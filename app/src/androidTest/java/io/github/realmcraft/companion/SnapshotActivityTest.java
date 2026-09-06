@@ -31,6 +31,18 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         try{await(()->reopened.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(reopened,"unused");assertEquals(12,((SurfaceMapView)reopened.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],0.001);assertEquals(View.GONE,reopened.findViewById(SnapshotActivity.MAP_TAB).getParent() instanceof View?((View)reopened.findViewById(SnapshotActivity.MAP_TAB).getParent()).getVisibility():-1);}
         finally{getInstrumentation().runOnMainSync(reopened::finish);c.getSharedPreferences("notebook-42-12345",0).edit().clear().commit();c.getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
     }
+    public void testPackingAndBookmarkRestore()throws Exception {
+        Context c=getInstrumentation().getTargetContext();SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
+        SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try{await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");
+            getInstrumentation().runOnMainSync(()->{a.packingItem(3157,12);a.featureDialog.getButton(-1).performClick();});
+            assertTrue(contains(a.featureDialog.getWindow().getDecorView(),"5 / 12"));
+            getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(18,22);a.saveBookmark();((android.widget.EditText)a.featureDialog.findViewById(R.id.bookmark_name)).setText("Synthetic view");a.featureDialog.getButton(-1).performClick();});
+            getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(-15,-20);a.bookmarks();a.featureDialog.getListView().performItemClick(null,0,0);a.featureDialog.getListView().performItemClick(null,0,0);});
+            await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");assertEquals(18,((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],.001);
+            ExplorationPlans plans=new ExplorationPlans(c.getSharedPreferences("map-world-42-12345",0));assertEquals(1,plans.read("packing").length());assertEquals(1,plans.read("bookmarks").length());plans.remove("packing","3157");assertEquals(0,plans.read("packing").length());
+        }finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
+    }
     public void testMapPlayerInventoryAndReopen() throws Exception {
         Context context=getInstrumentation().getTargetContext();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(context.getFilesDir(),"snapshots")).createDemo();

@@ -113,3 +113,13 @@ In **Settings**, enable **Exact layer / caves** and choose Y. Air on that layer 
 **Import from this Quest / device** guides connection to an already running Shizuku service and continues to explicit game-stop confirmation and world selection. Shizuku still needs separate installation/startup. ZIP import remains available without it. The app only creates new local snapshots.
 
 Deutsch: Unter **Karte → Mehr** findest du Markierungen/Favoriten, eine manuelle Referenzposition, den Spielstandsvergleich, Ebenenschritte und die kompakte Ansicht. Markierungen und Kartenansichten werden pro Welt gespeichert. Unter **Einstellungen → Exakte Ebene / Höhlen** bleibt Luft leer; Punkte berücksichtigen weiterhin alle Höhen. Vergleiche beziehen sich auf die gewählte Kopie → aktuelle Kopie und nur auf lesbare, geladene Daten. Automatische Spielerkoordinaten sind nicht verfügbar. **Von dieser Quest / diesem Gerät importieren** führt über Shizuku-Verbindung, Beenden-Bestätigung und Weltauswahl zu einer neuen Kopie.
+
+### Planning tools (0.7.0)
+
+**Map → More → Packing list** stores up to 100 item targets per world. Choose an item from readable chest stock or enter its ID, then set a target quantity. Available and missing quantities refer only to readable chests in loaded coverage, across both dimensions; player inventory is excluded. Unknown contents and render limits remain explicit. Select a target to find matching chests, change its quantity or remove it.
+
+**Map bookmarks** stores up to 30 named views per world, including center, zoom, dimension, render settings, height mode, textures and point filter. Open a bookmark to render its view again, or delete it. Existing local markers remain separate.
+
+Snapshot comparisons now list up to 100 changed chests with coordinates and item quantity deltas. A property-only change is labeled when quantities remain equal. Missing or unreadable containers still do not imply removed or empty chests.
+
+Deutsch: **Karte → Mehr → Packliste** verwaltet Zielmengen je Gegenstand, zeigt den lesbaren Truhenbestand und fehlende Mengen und öffnet die Truhensuche. **Karten-Lesezeichen** speichert benannte Ausschnitte samt Ebene, Darstellung und Filter. Der Spielstandsvergleich nennt geänderte Truhen mit Koordinaten und Mengenänderungen. Alles bezieht sich auf geladene, lesbare Kopien und verändert keine Spieldateien.

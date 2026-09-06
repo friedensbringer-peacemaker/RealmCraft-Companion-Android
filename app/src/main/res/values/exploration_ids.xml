@@ -3,4 +3,7 @@
     <item name="coordinate_x" type="id" />
     <item name="coordinate_y" type="id" />
     <item name="coordinate_z" type="id" />
+    <item name="plan_item" type="id" />
+    <item name="plan_quantity" type="id" />
+    <item name="bookmark_name" type="id" />
 </resources>

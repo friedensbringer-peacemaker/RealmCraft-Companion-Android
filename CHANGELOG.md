@@ -1,5 +1,12 @@
 # Update log
 
+## 0.7.0 — 2026-09-06
+
+- Add per-world packing targets with readable chest-stock totals, missing quantities and direct chest search.
+- Add named map bookmarks containing viewport, dimension, render area, layer, textures and point filter.
+- Expand snapshot comparison with per-chest locations and item quantity deltas; distinguish property-only changes.
+- Add bounded local lists and synthetic stock, delta, persistence and bookmark-navigation tests.
+
 ## 0.6.0 — 2026-09-06
 
 - Add local named markers, favorites and a manual reference position with horizontal distances. Automatic saved player-position decoding remains unavailable.
