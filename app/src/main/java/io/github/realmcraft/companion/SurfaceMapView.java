@@ -18,6 +18,8 @@ public final class SurfaceMapView extends View {
     private double centerX,centerZ,scale=1;private float lastX,lastY,downX,downY;private boolean moved;
     private int dimension;private boolean ready;
     private boolean textures;private List<MapPoint> points=Collections.emptyList();private MapPoint selected;
+    private List<MapNotebook.Marker> annotations=Collections.emptyList();private double[] reference;
+    void setAnnotations(List<MapNotebook.Marker> values,double[] ref){annotations=values;reference=ref;invalidate();}
     interface PointSelection {void selected(MapPoint p);}private PointSelection pointSelection;
     public void setTextures(boolean enabled){textures=enabled;invalidate();}
     void setPoints(List<MapPoint> points,PointSelection callback){this.points=points;pointSelection=callback;invalidate();}
@@ -69,6 +71,9 @@ public final class SurfaceMapView extends View {
             paint.setColor(0xff182720);paint.setTextSize(12);String mark=point.kind.equals("sign")?"S":point.kind.equals("chest")?(german?"T":"C"):point.kind.equals("bed")?"B":"W";
             canvas.drawText(mark,px-4,pz+4,paint);
         }
+        paint.setTextSize(16*getResources().getDisplayMetrics().scaledDensity);
+        for(MapNotebook.Marker m:annotations)if(m.dimension==dimension){float px=(float)((m.x-centerX)*scale+getWidth()/2.0),pz=(float)((m.z-centerZ)*scale+getHeight()/2.0);if(px<0||pz<0||px>getWidth()||pz>getHeight())continue;paint.setColor(0xff75d9ff);canvas.drawCircle(px,pz,7,paint);canvas.drawText((m.favorite?"★ ":"")+m.name,px+10,pz,paint);}
+        if(reference!=null&&reference[3]==dimension){float px=(float)((reference[0]-centerX)*scale+getWidth()/2.0),pz=(float)((reference[2]-centerZ)*scale+getHeight()/2.0);paint.setColor(0xffff88dd);canvas.drawLine(px-10,pz,px+10,pz,paint);canvas.drawLine(px,pz-10,px,pz+10,paint);canvas.drawText(german?"Manuelle Referenz":"Manual reference",px+12,pz+18,paint);}
         paint.setColor(0xffe1efe8);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);
         canvas.drawText(shown==0?(german?"Keine lesbaren Chunks in dieser Dimension":"No readable chunks in this dimension"):"N ↑  ·  X →  ·  Z ↓",16,28,paint);
     }

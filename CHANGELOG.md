@@ -1,5 +1,15 @@
 # Update log
 
+## 0.6.0 — 2026-09-06
+
+- Add local named markers, favorites and a manual reference position with horizontal distances. Automatic saved player-position decoding remains unavailable.
+- Add exact-height cave slices and one-layer navigation; air stays blank.
+- Persist viewport, dimension, render settings, filters and large-map controls per world.
+- Compare same-world snapshots for inventory quantities, readable chest contents and decoded terrain coverage.
+- Add a guided Shizuku import entry and bilingual setup steps, preserving explicit game-stop and world selection.
+- Add compact Quest controls, larger touch targets and scrollable dimension tools.
+- Add synthetic slice, cache, comparison, notebook and reopen tests; screenshot creation remains paused.
+
 ## 0.5.0 — 2026-09-06
 
 - Search loaded map points by block name, ID or readable sign text across both dimensions.

@@ -101,3 +101,15 @@ Open a snapshot, select Map, then **Large map**. The map fills the app panel; **
 Use **Search points** for block names, IDs and readable sign text, or **Find chest items** for item names and IDs. Both searches cover both dimensions within the loaded area. Results open their details and center the map. Item search reports matching stack quantities and totals; unknown chest contents are excluded and explicitly counted. Only the first 100 results are displayed; refine the query for more specific matches. Render and point limits also limit search coverage.
 
 Decoded chunks use an 8 MiB process-local cache keyed by verified file checksum, coordinates and height. Source files are still checked on every load; the cache does not survive process termination. Map bitmaps are created on visibility and retained in a 4,096-tile LRU cache (4 MiB of pixel data).
+
+### Exploration tools (0.6.0)
+
+Map → **More** opens local markers/favorites, a manual reference position, snapshot comparison, layer stepping and compact Quest layout. Markers can be named, edited, favorited and deleted; up to 200 are stored per world and shared across its imported copies. They are Companion annotations, not game blocks. Manual reference distances are horizontal straight-line distances in the same dimension. Automatic saved player-position decoding is unavailable.
+
+In **Settings**, enable **Exact layer / caves** and choose Y. Air on that layer stays blank instead of showing the surface below. **Layer down/up** changes Y by one. Point markers still include all heights and their details show the actual Y. Map viewport, filters, dimensions, render settings and large-map controls are restored per world after reopening. World identity uses the saved world ID and seed.
+
+**Compare snapshots** selects another imported copy of the same world as the baseline and compares it to the open copy with identical render settings. Results summarize inventory quantity changes, readable chest-content changes and changed columns in shared coverage. One-sided chunks and unknown containers are reported separately; missing coverage does not establish removed terrain. Armor and inventory durability changes are not included in the inventory quantity summary.
+
+**Import from this Quest / device** guides connection to an already running Shizuku service and continues to explicit game-stop confirmation and world selection. Shizuku still needs separate installation/startup. ZIP import remains available without it. The app only creates new local snapshots.
+
+Deutsch: Unter **Karte → Mehr** findest du Markierungen/Favoriten, eine manuelle Referenzposition, den Spielstandsvergleich, Ebenenschritte und die kompakte Ansicht. Markierungen und Kartenansichten werden pro Welt gespeichert. Unter **Einstellungen → Exakte Ebene / Höhlen** bleibt Luft leer; Punkte berücksichtigen weiterhin alle Höhen. Vergleiche beziehen sich auf die gewählte Kopie → aktuelle Kopie und nur auf lesbare, geladene Daten. Automatische Spielerkoordinaten sind nicht verfügbar. **Von dieser Quest / diesem Gerät importieren** führt über Shizuku-Verbindung, Beenden-Bestätigung und Weltauswahl zu einer neuen Kopie.

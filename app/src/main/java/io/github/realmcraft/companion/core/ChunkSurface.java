@@ -18,6 +18,9 @@ public final class ChunkSurface {
         return decode(b,filename,255);
     }
     public static ChunkSurface decode(byte[] b,String filename,int ceiling) throws IOException {
+        return decode(b,filename,ceiling,false);
+    }
+    public static ChunkSurface decode(byte[] b,String filename,int ceiling,boolean slice) throws IOException {
         if(ceiling<0||ceiling>255)throw invalid();
         if(b.length<15||b.length>4*1024*1024||integer(b,0)!=9)throw invalid();
         int x=integer(b,4),z=integer(b,8),dimension=b[12]&255;
@@ -44,7 +47,7 @@ public final class ChunkSurface {
             if(p!=end)throw invalid();
             for(int i=0;i<4096;i++) {int id=blocks[i]&4095;if(id==0||id==639)continue;
                 int y=section*16+i/256,localX=(i/16)%16,localZ=i%16,index=localZ*16+localX;
-                if(y<=ceiling){result.ids[index]=id;result.heights[index]=y;}
+                if(slice?y==ceiling:y<=ceiling){result.ids[index]=id;result.heights[index]=y;}
                 String kind=MapPoint.kind(id);
                 if(kind!=null){if(result.points.size()<4096)result.points.add(new MapPoint(x+localX,y,z+localZ,dimension,id,kind));else result.pointsLimited=true;}
             }

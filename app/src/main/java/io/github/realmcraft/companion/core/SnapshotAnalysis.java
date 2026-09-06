@@ -50,7 +50,7 @@ public final class SnapshotAnalysis {
             catch(NumberFormatException e){result.skippedChunks++;continue;}
             result.totalChunks++;
             if(result.chunks.size()+result.skippedChunks>=options.chunks||processedBytes>=options.byteLimit){result.limited=true;continue;}
-            try {byte[] bytes=result.read(path,4*1024*1024);processedBytes+=bytes.length;ChunkSurface surface=SurfaceDecodeCache.decode(bytes,result.hashes.get(path),name,options.ceiling);
+            try {byte[] bytes=result.read(path,4*1024*1024);processedBytes+=bytes.length;ChunkSurface surface=SurfaceDecodeCache.decode(bytes,result.hashes.get(path),name,options.ceiling,options.slice);
                 for(MapPoint point:surface.points){if(result.points.size()<5000)result.points.add(point);else result.pointsLimited=true;}
                 result.pointsLimited|=surface.pointsLimited;surface.points.clear();result.chunks.add(surface);}
             catch(IOException e){if(e instanceof InterruptedIOException)throw e;result.skippedChunks++;}

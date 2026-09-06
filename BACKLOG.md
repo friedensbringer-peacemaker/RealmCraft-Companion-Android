@@ -28,12 +28,10 @@ Restore/editing, live position/inventory synchronization, automatic background i
 - Add verified player position, exact-slice cave rendering and inventory item icons. Selected-height surfaces and chest inspection are available in 0.3.0.
 - Decode additional player layouts and personal skins only when validated.
 
-## Next feature priorities
+## Follow-ups after 0.6.0
 
-- User markers and favorite locations.
-- Verified saved player position and distances on the map.
-- Exact-slice cave views and improved height controls.
-- Simpler explicitly authorized Quest snapshot import.
-- Per-world persistent map bookmarks and filters.
-- Snapshot comparisons for inventory, chests and explored regions.
-- Further controller/hand target sizing and compact parallel-use layouts.
+- Validate an automatic saved player-position decoder against known records; manual reference coordinates are available now and are never labeled as player data.
+- Validate the guided Shizuku flow on a real authorized service, including reconnect and permission denial; no real worlds are imported in automated tests.
+- Compare individual changed chest items and visualize terrain differences directly on the map.
+- Add progressive chunk streaming and a versioned disk cache.
+- Extend notebook import/export and multi-world management.

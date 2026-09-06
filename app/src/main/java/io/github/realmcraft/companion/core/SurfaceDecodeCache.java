@@ -8,10 +8,10 @@ final class SurfaceDecodeCache {
     private static final long LIMIT=8*1024*1024;
     private static final LinkedHashMap<String,ChunkSurface> entries=new LinkedHashMap<>(16,.75f,true);
     private static long used;static int hits;
-    static synchronized ChunkSurface decode(byte[] bytes,String hash,String name,int ceiling)throws IOException{
-        String key=hash+":"+name+":"+ceiling;ChunkSurface value=entries.get(key);
+    static synchronized ChunkSurface decode(byte[] bytes,String hash,String name,int ceiling,boolean slice)throws IOException{
+        String key=hash+":"+name+":"+ceiling+":"+slice;ChunkSurface value=entries.get(key);
         if(value!=null){hits++;return copy(value);}
-        value=ChunkSurface.decode(bytes,name,ceiling);long cost=cost(value);
+        value=ChunkSurface.decode(bytes,name,ceiling,slice);long cost=cost(value);
         if(cost<=LIMIT){while(used+cost>LIMIT&&!entries.isEmpty()){String oldest=entries.keySet().iterator().next();used-=cost(entries.remove(oldest));}entries.put(key,value);used+=cost;}
         return copy(value);
     }

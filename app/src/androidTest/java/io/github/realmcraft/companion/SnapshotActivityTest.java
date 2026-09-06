@@ -13,6 +13,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @SuppressWarnings("deprecation")
 public final class SnapshotActivityTest extends InstrumentationTestCase {
+    @Override protected void setUp()throws Exception{super.setUp();getInstrumentation().getTargetContext().getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
+    public void testNotebookReferenceComparisonAndPersistence()throws Exception {
+        Context c=getInstrumentation().getTargetContext();SnapshotStore store=new SnapshotStore(new File(c.getFilesDir(),"snapshots"));SnapshotStore.Snapshot sample=store.createDemo();store.createDemo();
+        Intent intent=new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(intent);
+        try{await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");
+            getInstrumentation().runOnMainSync(()->{a.editMarker(null);((android.widget.EditText)a.featureDialog.findViewById(R.id.marker_name)).setText("Synthetic base");((android.widget.EditText)a.featureDialog.findViewById(R.id.coordinate_x)).setText("12");a.featureDialog.getButton(-1).performClick();});
+            assertTrue(new MapNotebook(c,"42-12345").list().stream().anyMatch(m->m.name.equals("Synthetic base")&&m.x==12));
+            getInstrumentation().runOnMainSync(()->{a.editReference();((android.widget.EditText)a.featureDialog.findViewById(R.id.coordinate_x)).setText("10");((android.widget.EditText)a.featureDialog.findViewById(R.id.coordinate_z)).setText("20");a.featureDialog.getButton(-1).performClick();});capture(a,"unused");
+            assertEquals(10,c.getSharedPreferences("map-world-42-12345",0).getInt("refX",0));
+            getInstrumentation().runOnMainSync(a::chooseComparison);await(()->a.featureDialog!=null&&a.featureDialog.isShowing()&&a.featureDialog.getListView()!=null);
+            getInstrumentation().runOnMainSync(()->a.featureDialog.getListView().performItemClick(null,0,0));await(()->a.featureDialog!=null&&a.featureDialog.isShowing()&&contains(a.featureDialog.getWindow().getDecorView(),"0 / 0"));
+            getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(12,20);a.findViewById(SnapshotActivity.LARGE_MAP).performClick();});
+        }finally{getInstrumentation().runOnMainSync(a::finish);}
+        SnapshotActivity reopened=(SnapshotActivity)getInstrumentation().startActivitySync(intent);
+        try{await(()->reopened.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(reopened,"unused");assertEquals(12,((SurfaceMapView)reopened.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],0.001);assertEquals(View.GONE,reopened.findViewById(SnapshotActivity.MAP_TAB).getParent() instanceof View?((View)reopened.findViewById(SnapshotActivity.MAP_TAB).getParent()).getVisibility():-1);}
+        finally{getInstrumentation().runOnMainSync(reopened::finish);c.getSharedPreferences("notebook-42-12345",0).edit().clear().commit();c.getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
+    }
     public void testMapPlayerInventoryAndReopen() throws Exception {
         Context context=getInstrumentation().getTargetContext();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(context.getFilesDir(),"snapshots")).createDemo();
@@ -70,12 +88,12 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         }finally{getInstrumentation().runOnMainSync(a::finish);}
     }
     public void testRenderPreferencesAndTextures()throws Exception {
-        Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-settings",0).edit().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
+        Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-world-42-12345",0).edit().clear().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
         Intent intent=new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Activity a=getInstrumentation().startActivitySync(intent);
         try {await(()->contains(a.findViewById(SnapshotActivity.CONTENT),"2 / 3"));assertTrue(contains(a.findViewById(SnapshotActivity.CONTENT),"30"));capture(a,"qa-textures.png");}
-        finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-settings",0).edit().clear().commit();}
+        finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-world-42-12345",0).edit().clear().commit();}
     }
     public void testUnknownSnapshotFailsWithoutCrash()throws Exception{
         Context c=getInstrumentation().getTargetContext();Intent intent=new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot","../outside").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -99,10 +117,7 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             ViewGroup body=a.findViewById(SnapshotActivity.CONTENT);
             assertTrue("Feature content must receive usable height",body.getHeight()>150);
             assertTrue("Feature page must be laid out",body.getChildAt(0).getHeight()>100);
-            Bitmap bitmap=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
-            view.draw(new Canvas(bitmap));
-            try(OutputStream out=new FileOutputStream(new File(a.getFilesDir(),name))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}
-            catch(IOException e){throw new AssertionError(e);}finally{bitmap.recycle();}
+            // Screenshot creation is paused; retain functional layout assertions only.
         });
     }
 }

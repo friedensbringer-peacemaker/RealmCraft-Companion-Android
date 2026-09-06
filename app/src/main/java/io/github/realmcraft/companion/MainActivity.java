@@ -32,10 +32,10 @@ public final class MainActivity extends Activity {
     private ProgressBar progress;
     private volatile InputStream activeInput;
     private IWorldAccess bridge;
-    private boolean busy, binding;
+    private boolean busy, binding,pendingImport;
     private volatile boolean destroyed;
     private final Shizuku.UserServiceArgs serviceArgs = new Shizuku.UserServiceArgs(
-        new ComponentName("io.github.realmcraft.companion", WorldAccessService.class.getName()))
+        new ComponentName(BuildConfig.APPLICATION_ID, WorldAccessService.class.getName()))
         .daemon(false).processNameSuffix("world-reader").version(1);
     private final Shizuku.OnBinderReceivedListener received = () -> main.post(this::updateBridgeStatus);
     private final Shizuku.OnBinderDeadListener died = () -> main.post(() -> {
@@ -53,7 +53,7 @@ public final class MainActivity extends Activity {
                     try { Shizuku.unbindUserService(serviceArgs, connection, true); } catch (Exception ignored) { }
                     return;
                 }
-                binding = false; bridge = IWorldAccess.Stub.asInterface(binder); updateBridgeStatus();
+                binding = false; bridge = IWorldAccess.Stub.asInterface(binder); updateBridgeStatus();if(pendingImport){pendingImport=false;confirmScan();}
             });
         }
         @Override public void onServiceDisconnected(ComponentName name) {
@@ -115,6 +115,7 @@ public final class MainActivity extends Activity {
         addText(device, tr("On the Quest itself, an authorized Shizuku helper can test access to the Tellurion folder. Shizuku must be installed and started separately. On a phone this checks the phone, not a connected Quest.",
             "Auf der Quest selbst kann ein freigegebener Shizuku-Helfer den Tellurion-Ordner lesen. Shizuku muss separat installiert und gestartet sein. Auf dem Handy wird das Handy geprüft, keine verbundene Quest."), 15, 0xffd0ddd7, false);
         bridgeStatus = addText(device, "", 14, 0xffaac1b8, false);
+        button(device,tr("Import from this Quest / device…","Von dieser Quest / diesem Gerät importieren …"),()->{if(bridge!=null)confirmScan();else{pendingImport=true;connectBridge();}});
         button(device, tr("Connect Shizuku", "Shizuku verbinden"), this::connectBridge);
         button(device, tr("Find worlds on this device", "Welten auf diesem Gerät suchen"), this::confirmScan);
         button(device, tr("Shizuku setup guide", "Shizuku-Einrichtung öffnen"), () -> {
@@ -128,6 +129,7 @@ public final class MainActivity extends Activity {
         library = new LinearLayout(this); library.setOrientation(LinearLayout.VERTICAL); library.setId(LIBRARY_VIEW); page.addView(library);
         addText(page, tr("Offline storage · No account · No analytics\nMap, player and inventory views read saved copies. Restore and live sync are not included.",
             "Lokale Ablage · Kein Konto · Keine Analyse-Dienste\nKarte, Spieler und Inventar lesen gespeicherte Kopien. Wiederherstellung und Live-Synchronisierung sind nicht enthalten."), 13, 0xffaac1b8, false);
+        button(device,tr("Import steps / help","Importschritte / Hilfe"),()->new AlertDialog.Builder(this).setTitle(tr("Import a fresh copy","Neue Kopie importieren")).setMessage(tr("1. Save in RealmCraft.\n2. Start Shizuku and return here.\n3. Tap Import from this device and grant access.\n4. Confirm game stop, choose a world and import.\n5. Open the new copy. Existing copies remain available for comparison.\n\nZIP import works without Shizuku.","1. In RealmCraft speichern.\n2. Shizuku starten und hierher zurückkehren.\n3. Von diesem Gerät importieren wählen und Zugriff erlauben.\n4. Beenden bestätigen, Welt wählen und importieren.\n5. Neue Kopie öffnen. Vorhandene Kopien bleiben zum Vergleich erhalten.\n\nZIP-Import funktioniert ohne Shizuku.")).setPositiveButton(android.R.string.ok,null).show());
         updateBridgeStatus();
     }
 

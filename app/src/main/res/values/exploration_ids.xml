@@ -1,0 +1,6 @@
+<resources>
+    <item name="marker_name" type="id" />
+    <item name="coordinate_x" type="id" />
+    <item name="coordinate_y" type="id" />
+    <item name="coordinate_z" type="id" />
+</resources>
