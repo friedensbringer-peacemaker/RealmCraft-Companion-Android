@@ -28,7 +28,7 @@ public final class SurfaceMapView extends View {
     void setAnnotations(List<MapNotebook.Marker> values,double[] ref){annotations=values;reference=ref;invalidate();}
     interface PointSelection {void selected(MapPoint p);}private PointSelection pointSelection;
     public void setTextures(boolean enabled){textures=enabled;invalidate();}
-    void setPoints(List<MapPoint> points,PointSelection callback){this.points=points;pointSelection=callback;invalidate();}
+    void setPoints(List<MapPoint> points,PointSelection callback){this.points=points;if(selected!=null)for(MapPoint p:points)if(p.dimension==selected.dimension&&p.x==selected.x&&p.y==selected.y&&p.z==selected.z){selected=p;break;}pointSelection=callback;invalidate();}
     public void focus(MapPoint point){ready=true;selected=point;centerX=point.x+0.5;centerZ=point.z+0.5;scale=Math.max(scale,4);invalidate();movedViewport();}
     SurfaceMapView(Context context,List<ChunkSurface> chunks,WorldCatalog catalog,boolean german,Selection selection) {
         super(context);this.catalog=catalog;this.german=german;this.selection=selection;
@@ -69,14 +69,21 @@ public final class SurfaceMapView extends View {
             }
         }
         paint.setColor(0x99ff9b35);for(Tile tile:tiles){ChunkSurface c=tile.chunk;if(c.dimension!=dimension)continue;boolean[] changed=differences.get(c.dimension+":"+c.x+":"+c.z);if(changed==null)continue;for(int i=0;i<256;i++)if(changed[i]){float px=(float)((c.x+i%16-centerX)*scale+getWidth()/2.0),pz=(float)((c.z+i/16-centerZ)*scale+getHeight()/2.0);canvas.drawRect(px,pz,px+(float)scale,pz+(float)scale,paint);}}
-        Set<Long> occupied=new HashSet<>();
+        List<RectF> occupied=new ArrayList<>();float density=getResources().getDisplayMetrics().density,r=16*density;
         for(MapPoint point:points){if(point.dimension!=dimension)continue;
             float px=(float)((point.x+0.5-centerX)*scale+getWidth()/2.0),pz=(float)((point.z+0.5-centerZ)*scale+getHeight()/2.0);
             if(px<0||pz<0||px>getWidth()||pz>getHeight())continue;
-            long cell=((long)(px/22)<<32)|(int)(pz/22);if(point!=selected&&!occupied.add(cell))continue;
-            paint.setColor(point==selected?0xffffffff:0xfff3bf55);canvas.drawCircle(px,pz,point==selected?11:8,paint);
-            paint.setColor(0xff182720);paint.setTextSize(12);String mark=point.kind.equals("sign")?"S":point.kind.equals("chest")?(german?"T":"C"):point.kind.equals("bed")?"B":"W";
-            canvas.drawText(mark,px-4,pz+4,paint);
+            paint.setAntiAlias(true);paint.setColor(point==selected?0xffeffff8:0xff142724);canvas.drawCircle(px,pz,r+2*density,paint);
+            paint.setColor(point.kind.equals("chest")?0xffffcc71:point.kind.equals("bed")?0xffff9dac:0xfface9ce);paint.setStrokeWidth(2*density);
+            float u=r*.65f;
+            if(point.kind.equals("sign")){canvas.drawRoundRect(new RectF(px-u,pz-u,px+u,pz+u*.3f),2,2,paint);canvas.drawRect(px-2*density,pz,px+2*density,pz+u,paint);}
+            else if(point.kind.equals("bed")){canvas.drawRect(px-u,pz-u*.2f,px+u,pz+u*.5f,paint);canvas.drawLine(px-u,pz-u,px-u,pz+u,paint);canvas.drawLine(px+u,pz,px+u,pz+u,paint);}
+            else{canvas.drawRect(px-u,pz-u,px+u,pz+u,paint);paint.setColor(0xff142724);canvas.drawLine(px-u,pz,px+u,pz,paint);if(point.kind.equals("chest"))canvas.drawRect(px-2*density,pz-3*density,px+2*density,pz+4*density,paint);else canvas.drawLine(px,pz-u,px,pz+u,paint);}
+            String label=catalog.name(point.blockId,german);if(point.kind.equals("sign")&&point.readable&&!point.text.isEmpty())label=point.text.replace('\n',' ');else if(point.kind.equals("chest"))label+=" · "+(point.readable?point.items.size()+(german?" Plätze":" slots"):"?");
+            if(label.length()>34)label=label.substring(0,31)+"…";
+            paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);float width=paint.measureText(label);float left=Math.max(4,Math.min(getWidth()-width-16*density,px+r+5*density));RectF box=new RectF(left,pz-r,left+width+12*density,pz+r);
+            boolean overlap=false;for(RectF used:occupied)if(RectF.intersects(box,used)){overlap=true;break;}
+            if(!overlap||point==selected){occupied.add(box);paint.setColor(0xee142724);canvas.drawRoundRect(box,5*density,5*density,paint);paint.setColor(0xfff2fff8);canvas.drawText(label,box.left+6*density,pz+5*density,paint);}
         }
         paint.setTextSize(16*getResources().getDisplayMetrics().scaledDensity);
         for(MapNotebook.Marker m:annotations)if(m.dimension==dimension){float px=(float)((m.x-centerX)*scale+getWidth()/2.0),pz=(float)((m.z-centerZ)*scale+getHeight()/2.0);if(px<0||pz<0||px>getWidth()||pz>getHeight())continue;paint.setColor(0xff75d9ff);canvas.drawCircle(px,pz,7,paint);canvas.drawText((m.favorite?"★ ":"")+m.name,px+10,pz,paint);}
@@ -101,7 +108,7 @@ public final class SurfaceMapView extends View {
     }
     @Override public boolean performClick(){super.performClick();return true;}
     private void select(float sx,float sy){
-        MapPoint nearest=null;double distance=22*22;
+        MapPoint nearest=null;double distance=Math.pow(26*getResources().getDisplayMetrics().density,2);
         for(MapPoint point:points)if(point.dimension==dimension){double px=(point.x+0.5-centerX)*scale+getWidth()/2.0,pz=(point.z+0.5-centerZ)*scale+getHeight()/2.0,d=(px-sx)*(px-sx)+(pz-sy)*(pz-sy);if(d<distance){distance=d;nearest=point;}}
         if(nearest!=null&&pointSelection!=null){selected=nearest;pointSelection.selected(nearest);invalidate();return;}
         double wx=Math.floor(centerX+(sx-getWidth()/2.0)/scale),wz=Math.floor(centerZ+(sy-getHeight()/2.0)/scale);

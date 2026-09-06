@@ -2,6 +2,12 @@
 
 Ideas have no promised delivery date.
 
+## Quest UI follow-up after 0.9.0
+
+- User-worn Quest validation of controller/hand targeting, readability and panel resizing.
+- Add accessibility virtual children for individual canvas points and aggregate overlapping markers into selectable clusters.
+- Expand unmapped artwork while preserving explicit fallback labels and upstream licenses.
+
 ## Prototype follow-up
 
 - Validate installation, panel resizing, controller/hand focus and coexistence with RealmCraft on Quest 3; repeat on Quest 3S.

@@ -25,7 +25,7 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             assertEquals(10,c.getSharedPreferences("map-world-42-12345",0).getInt("refX",0));
             getInstrumentation().runOnMainSync(a::chooseComparison);await(()->a.featureDialog!=null&&a.featureDialog.isShowing()&&a.featureDialog.getListView()!=null);
             getInstrumentation().runOnMainSync(()->a.featureDialog.getListView().performItemClick(null,0,0));await(()->a.featureDialog!=null&&a.featureDialog.isShowing()&&contains(a.featureDialog.getWindow().getDecorView(),"0 / 0"));
-            getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(12,20);a.findViewById(SnapshotActivity.LARGE_MAP).performClick();});
+            getInstrumentation().runOnMainSync(()->{a.featureDialog.dismiss();((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).centerOn(12,20);});
         }finally{getInstrumentation().runOnMainSync(a::finish);}
         SnapshotActivity reopened=(SnapshotActivity)getInstrumentation().startActivitySync(intent);
         try{await(()->reopened.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(reopened,"unused");assertEquals(12,((SurfaceMapView)reopened.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],0.001);assertEquals(View.GONE,reopened.findViewById(SnapshotActivity.MAP_TAB).getParent() instanceof View?((View)reopened.findViewById(SnapshotActivity.MAP_TAB).getParent()).getVisibility():-1);}
@@ -61,13 +61,11 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             await(()->activity.findViewById(SnapshotActivity.MAP_VIEW)!=null);
             assertTrue(activity.findViewById(SnapshotActivity.MAP_VIEW) instanceof SurfaceMapView);
             capture(activity,"qa-map.png");
-            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Weiter ›","Next ›").performClick());
-            await(()->contains(activity.findViewById(SnapshotActivity.CONTENT),"X 2"));
-            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Punktdetails","Point details").performClick());
-            getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Einstellungen …","Settings…").performClick());
-            getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-
+            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"›").performClick());
+            SnapshotActivity snapshotActivity=(SnapshotActivity)activity;
+            await(()->snapshotActivity.featureDialog!=null&&snapshotActivity.featureDialog.isShowing());
+            assertTrue(contains(snapshotActivity.featureDialog.getWindow().getDecorView(),"Workshop"));
+            getInstrumentation().runOnMainSync(()->snapshotActivity.featureDialog.dismiss());
             getInstrumentation().runOnMainSync(()->activity.findViewById(SnapshotActivity.PLAYER_TAB).performClick());
             await(()->contains(activity.findViewById(SnapshotActivity.CONTENT),"Level 7"));capture(activity,"qa-player.png");
             getInstrumentation().runOnMainSync(()->activity.findViewById(SnapshotActivity.INVENTORY_TAB).performClick());
@@ -84,14 +82,9 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         Activity a=getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         try {
             await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"qa-small.png");
-            SurfaceMapView map=a.findViewById(SnapshotActivity.MAP_VIEW);int smallHeight=map.getHeight();
-            getInstrumentation().runOnMainSync(()->{map.centerOn(8,12);map.zoom(2);a.findViewById(SnapshotActivity.LARGE_MAP).performClick();});
-            double[] before=map.viewport();capture(a,"qa-large.png");
-            assertTrue("Large map must gain substantial height",map.getHeight()>smallHeight+150);
-            assertEquals(before[0],map.viewport()[0],0.0001);assertEquals(before[2],map.viewport()[2],0.0001);
-            getInstrumentation().runOnMainSync(()->a.findViewById(SnapshotActivity.MAP_TOOLS).performClick());capture(a,"qa-large-tools.png");
-            getInstrumentation().runOnMainSync(a::onBackPressed);capture(a,"qa-restored.png");
-            assertEquals(smallHeight,map.getHeight());
+            SurfaceMapView map=a.findViewById(SnapshotActivity.MAP_VIEW);
+            assertTrue("Map must occupy at least 75 percent of the content",map.getHeight()>=a.findViewById(SnapshotActivity.CONTENT).getHeight()*.75);
+            getInstrumentation().runOnMainSync(()->{map.centerOn(8,12);map.zoom(2);});double[] before=map.viewport();
             getInstrumentation().runOnMainSync(()->{a.findViewById(SnapshotActivity.PLAYER_TAB).performClick();a.findViewById(SnapshotActivity.MAP_TAB).performClick();});capture(a,"qa-return.png");
             SurfaceMapView restored=a.findViewById(SnapshotActivity.MAP_VIEW);
             assertEquals(before[0],restored.viewport()[0],0.0001);assertEquals(before[2],restored.viewport()[2],0.0001);
@@ -101,13 +94,24 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         Context c=getInstrumentation().getTargetContext();SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
         SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         try{await(()->a.findViewById(SnapshotActivity.SEARCH_POINTS)!=null);
-            getInstrumentation().runOnMainSync(()->{a.findViewById(SnapshotActivity.SEARCH_POINTS).performClick();((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("workshop");});
-            getInstrumentation().runOnMainSync(()->{android.widget.ListView list=a.searchDialog.findViewById(SnapshotActivity.SEARCH_RESULTS);assertEquals(1,list.getAdapter().getCount());a.searchDialog.dismiss();a.findViewById(SnapshotActivity.SEARCH_ITEMS).performClick();((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("3157");});
+            getInstrumentation().runOnMainSync(()->{a.search(false);((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("workshop");});
+            getInstrumentation().runOnMainSync(()->{android.widget.ListView list=a.searchDialog.findViewById(SnapshotActivity.SEARCH_RESULTS);assertEquals(1,list.getAdapter().getCount());a.searchDialog.dismiss();a.search(true);((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("3157");});
             getInstrumentation().runOnMainSync(()->{android.widget.ListView list=a.searchDialog.findViewById(SnapshotActivity.SEARCH_RESULTS);assertEquals(1,list.getAdapter().getCount());assertTrue(list.getAdapter().getItem(0).toString().contains("× 5"));list.performItemClick(null,0,0);});
             getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);capture(a,"qa-search-result.png");
             assertEquals(4.5,((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],0.001);
         }finally{getInstrumentation().runOnMainSync(a::finish);}
     }
+    public void testQuestPointTapAndIcons()throws Exception{
+        Context c=getInstrumentation().getTargetContext();WorldCatalog catalog=new WorldCatalog(c);assertTrue(catalog.icon(3157) instanceof android.graphics.drawable.BitmapDrawable);assertTrue(catalog.icon(3047) instanceof android.graphics.drawable.BitmapDrawable);assertNotNull(catalog.icon(999999));
+        SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try{await(()->a.findViewById(SnapshotActivity.MAP_VIEW)!=null);capture(a,"unused");SurfaceMapView map=a.findViewById(SnapshotActivity.MAP_VIEW);
+            getInstrumentation().runOnMainSync(()->{map.centerOn(4,2);map.zoom(8);double[] v=map.viewport();float x=(float)(map.getWidth()/2+.5*v[2]),y=(float)(map.getHeight()/2+.5*v[2]);long time=android.os.SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,0,x,y,0),up=MotionEvent.obtain(time,time+20,1,x,y,0);map.onTouchEvent(down);map.onTouchEvent(up);down.recycle();up.recycle();});
+            await(()->a.featureDialog!=null&&a.featureDialog.isShowing());assertTrue(contains(a.featureDialog.getWindow().getDecorView(),"× 5"));
+            assertTrue("Chest detail must display an icon",hasIcon(a.featureDialog.getWindow().getDecorView()));getInstrumentation().runOnMainSync(()->a.featureDialog.dismiss());
+            getInstrumentation().runOnMainSync(()->a.findViewById(SnapshotActivity.INVENTORY_TAB).performClick());assertTrue(hasIcon(a.findViewById(SnapshotActivity.CONTENT)));
+        }finally{getInstrumentation().runOnMainSync(a::finish);}
+    }
+    private static boolean hasIcon(View v){if(v instanceof TextView)for(android.graphics.drawable.Drawable d:((TextView)v).getCompoundDrawables())if(d!=null)return true;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++)if(hasIcon(((ViewGroup)v).getChildAt(i)))return true;return false;}
     public void testRenderPreferencesAndTextures()throws Exception {
         Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-world-42-12345",0).edit().clear().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();

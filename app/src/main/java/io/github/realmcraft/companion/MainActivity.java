@@ -327,7 +327,7 @@ public final class MainActivity extends Activity {
         parent.addView(view); return view;
     }
     private Button button(LinearLayout parent, String label, Runnable action) {
-        Button button = new Button(this); button.setText(label); button.setAllCaps(false); button.setTextSize(16); button.setMinHeight(dp(52));
+        Button button = new Button(this); button.setText(label); button.setAllCaps(false); button.setTextSize(16); button.setMinHeight(dp(52));button.setTextColor(0xffe5f5ee);GradientDrawable shape=new GradientDrawable();shape.setColor(0xff29483f);shape.setCornerRadius(dp(10));button.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0xff79bda2),shape,null));
         button.setOnClickListener(view -> action.run()); parent.addView(button, new LinearLayout.LayoutParams(-1, -2)); actions.add(button); return button;
     }
 }
