@@ -21,7 +21,7 @@ public final class SurfaceMapView extends View {
     interface PointSelection {void selected(MapPoint p);}private PointSelection pointSelection;
     public void setTextures(boolean enabled){textures=enabled;invalidate();}
     void setPoints(List<MapPoint> points,PointSelection callback){this.points=points;pointSelection=callback;invalidate();}
-    public void focus(MapPoint point){selected=point;centerX=point.x+0.5;centerZ=point.z+0.5;scale=Math.max(scale,4);invalidate();}
+    public void focus(MapPoint point){ready=true;selected=point;centerX=point.x+0.5;centerZ=point.z+0.5;scale=Math.max(scale,4);invalidate();}
     SurfaceMapView(Context context,List<ChunkSurface> chunks,WorldCatalog catalog,boolean german,Selection selection) {
         super(context);this.catalog=catalog;this.german=german;this.selection=selection;
         setContentDescription(german?"Weltkarte. Ziehen zum Verschieben, Plus und Minus zum Zoomen.":"World map. Drag to pan; plus and minus to zoom.");
