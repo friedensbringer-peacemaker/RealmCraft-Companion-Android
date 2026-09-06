@@ -22,6 +22,13 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             await(()->activity.findViewById(SnapshotActivity.MAP_VIEW)!=null);
             assertTrue(activity.findViewById(SnapshotActivity.MAP_VIEW) instanceof SurfaceMapView);
             capture(activity,"qa-map.png");
+            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Weiter ›","Next ›").performClick());
+            await(()->contains(activity.findViewById(SnapshotActivity.CONTENT),"X 2"));
+            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Punktdetails","Point details").performClick());
+            getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
+            getInstrumentation().runOnMainSync(()->findButton(activity.getWindow().getDecorView(),"Einstellungen …","Settings…").performClick());
+            getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
+
             getInstrumentation().runOnMainSync(()->activity.findViewById(SnapshotActivity.PLAYER_TAB).performClick());
             await(()->contains(activity.findViewById(SnapshotActivity.CONTENT),"Level 7"));capture(activity,"qa-player.png");
             getInstrumentation().runOnMainSync(()->activity.findViewById(SnapshotActivity.INVENTORY_TAB).performClick());
@@ -32,9 +39,21 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
         Activity reopened=getInstrumentation().startActivitySync(intent);
         try{await(()->reopened.findViewById(SnapshotActivity.MAP_VIEW)!=null);}finally{getInstrumentation().runOnMainSync(reopened::finish);}
     }
+    public void testRenderPreferencesAndTextures()throws Exception {
+        Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-settings",0).edit().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
+        SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
+        Intent intent=new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Activity a=getInstrumentation().startActivitySync(intent);
+        try {await(()->contains(a.findViewById(SnapshotActivity.CONTENT),"2 / 3"));assertTrue(contains(a.findViewById(SnapshotActivity.CONTENT),"30"));capture(a,"qa-textures.png");}
+        finally{getInstrumentation().runOnMainSync(a::finish);c.getSharedPreferences("map-settings",0).edit().clear().commit();}
+    }
     public void testUnknownSnapshotFailsWithoutCrash()throws Exception{
         Context c=getInstrumentation().getTargetContext();Intent intent=new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot","../outside").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Activity a=getInstrumentation().startActivitySync(intent);try{await(()->contains(a.getWindow().getDecorView(),"Invalid snapshot ID"));}finally{getInstrumentation().runOnMainSync(a::finish);}
+    }
+    static android.widget.Button findButton(View v,String... labels){
+        if(v instanceof android.widget.Button)for(String label:labels)if(((TextView)v).getText().toString().equals(label))return (android.widget.Button)v;
+        if(v instanceof ViewGroup){ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++){android.widget.Button b=findButton(g.getChildAt(i),labels);if(b!=null)return b;}}return null;
     }
     interface Condition{boolean test();}
     void await(Condition condition)throws Exception{long end=System.currentTimeMillis()+20000;AtomicBoolean ok=new AtomicBoolean();do{getInstrumentation().runOnMainSync(()->ok.set(condition.test()));if(ok.get())return;Thread.sleep(50);}while(System.currentTimeMillis()<end);fail("Feature page did not become ready");}

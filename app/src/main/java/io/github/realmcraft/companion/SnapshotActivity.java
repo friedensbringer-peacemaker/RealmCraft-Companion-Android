@@ -18,8 +18,13 @@ public final class SnapshotActivity extends Activity {
     private boolean destroyed,german;private String selected="map";private int dimension;
     private LinearLayout root;private FrameLayout content;private TextView status;private SnapshotStore.Snapshot snapshot;
     private SnapshotAnalysis analysis;private WorldCatalog catalog;
+    private MapOptions options;private boolean textures;private String pointKind="all";
+    private java.util.List<MapPoint> filtered=new ArrayList<>();private int pointIndex=-1;
+    private android.content.SharedPreferences preferences;
     private String t(String en,String de){return german?de:en;}
     @Override public void onCreate(Bundle saved){super.onCreate(saved);german=Locale.getDefault().getLanguage().equals("de");
+        preferences=getSharedPreferences("map-settings",0);
+        options=new MapOptions(preferences.getInt("chunks",4096),preferences.getInt("ceiling",255),preferences.getInt("radius",0),preferences.getInt("centerX",0),preferences.getInt("centerZ",0));textures=preferences.getBoolean("textures",false);
         if(saved!=null){selected=saved.getString("tab","map");dimension=saved.getInt("dimension",0);}
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(dp(16),dp(12),dp(16),dp(12));root.setBackgroundColor(0xff101a19);
         root.setOnApplyWindowInsetsListener((v,insets)->{v.setPadding(dp(16)+insets.getSystemWindowInsetLeft(),dp(12)+insets.getSystemWindowInsetTop(),dp(16)+insets.getSystemWindowInsetRight(),dp(12)+insets.getSystemWindowInsetBottom());return insets;});setContentView(root);
@@ -34,7 +39,7 @@ public final class SnapshotActivity extends Activity {
             SnapshotStore store=new SnapshotStore(new File(getFilesDir(),"snapshots"));SnapshotStore.Snapshot found=null;
             for(SnapshotStore.Snapshot s:store.list())if(s.id.equals(id)){found=s;break;}
             if(found==null)throw new IOException("Snapshot unavailable / Kopie nicht verfügbar.");
-            SnapshotStore.Snapshot value=found;WorldCatalog names=new WorldCatalog(this);SnapshotAnalysis data=SnapshotAnalysis.load(value);
+            SnapshotStore.Snapshot value=found;WorldCatalog names=new WorldCatalog(this);SnapshotAnalysis data=SnapshotAnalysis.load(value,options);
             main.post(()->{if(destroyed)return;snapshot=value;catalog=names;analysis=data;status.setText(value.name+" · "+t("Saved copy · read only","Gespeicherte Kopie · nur lesen"));render();});
         }catch(Exception e){main.post(()->{if(!destroyed)status.setText(t("Cannot read snapshot: ","Kopie nicht lesbar: ")+e.getMessage());});}});
     }
@@ -66,15 +71,62 @@ public final class SnapshotActivity extends Activity {
             }}
         }
     }
-    private void showMap(){LinearLayout page=new LinearLayout(this);page.setOrientation(LinearLayout.VERTICAL);content.addView(page);
+    private void showMap(){
+        LinearLayout page=new LinearLayout(this);page.setOrientation(LinearLayout.VERTICAL);content.addView(page);
         LinearLayout dimensions=new LinearLayout(this);page.addView(dimensions);
-        Button overworld=button(dimensions,"Overworld",()->{dimension=0;render();});Button nether=button(dimensions,"Nether",()->{dimension=1;render();});
+        Button overworld=button(dimensions,"Overworld",()->{dimension=0;pointIndex=-1;render();});
+        Button nether=button(dimensions,"Nether",()->{dimension=1;pointIndex=-1;render();});
+        button(dimensions,t("Settings…","Einstellungen …"),this::mapSettings);
         overworld.setEnabled(dimension!=0);nether.setEnabled(dimension!=1);
-        text(page,t("Surface · drag to pan · tap a block","Oberfläche · ziehen zum Verschieben · Block antippen"),14);
-        TextView coords=text(page,t("Saved terrain, schematic colors. Nether view includes its roof.","Gespeichertes Gelände, schematische Farben. Nether-Ansicht einschließlich Dach."),13);
-        SurfaceMapView map=new SurfaceMapView(this,analysis.chunks,catalog,german,coords::setText);map.setId(MAP_VIEW);page.addView(map,new LinearLayout.LayoutParams(-1,0,1));map.setDimension(dimension);
-        LinearLayout zoom=new LinearLayout(this);page.addView(zoom);button(zoom,"−",()->map.zoom(1/1.6));button(zoom,"+",()->map.zoom(1.6));button(zoom,t("Fit world","Welt einpassen"),map::fit);
-        text(page,analysis.chunks.size()+" / "+analysis.totalChunks+t(" chunks read"," Chunks gelesen")+(analysis.skippedChunks>0?" · "+analysis.skippedChunks+t(" unreadable"," nicht lesbar"):"")+(analysis.limited?t(" · limited to 4,096 chunks / 256 MiB"," · auf 4.096 Chunks / 256 MiB begrenzt"):""),13);
+        TextView coords=text(page,t("Top block up to Y ","Oberster Block bis Y ")+options.ceiling+t(" · drag / zoom / tap"," · ziehen / zoomen / antippen"),13);
+        SurfaceMapView map=new SurfaceMapView(this,analysis.chunks,catalog,german,coords::setText);map.setId(MAP_VIEW);map.setTextures(textures);
+        page.addView(map,new LinearLayout.LayoutParams(-1,0,1));map.setDimension(dimension);
+        LinearLayout controls=new LinearLayout(this);page.addView(controls);
+        button(controls,"−",()->map.zoom(1/1.6));button(controls,"+",()->map.zoom(1.6));button(controls,t("Fit","Einpassen"),map::fit);
+        Spinner filter=new Spinner(this);String[] kinds={"all","sign","chest","bed","crafting"};String[] labels=german?new String[]{"Alle Punkte","Schilder","Truhen","Betten","Werkbänke"}:new String[]{"All points","Signs","Chests","Beds","Crafting tables"};
+        filter.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,labels));controls.addView(filter,new LinearLayout.LayoutParams(0,-2,1));filter.setSelection(Arrays.asList(kinds).indexOf(pointKind));
+        TextView info=text(page,"",14);info.setMaxLines(2);
+        LinearLayout navigation=new LinearLayout(this);page.addView(navigation);
+        Button prev=button(navigation,t("‹ Previous","‹ Zurück"),()->{}),next=button(navigation,t("Next ›","Weiter ›"),()->{}),details=button(navigation,t("Point details","Punktdetails"),()->{if(pointIndex>=0&&pointIndex<filtered.size())showPoint(filtered.get(pointIndex));});
+        Runnable refresh=()->{
+            filtered=new ArrayList<>();for(MapPoint point:analysis.points)if(point.dimension==dimension&&(pointKind.equals("all")||point.kind.equals(pointKind)))filtered.add(point);
+            filtered.sort(Comparator.comparingInt((MapPoint v)->v.x).thenComparingInt(v->v.z).thenComparingInt(v->v.y));pointIndex=-1;
+            map.setPoints(filtered,p->{pointIndex=filtered.indexOf(p);info.setText(pointDescription(p));details.setEnabled(true);});
+            info.setText(filtered.size()+t(" points · includes underground blocks"," Punkte · einschließlich unterirdischer Blöcke"));prev.setEnabled(!filtered.isEmpty());next.setEnabled(!filtered.isEmpty());details.setEnabled(false);
+        };
+        filter.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onNothingSelected(android.widget.AdapterView<?> p){}public void onItemSelected(android.widget.AdapterView<?> p,View v,int position,long id){pointKind=kinds[position];refresh.run();}});
+        prev.setOnClickListener(v->cyclePoint(-1,map,info,details));next.setOnClickListener(v->cyclePoint(1,map,info,details));refresh.run();
+        text(page,analysis.chunks.size()+" / "+analysis.totalChunks+t(" chunks · "," Chunks · ")+analysis.skippedChunks+t(" unreadable"," nicht lesbar")+(analysis.limited?t(" · render limit reached"," · Renderlimit erreicht"):"")+(analysis.pointsLimited?t(" · point limit reached"," · Punktlimit erreicht"):""),12);
+    }
+    private void cyclePoint(int step,SurfaceMapView map,TextView info,Button details){if(filtered.isEmpty())return;pointIndex=pointIndex<0?(step>0?0:filtered.size()-1):Math.floorMod(pointIndex+step,filtered.size());MapPoint p=filtered.get(pointIndex);map.focus(p);info.setText((pointIndex+1)+" / "+filtered.size()+" · "+pointDescription(p));details.setEnabled(true);}
+    private String pointDescription(MapPoint p){return catalog.name(p.blockId,german)+" · X "+p.x+" · Y "+p.y+" · Z "+p.z+(p.kind.equals("sign")&&p.readable?"\n"+p.text:"");}
+    private void showPoint(MapPoint p){StringBuilder body=new StringBuilder("X "+p.x+" · Y "+p.y+" · Z "+p.z+"\n"+t("Saved location; may be underground or above the selected map height.","Gespeicherter Standort; kann unterirdisch oder über der gewählten Kartenhöhe liegen."));
+        if(p.kind.equals("sign"))body.append("\n\n").append(p.readable?(p.text.isEmpty()?t("Empty inscription","Leere Beschriftung"):p.text):t("Inscription unavailable: missing, duplicate or unsupported record.","Beschriftung nicht lesbar: fehlender, doppelter oder unbekannter Datensatz."));
+        if(p.kind.equals("chest")){body.append("\n\n");if(!p.readable)body.append(t("Contents unavailable. This does not mean the chest is empty.","Inhalt nicht lesbar. Das bedeutet nicht, dass die Truhe leer ist."));else if(p.items.isEmpty())body.append(t("Empty chest","Leere Truhe"));else for(PlayerReader.Item item:p.items)body.append("#").append(item.slot).append(" · ").append(catalog.name(item.id,german)).append(" × ").append(item.quantity).append("\n");}
+        if(p.kind.equals("bed"))body.append("\n\n").append(t("Bed block. Both halves can appear separately; this does not establish a player spawn point.","Bettblock. Beide Hälften können separat erscheinen; daraus wird kein Spieler-Spawnpunkt abgeleitet."));
+        if(p.kind.equals("crafting"))body.append("\n\n").append(t("Crafting table location. No stored item inventory is assigned to this block.","Standort einer Werkbank. Diesem Block wird kein gespeichertes Inventar zugeordnet."));
+        TextView text=new TextView(this);text.setText(body);text.setTextIsSelectable(true);text.setPadding(dp(18),dp(12),dp(18),dp(12));ScrollView scroll=new ScrollView(this);scroll.addView(text);
+        new AlertDialog.Builder(this).setTitle(catalog.name(p.blockId,german)).setView(scroll).setPositiveButton(android.R.string.ok,null).show();
+    }
+    private void mapSettings(){
+        ScrollView scroll=new ScrollView(this);LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(18),dp(8),dp(18),dp(16));scroll.addView(form);
+        text(form,t("Display style","Darstellung"),18);Spinner style=spinner(form,new String[]{t("Companion colors","Companion-Farben"),"Kenney Voxel Pack"});style.setSelection(textures?1:0);
+        text(form,t("Kenney CC0 textures appear when zoomed in. Unmapped blocks keep their colors. Source: kenney.nl/assets/voxel-pack","Kenney-CC0-Texturen erscheinen beim Hineinzoomen. Nicht zugeordnete Blöcke behalten ihre Farben. Quelle: kenney.nl/assets/voxel-pack"),13);
+        text(form,t("Maximum chunks","Maximale Chunks"),18);int[] counts={256,1024,4096,16384};Spinner count=spinner(form,new String[]{"256 · 64 MiB","1,024 · 64 MiB","4,096 · 256 MiB","16,384 · 512 MiB"});for(int i=0;i<counts.length;i++)if(options.chunks==counts[i])count.setSelection(i);
+        text(form,t("Area around X/Z (square half-width)","Bereich um X/Z (halbe Quadratbreite)"),18);int[] radii={0,64,128,256,512};Spinner radius=spinner(form,new String[]{t("Whole saved area","Gesamter gespeicherter Bereich"),"±64", "±128","±256","±512"});for(int i=0;i<radii.length;i++)if(options.radius==radii[i])radius.setSelection(i);
+        EditText x=numberField(form,"X",options.centerX),z=numberField(form,"Z",options.centerZ);
+        TextView yLabel=text(form,t("Highest rendered block: Y ","Höchster dargestellter Block: Y ")+options.ceiling,16);SeekBar y=new SeekBar(this);y.setMax(255);y.setProgress(options.ceiling);form.addView(y);y.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onStartTrackingTouch(SeekBar s){}public void onStopTrackingTouch(SeekBar s){}public void onProgressChanged(SeekBar s,int v,boolean u){yLabel.setText("Y ≤ "+v);}});
+        text(form,t("Applies to this device. More chunks need more memory and time. Only saved chunks are available; reaching a limit is reported. Points include all heights within the rendered area.","Gilt auf diesem Gerät. Mehr Chunks benötigen mehr Speicher und Zeit. Es sind nur gespeicherte Chunks verfügbar; erreichte Limits werden angezeigt. Punkte umfassen alle Höhen im gewählten Bereich."),13);
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle(t("Map settings","Karteneinstellungen")).setView(scroll).setNegativeButton(android.R.string.cancel,null).setPositiveButton(t("Render","Rendern"),null).create();dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{try{
+            MapOptions next=new MapOptions(counts[count.getSelectedItemPosition()],y.getProgress(),radii[radius.getSelectedItemPosition()],Integer.parseInt(x.getText().toString()),Integer.parseInt(z.getText().toString()));
+            options=next;textures=style.getSelectedItemPosition()==1;preferences.edit().putInt("chunks",next.chunks).putInt("ceiling",next.ceiling).putInt("radius",next.radius).putInt("centerX",next.centerX).putInt("centerZ",next.centerZ).putBoolean("textures",textures).apply();dialog.dismiss();reloadMap();
+        }catch(NumberFormatException e){x.setError(t("Enter whole-number X/Z coordinates","Ganzzahlige X/Z-Koordinaten eingeben"));}});
+    }
+    private Spinner spinner(LinearLayout p,String[] labels){Spinner s=new Spinner(this);s.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,labels));p.addView(s);return s;}
+    private EditText numberField(LinearLayout p,String label,int value){text(p,label,14);EditText e=new EditText(this);e.setHint(label);e.setContentDescription(label);e.setInputType(android.text.InputType.TYPE_CLASS_NUMBER|android.text.InputType.TYPE_NUMBER_FLAG_SIGNED);e.setText(Integer.toString(value));p.addView(e);return e;}
+    private void reloadMap(){analysis=null;pointIndex=-1;content.removeAllViews();status.setText(t("Rendering selected area…","Gewählter Bereich wird gerendert…"));final MapOptions requested=options;
+        worker.execute(()->{try{SnapshotAnalysis result=SnapshotAnalysis.load(snapshot,requested);main.post(()->{if(!destroyed){analysis=result;status.setText(snapshot.name+t(" · saved copy"," · gespeicherte Kopie"));render();}});}catch(Exception e){main.post(()->{if(!destroyed)status.setText(e.getMessage());});}});
     }
     private static PlayerReader.Item find(List<PlayerReader.Item> items,int slot){for(PlayerReader.Item i:items)if(i.slot==slot)return i;return null;}
     private void itemDetails(PlayerReader.Item item){StringBuilder s=new StringBuilder("ID "+item.id+" · Slot "+item.slot+"\n"+t("Quantity: ","Menge: ")+item.quantity);

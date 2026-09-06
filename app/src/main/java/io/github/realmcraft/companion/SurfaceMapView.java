@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.*;
 import io.github.realmcraft.companion.core.ChunkSurface;
+import io.github.realmcraft.companion.core.MapPoint;
 import java.util.*;
 
 /** Small independent chunk bitmaps keep distant regions from allocating a giant canvas. */
@@ -15,6 +16,11 @@ public final class SurfaceMapView extends View {
     private final ScaleGestureDetector gestures;
     private double centerX,centerZ,scale=1;private float lastX,lastY,downX,downY;private boolean moved;
     private int dimension;private boolean ready;
+    private boolean textures;private List<MapPoint> points=Collections.emptyList();private MapPoint selected;
+    interface PointSelection {void selected(MapPoint p);}private PointSelection pointSelection;
+    public void setTextures(boolean enabled){textures=enabled;invalidate();}
+    void setPoints(List<MapPoint> points,PointSelection callback){this.points=points;pointSelection=callback;invalidate();}
+    public void focus(MapPoint point){selected=point;centerX=point.x+0.5;centerZ=point.z+0.5;scale=Math.max(scale,4);invalidate();}
     SurfaceMapView(Context context,List<ChunkSurface> chunks,WorldCatalog catalog,boolean german,Selection selection) {
         super(context);this.catalog=catalog;this.german=german;this.selection=selection;
         setContentDescription(german?"Weltkarte. Ziehen zum Verschieben, Plus und Minus zum Zoomen.":"World map. Drag to pan; plus and minus to zoom.");
@@ -40,6 +46,20 @@ public final class SurfaceMapView extends View {
             float x=(float)((c.x-centerX)*scale+getWidth()/2.0),z=(float)((c.z-centerZ)*scale+getHeight()/2.0),size=(float)(16*scale);
             if(x>getWidth()||z>getHeight()||x+size<0||z+size<0)continue;
             canvas.drawBitmap(t.bitmap,null,new RectF(x,z,x+size,z+size),paint);
+            if(textures&&scale>=8)for(int row=0;row<16;row++)for(int col=0;col<16;col++){
+                float bx=x+(float)(col*scale),bz=z+(float)(row*scale),bs=(float)scale;
+                if(bx>getWidth()||bz>getHeight()||bx+bs<0||bz+bs<0)continue;
+                Bitmap texture=catalog.texture(c.ids[row*16+col]);if(texture!=null)canvas.drawBitmap(texture,null,new RectF(bx,bz,bx+bs,bz+bs),paint);
+            }
+        }
+        Set<Long> occupied=new HashSet<>();
+        for(MapPoint point:points){if(point.dimension!=dimension)continue;
+            float px=(float)((point.x+0.5-centerX)*scale+getWidth()/2.0),pz=(float)((point.z+0.5-centerZ)*scale+getHeight()/2.0);
+            if(px<0||pz<0||px>getWidth()||pz>getHeight())continue;
+            long cell=((long)(px/22)<<32)|(int)(pz/22);if(point!=selected&&!occupied.add(cell))continue;
+            paint.setColor(point==selected?0xffffffff:0xfff3bf55);canvas.drawCircle(px,pz,point==selected?11:8,paint);
+            paint.setColor(0xff182720);paint.setTextSize(12);String mark=point.kind.equals("sign")?"S":point.kind.equals("chest")?(german?"T":"C"):point.kind.equals("bed")?"B":"W";
+            canvas.drawText(mark,px-4,pz+4,paint);
         }
         paint.setColor(0xffe1efe8);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);
         canvas.drawText(shown==0?(german?"Keine lesbaren Chunks in dieser Dimension":"No readable chunks in this dimension"):"N ↑  ·  X →  ·  Z ↓",16,28,paint);
@@ -61,6 +81,9 @@ public final class SurfaceMapView extends View {
     }
     @Override public boolean performClick(){super.performClick();return true;}
     private void select(float sx,float sy){
+        MapPoint nearest=null;double distance=22*22;
+        for(MapPoint point:points)if(point.dimension==dimension){double px=(point.x+0.5-centerX)*scale+getWidth()/2.0,pz=(point.z+0.5-centerZ)*scale+getHeight()/2.0,d=(px-sx)*(px-sx)+(pz-sy)*(pz-sy);if(d<distance){distance=d;nearest=point;}}
+        if(nearest!=null&&pointSelection!=null){selected=nearest;pointSelection.selected(nearest);invalidate();return;}
         double wx=Math.floor(centerX+(sx-getWidth()/2.0)/scale),wz=Math.floor(centerZ+(sy-getHeight()/2.0)/scale);
         for(Tile t:tiles){ChunkSurface c=t.chunk;if(c.dimension!=dimension||wx<c.x||wx>=(double)c.x+16||wz<c.z||wz>=(double)c.z+16)continue;
             int i=((int)(wz-c.z))*16+(int)(wx-c.x);

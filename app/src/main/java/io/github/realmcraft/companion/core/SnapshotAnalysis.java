@@ -12,7 +12,9 @@ public final class SnapshotAnalysis {
     public PlayerReader player;
     public String playerIssue;
     public int skippedChunks, totalChunks;
-    public boolean limited;
+    public boolean limited,pointsLimited;
+    public final List<MapPoint> points=new ArrayList<>();
+    public MapOptions options;
     private final SnapshotStore.Snapshot snapshot;
     private final Map<String,String> hashes=new TreeMap<>();
     private final String prefix;
@@ -34,15 +36,23 @@ public final class SnapshotAnalysis {
         }catch(NumberFormatException e){throw new IOException("Invalid snapshot manifest",e);}
     }
     public static SnapshotAnalysis load(SnapshotStore.Snapshot snapshot) throws IOException {
-        SnapshotAnalysis result=new SnapshotAnalysis(snapshot);
+        return load(snapshot,MapOptions.defaults());
+    }
+    public static SnapshotAnalysis load(SnapshotStore.Snapshot snapshot,MapOptions options) throws IOException {
+        SnapshotAnalysis result=new SnapshotAnalysis(snapshot);result.options=options;
         try {result.player=PlayerReader.parse(result.read(result.prefix+"player_data",4_000_000));}
         catch(IOException e) {if(e instanceof InterruptedIOException)throw e;result.playerIssue=e.getMessage();}
         Pattern chunk=Pattern.compile("[on]\\.-?\\d+,-?\\d+");long processedBytes=0;
         for(String path:result.hashes.keySet()) {
             checkCancelled();if(!path.startsWith(result.prefix))continue;
-            String name=path.substring(result.prefix.length());if(!chunk.matcher(name).matches())continue;result.totalChunks++;
-            if(result.chunks.size()+result.skippedChunks>=4096||processedBytes>=256L*1024*1024){result.limited=true;continue;}
-            try {byte[] bytes=result.read(path,4*1024*1024);processedBytes+=bytes.length;result.chunks.add(ChunkSurface.decode(bytes,name));}
+            String name=path.substring(result.prefix.length());if(!chunk.matcher(name).matches())continue;
+            try{String[] c=name.substring(2).split(",");if(!options.includes(Integer.parseInt(c[0]),Integer.parseInt(c[1])))continue;}
+            catch(NumberFormatException e){result.skippedChunks++;continue;}
+            result.totalChunks++;
+            if(result.chunks.size()+result.skippedChunks>=options.chunks||processedBytes>=options.byteLimit){result.limited=true;continue;}
+            try {byte[] bytes=result.read(path,4*1024*1024);processedBytes+=bytes.length;ChunkSurface surface=ChunkSurface.decode(bytes,name,options.ceiling);
+                for(MapPoint point:surface.points){if(result.points.size()<5000)result.points.add(point);else result.pointsLimited=true;}
+                result.pointsLimited|=surface.pointsLimited;surface.points.clear();result.chunks.add(surface);}
             catch(IOException e){if(e instanceof InterruptedIOException)throw e;result.skippedChunks++;}
         }
         return result;

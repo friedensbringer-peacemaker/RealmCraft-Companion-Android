@@ -141,6 +141,16 @@ public final class SnapshotStore {
         }
         Collections.sort(result, (a, b) -> Long.compare(b.importedAt, a.importedAt)); return result;
     }
+    /** Delete only the explicitly selected app-owned snapshot; never follow links. */
+    public void delete(String id) throws IOException {
+        if(id==null || !id.matches("[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}")) throw new IOException("Invalid snapshot ID");
+        File directory=new File(root,id);
+        if(!directory.getCanonicalFile().equals(directory.getAbsoluteFile()) || !directory.isDirectory()) throw new IOException("Snapshot unavailable");
+        java.nio.file.Files.walkFileTree(directory.toPath(),new java.nio.file.SimpleFileVisitor<java.nio.file.Path>() {
+            @Override public java.nio.file.FileVisitResult visitFile(java.nio.file.Path p,java.nio.file.attribute.BasicFileAttributes a)throws IOException {java.nio.file.Files.delete(p);return java.nio.file.FileVisitResult.CONTINUE;}
+            @Override public java.nio.file.FileVisitResult postVisitDirectory(java.nio.file.Path p,IOException e)throws IOException {if(e!=null)throw e;java.nio.file.Files.delete(p);return java.nio.file.FileVisitResult.CONTINUE;}
+        });
+    }
     public Snapshot createDemo() throws IOException {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         try (ZipOutputStream zip = new ZipOutputStream(bytes)) {
@@ -148,7 +158,7 @@ public final class SnapshotStore {
             ByteBuffer data = ByteBuffer.allocate(17 + name.length + 105); data.put((byte) 9); data.putInt(42); data.position(9); data.putInt(12345); data.putInt(name.length); data.put(name);
             zip.putNextEntry(new ZipEntry("world_data")); zip.write(data.array()); zip.closeEntry();
             zip.putNextEntry(new ZipEntry("SYNTHETIC-NOT-PLAYABLE.txt")); zip.write("Generated test metadata, terrain and player records only. This is not a playable savegame.".getBytes(StandardCharsets.UTF_8)); zip.closeEntry();
-            zip.putNextEntry(new ZipEntry("o.0,0")); zip.write(SyntheticFeatureData.chunk(0,0,0)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("o.0,0")); zip.write(SyntheticFeatureData.chunkWithPoints()); zip.closeEntry();
             zip.putNextEntry(new ZipEntry("o.-16,0")); zip.write(SyntheticFeatureData.chunk(-16,0,0)); zip.closeEntry();
             zip.putNextEntry(new ZipEntry("n.0,0")); zip.write(SyntheticFeatureData.chunk(0,0,1)); zip.closeEntry();
             zip.putNextEntry(new ZipEntry("player_data")); zip.write(SyntheticFeatureData.player()); zip.closeEntry();

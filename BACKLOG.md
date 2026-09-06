@@ -25,5 +25,5 @@ Restore/editing, live position/inventory synchronization, automatic background i
 ## Android 0.2 follow-up
 
 - Stream larger map regions beyond the current bounded overview and retain the map viewport across navigation.
-- Add verified player position, selected-height cave/Nether layers, chest inspection and item icons.
+- Add verified player position, exact-slice cave rendering and inventory item icons. Selected-height surfaces and chest inspection are available in 0.3.0.
 - Decode additional player layouts and personal skins only when validated.

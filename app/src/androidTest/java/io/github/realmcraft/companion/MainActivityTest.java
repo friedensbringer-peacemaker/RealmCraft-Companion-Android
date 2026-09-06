@@ -15,6 +15,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
     public MainActivityTest() { super(MainActivity.class); }
 
+    public void testDeleteConfirmationCanBeCancelled() throws Exception {
+        MainActivity activity=getActivity();awaitReady(activity);
+        SnapshotStore store=new SnapshotStore(new File(activity.getFilesDir(),"snapshots"));int before=store.list().size();
+        getInstrumentation().runOnMainSync(()->((Button)activity.findViewById(MainActivity.DEMO_BUTTON)).performClick());
+        long end=System.currentTimeMillis()+15000;while(store.list().size()==before&&System.currentTimeMillis()<end)Thread.sleep(50);
+        awaitReady(activity);getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);getInstrumentation().waitForIdleSync();
+        getInstrumentation().runOnMainSync(()->SnapshotActivityTest.findButton(activity.findViewById(MainActivity.LIBRARY_VIEW),"Kopie löschen …","Delete copy…").performClick());
+        getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);getInstrumentation().waitForIdleSync();
+        assertEquals(before+1,store.list().size());
+    }
+
     public void testPublicDemoActionsAreAvailableWithoutStartingDownload() throws Exception {
         MainActivity activity = getActivity();
         awaitReady(activity);

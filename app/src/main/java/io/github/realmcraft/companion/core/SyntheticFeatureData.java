@@ -18,18 +18,26 @@ public final class SyntheticFeatureData {
         if(extra){out.write(new byte[]{0,24,1});out.writeInt(100);out.writeInt(0);out.write(new byte[]{0,59,0});out.writeInt(1);out.writeShort(7);out.writeInt(2);}
         out.write(new byte[]{0,12,0});out.writeInt(slot);out.writeShort(65535);
     }
-    public static byte[] chunk(int x,int z,int dimension) throws IOException {
+    public static byte[] chunk(int x,int z,int dimension) throws IOException {return chunk(x,z,dimension,false);}
+    public static byte[] chunkWithPoints() throws IOException {return chunk(0,0,0,true);}
+    private static byte[] chunk(int x,int z,int dimension,boolean points) throws IOException {
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
         out.writeInt(9);out.writeInt(x);out.writeInt(z);out.writeByte(dimension);out.writeByte(0);out.writeByte(16);
         for(int section=0;section<16;section++) {
             int[] values=new int[4096];int count=0;
             for(int i=0;i<4096;i++){int y=section*16+i/256,lx=i/16%16,lz=i%16;int height=40+lx/3+lz/4;
-                if(y<=height){values[i]=dimension==1?87:(y==height?8:1);count++;}}
+                if(y<=height){values[i]=dimension==1?201:(y==height?8:1);count++;}
+                if(points&&y==60&&lz==2&&(lx==2||lx==4||lx==6||lx==8)){values[i]=lx==2?162:lx==4?153:lx==6?95:158;count++;}}
             out.writeInt(count);if(count==0)continue;
             ByteArrayOutputStream payload=new ByteArrayOutputStream();DataOutputStream p=new DataOutputStream(payload);p.writeInt(0);
             for(int channel=0;channel<4;channel++)for(int i=0;i<4096;){int value=(values[i]>>>(8*channel))&255,end=i+1;while(end<4096&&((values[end]>>>(8*channel))&255)==value)end++;
                 int run=end-i;while(run>255){p.writeByte(0);run-=255;}p.writeByte(run);p.writeByte(value);i=end;}
             out.writeInt(payload.size());out.write(payload.toByteArray());
+        }
+        if(points){
+            byte[] text="Workshop → storage".getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            out.writeShort(162);out.writeInt(28+text.length);out.writeByte(1);out.writeInt(2);out.writeInt(60);out.writeInt(2);out.writeShort(0);out.writeInt(text.length);out.write(text);out.write(new byte[]{0,15,0,0,0,0,0,15,0});
+            out.writeShort(153);out.writeInt(71);out.writeByte(1);out.writeInt(4);out.writeInt(60);out.writeInt(2);out.writeByte(1);out.writeInt(27);out.writeInt(1);item(out,3157,5,0,false);
         }
         return bytes.toByteArray();
     }

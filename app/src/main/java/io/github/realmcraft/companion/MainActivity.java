@@ -172,7 +172,15 @@ public final class MainActivity extends Activity {
             actions.remove(open);
             Button features = button(item, tr("Map · Player · Inventory", "Karte · Spieler · Inventar"), () -> openFeatures(snapshot));
             actions.remove(features);
+            Button delete = button(item,tr("Delete copy…","Kopie löschen …"),()->confirmDelete(snapshot));
+            actions.remove(delete);
         }
+    }
+    private void confirmDelete(Snapshot snapshot) {
+        new AlertDialog.Builder(this).setTitle(tr("Delete this copy?","Diese Kopie löschen?"))
+            .setMessage(snapshot.name+"\n\n"+tr("Deletes this downloaded or synthetic snapshot and its files from Companion. Other copies and RealmCraft stay unchanged.","Löscht diese heruntergeladene oder synthetische Kopie samt Dateien aus dem Companion. Andere Kopien und RealmCraft bleiben erhalten."))
+            .setNegativeButton(android.R.string.cancel,null)
+            .setPositiveButton(tr("Delete","Löschen"),(dialog,which)->runWork(tr("Deleting…","Wird gelöscht…"),()->{store.delete(snapshot.id);return store.list();},this::showLibrary)).show();
     }
     private void openFeatures(Snapshot snapshot) {
         startActivity(new Intent(this, SnapshotActivity.class).putExtra("snapshot", snapshot.id));

@@ -1,5 +1,12 @@
 # Update log
 
+## 0.3.0 — 2026-09-06
+
+- Add per-snapshot deletion with confirmation for downloaded, imported and synthetic copies.
+- Add block-anchored signs, chest contents, beds and crafting tables with filtered Previous/Next navigation and descriptive details.
+- Add persistent render settings for chunk budget, X/Z area, height and optional Kenney Voxel Pack textures.
+- Bound record decoding and map work, preserve unsupported-state messages and expand synthetic deletion/point/render tests.
+
 ## 0.2.0 — 2026-09-06
 
 - Add a read-only surface map with pan, zoom, dimension switching and per-block inspection.
