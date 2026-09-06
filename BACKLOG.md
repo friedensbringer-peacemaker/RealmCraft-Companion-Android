@@ -20,10 +20,20 @@ Restore/editing, live position/inventory synchronization, automatic background i
 ## Demo download follow-ups
 
 - Support additional explicitly published demo worlds through a reviewed versioned catalog.
-- Add map rendering for imported worlds; current Android snapshots expose metadata and files only.
+- Map rendering, point search and readable chest-item search are available as of 0.5.0.
 
 ## Android 0.2 follow-up
 
-- Stream larger map regions beyond the current bounded overview and retain the map viewport across navigation.
+- Stream chunk analysis progressively beyond the bounded overview and investigate a versioned disk cache. Viewport retention, visible-tile bitmap creation and bounded process-local decode caching are available as of 0.5.0.
 - Add verified player position, exact-slice cave rendering and inventory item icons. Selected-height surfaces and chest inspection are available in 0.3.0.
 - Decode additional player layouts and personal skins only when validated.
+
+## Next feature priorities
+
+- User markers and favorite locations.
+- Verified saved player position and distances on the map.
+- Exact-slice cave views and improved height controls.
+- Simpler explicitly authorized Quest snapshot import.
+- Per-world persistent map bookmarks and filters.
+- Snapshot comparisons for inventory, chests and explored regions.
+- Further controller/hand target sizing and compact parallel-use layouts.

@@ -9,7 +9,7 @@ public final class ChunkSurface {
     public final int[] ids=new int[256], heights=new int[256]; // z * 16 + x
     public final java.util.List<MapPoint> points=new java.util.ArrayList<>();
     public boolean pointsLimited;
-    private ChunkSurface(int x,int z,int dimension){this.x=x;this.z=z;this.dimension=dimension;java.util.Arrays.fill(heights,-1);}
+    ChunkSurface(int x,int z,int dimension){this.x=x;this.z=z;this.dimension=dimension;java.util.Arrays.fill(heights,-1);}
     private static IOException invalid(){return new IOException("Unsupported or damaged chunk / Chunk nicht unterstützt oder beschädigt.");}
     private static int integer(byte[] b,int p) throws IOException {
         if(p<0||p>b.length-4)throw invalid();return (b[p]&255)<<24|(b[p+1]&255)<<16|(b[p+2]&255)<<8|(b[p+3]&255);

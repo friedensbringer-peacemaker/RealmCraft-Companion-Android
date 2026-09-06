@@ -13,9 +13,10 @@ import java.util.concurrent.*;
 
 /** Read-only feature pages for one immutable imported snapshot. */
 public final class SnapshotActivity extends Activity {
-    public static final int MAP_TAB=2101,PLAYER_TAB=2102,INVENTORY_TAB=2103,DETAILS_TAB=2104,CONTENT=2105,MAP_VIEW=2106,LARGE_MAP=2107,MAP_TOOLS=2108;
+    public static final int MAP_TAB=2101,PLAYER_TAB=2102,INVENTORY_TAB=2103,DETAILS_TAB=2104,CONTENT=2105,MAP_VIEW=2106,LARGE_MAP=2107,MAP_TOOLS=2108,SEARCH_POINTS=2109,SEARCH_ITEMS=2110,SEARCH_QUERY=2111,SEARCH_RESULTS=2112;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();private final Handler main=new Handler(Looper.getMainLooper());
     private boolean destroyed,german;private String selected="map";private int dimension;
+    AlertDialog searchDialog;
     private boolean largeMap,showTools;private View libraryButton,tabsView;private SurfaceMapView activeMap;
     private final double[][] viewports=new double[2][];private final List<View> mapTools=new ArrayList<>();
     private LinearLayout root;private FrameLayout content;private TextView status;private SnapshotStore.Snapshot snapshot;
@@ -82,6 +83,10 @@ public final class SnapshotActivity extends Activity {
         Button overworld=button(dimensions,"Overworld",()->{rememberMap();activeMap=null;dimension=0;pointIndex=-1;render();});
         Button nether=button(dimensions,"Nether",()->{rememberMap();activeMap=null;dimension=1;pointIndex=-1;render();});
         button(dimensions,t("Settings…","Einstellungen …"),this::mapSettings);
+        LinearLayout searches=new LinearLayout(this);page.addView(searches);mapTools.add(searches);
+        Button searchPoints=button(searches,t("Search points…","Punkte suchen …"),()->search(false));searchPoints.setId(SEARCH_POINTS);
+        Button searchItems=button(searches,t("Find chest items…","Truheninhalt suchen …"),()->search(true));searchItems.setId(SEARCH_ITEMS);
+        for(Button b:new Button[]{searchPoints,searchItems}){b.setMinWidth(0);b.setLayoutParams(new LinearLayout.LayoutParams(0,dp(48),1));}
         overworld.setEnabled(dimension!=0);nether.setEnabled(dimension!=1);
         TextView coords=text(page,t("Top block up to Y ","Oberster Block bis Y ")+options.ceiling+t(" · drag / zoom / tap"," · ziehen / zoomen / antippen"),13);
         SurfaceMapView map=new SurfaceMapView(this,analysis.chunks,catalog,german,coords::setText);map.setId(MAP_VIEW);map.setTextures(textures);
@@ -105,6 +110,25 @@ public final class SnapshotActivity extends Activity {
         filter.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onNothingSelected(android.widget.AdapterView<?> p){}public void onItemSelected(android.widget.AdapterView<?> p,View v,int position,long id){pointKind=kinds[position];refresh.run();}});
         prev.setOnClickListener(v->cyclePoint(-1,map,info,details));next.setOnClickListener(v->cyclePoint(1,map,info,details));refresh.run();
         mapTools.add(text(page,analysis.chunks.size()+" / "+analysis.totalChunks+t(" chunks · "," Chunks · ")+analysis.skippedChunks+t(" unreadable"," nicht lesbar")+(analysis.limited?t(" · render limit reached"," · Renderlimit erreicht"):"")+(analysis.pointsLimited?t(" · point limit reached"," · Punktlimit erreicht"):""),12));applyMapMode();
+    }
+    private void search(boolean items){
+        LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(16),0,dp(16),0);
+        EditText query=new EditText(this);query.setSingleLine(true);query.setId(SEARCH_QUERY);query.setHint(items?t("Item name or ID","Gegenstandsname oder ID"):t("Block name, sign text or ID","Blockname, Schildertext oder ID"));form.addView(query);
+        text(form,t("Searches both dimensions in the loaded area. Render and point limits apply; unreadable signs or chests cannot be searched completely.","Durchsucht beide Dimensionen im geladenen Bereich. Render- und Punktlimits gelten; unlesbare Schilder oder Truhen sind nicht vollständig durchsuchbar."),13);
+        TextView summary=text(form,"",14);ListView results=new ListView(this);results.setId(SEARCH_RESULTS);form.addView(results,new LinearLayout.LayoutParams(-1,dp(240)));
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle(items?t("Find chest items","Truheninhalt suchen"):t("Search map points","Kartenpunkte suchen")).setView(form).setNegativeButton(android.R.string.cancel,null).create();
+        final List<PointSearch.Hit> displayed=new ArrayList<>();
+        Runnable update=()->{
+            List<PointSearch.Hit> hits=PointSearch.find(analysis.points,query.getText().toString(),items,id->catalog.name(id,german));displayed.clear();displayed.addAll(hits.subList(0,Math.min(100,hits.size())));
+            long amount=0;for(PointSearch.Hit h:hits)amount+=h.quantity;
+            int unreadable=0;for(MapPoint p:analysis.points)if((items?p.kind.equals("chest"):p.kind.equals("chest")||p.kind.equals("sign"))&&!p.readable)unreadable++;
+            summary.setText(hits.size()+t(" matches"," Treffer")+(items?" · "+amount+t(" items"," Gegenstände"):"")+" · "+unreadable+t(" unreadable points"," unlesbare Punkte")+(hits.size()>100?t(" · first 100 shown; refine search"," · erste 100 angezeigt; Suche eingrenzen"):""));
+            List<String> labels=new ArrayList<>();for(PointSearch.Hit h:displayed)labels.add(pointDescription(h.point)+" · "+(h.point.dimension==0?"Overworld":"Nether")+(items?"\n"+h.matches:""));
+            results.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,labels));
+        };
+        query.addTextChangedListener(new android.text.TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){update.run();}public void afterTextChanged(android.text.Editable s){}});
+        results.setOnItemClickListener((parent,view,position,id)->{MapPoint point=displayed.get(position).point;dialog.dismiss();rememberMap();activeMap=null;dimension=point.dimension;pointKind="all";render();activeMap.focus(point);showPoint(point);});
+        searchDialog=dialog;dialog.show();update.run();
     }
     private void rememberMap(){if(activeMap!=null)viewports[dimension]=activeMap.viewport();}
     private void applyMapMode(){

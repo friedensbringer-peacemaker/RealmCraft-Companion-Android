@@ -58,6 +58,17 @@ public final class SnapshotActivityTest extends InstrumentationTestCase {
             assertEquals(before[0],restored.viewport()[0],0.0001);assertEquals(before[2],restored.viewport()[2],0.0001);
         }finally{getInstrumentation().runOnMainSync(a::finish);}
     }
+    public void testPointAndChestSearchNavigatesToResult()throws Exception {
+        Context c=getInstrumentation().getTargetContext();SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();
+        SnapshotActivity a=(SnapshotActivity)getInstrumentation().startActivitySync(new Intent().setClassName(c.getPackageName(),SnapshotActivity.class.getName()).putExtra("snapshot",sample.id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        try{await(()->a.findViewById(SnapshotActivity.SEARCH_POINTS)!=null);
+            getInstrumentation().runOnMainSync(()->{a.findViewById(SnapshotActivity.SEARCH_POINTS).performClick();((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("workshop");});
+            getInstrumentation().runOnMainSync(()->{android.widget.ListView list=a.searchDialog.findViewById(SnapshotActivity.SEARCH_RESULTS);assertEquals(1,list.getAdapter().getCount());a.searchDialog.dismiss();a.findViewById(SnapshotActivity.SEARCH_ITEMS).performClick();((android.widget.EditText)a.searchDialog.findViewById(SnapshotActivity.SEARCH_QUERY)).setText("3157");});
+            getInstrumentation().runOnMainSync(()->{android.widget.ListView list=a.searchDialog.findViewById(SnapshotActivity.SEARCH_RESULTS);assertEquals(1,list.getAdapter().getCount());assertTrue(list.getAdapter().getItem(0).toString().contains("× 5"));list.performItemClick(null,0,0);});
+            getInstrumentation().waitForIdleSync();getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);capture(a,"qa-search-result.png");
+            assertEquals(4.5,((SurfaceMapView)a.findViewById(SnapshotActivity.MAP_VIEW)).viewport()[0],0.001);
+        }finally{getInstrumentation().runOnMainSync(a::finish);}
+    }
     public void testRenderPreferencesAndTextures()throws Exception {
         Context c=getInstrumentation().getTargetContext();c.getSharedPreferences("map-settings",0).edit().putInt("chunks",2).putInt("ceiling",30).putBoolean("textures",true).commit();
         SnapshotStore.Snapshot sample=new SnapshotStore(new File(c.getFilesDir(),"snapshots")).createDemo();

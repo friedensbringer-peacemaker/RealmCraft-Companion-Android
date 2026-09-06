@@ -1,5 +1,12 @@
 # Update log
 
+## 0.5.0 — 2026-09-06
+
+- Search loaded map points by block name, ID or readable sign text across both dimensions.
+- Find matching items in readable chests with per-stack amounts, total quantities and direct map navigation.
+- Report unreadable points and limit displayed search results to 100 with refinement guidance.
+- Reuse decoded chunks in a bounded 8 MiB process-local cache after source checksum validation; create and cache map bitmaps only when visible.
+
 ## 0.4.0 — 2026-09-06
 
 - Add a large map that fills the app panel, with optional tools and Back to exit.

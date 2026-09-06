@@ -10,7 +10,8 @@ import java.util.*;
 /** Small independent chunk bitmaps keep distant regions from allocating a giant canvas. */
 public final class SurfaceMapView extends View {
     interface Selection {void selected(String text);}
-    private static final class Tile {ChunkSurface chunk;Bitmap bitmap;Tile(ChunkSurface c,Bitmap b){chunk=c;bitmap=b;}}
+    private static final class Tile {ChunkSurface chunk;Tile(ChunkSurface c){chunk=c;}}
+    private final android.util.LruCache<Tile,Bitmap> bitmaps=new android.util.LruCache<>(4096);
     private final List<Tile> tiles=new ArrayList<>();private final Paint paint=new Paint();
     private final WorldCatalog catalog;private final Selection selection;private final boolean german;
     private final ScaleGestureDetector gestures;
@@ -24,12 +25,14 @@ public final class SurfaceMapView extends View {
     SurfaceMapView(Context context,List<ChunkSurface> chunks,WorldCatalog catalog,boolean german,Selection selection) {
         super(context);this.catalog=catalog;this.german=german;this.selection=selection;
         setContentDescription(german?"Weltkarte. Ziehen zum Verschieben, Plus und Minus zum Zoomen.":"World map. Drag to pan; plus and minus to zoom.");
-        for(ChunkSurface c:chunks) {int[] pixels=new int[256];
-            for(int i=0;i<256;i++) {int base=catalog.color(c.ids[i]);float light=0.72f+Math.max(0,c.heights[i])/512f;
-                pixels[i]=c.heights[i]<0?0xff172b30:Color.rgb(Math.min(255,(int)(Color.red(base)*light)),Math.min(255,(int)(Color.green(base)*light)),Math.min(255,(int)(Color.blue(base)*light)));}
-            tiles.add(new Tile(c,Bitmap.createBitmap(pixels,16,16,Bitmap.Config.ARGB_8888)));
-        }
+        for(ChunkSurface c:chunks)tiles.add(new Tile(c));
         gestures=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoomAt(d.getScaleFactor(),d.getFocusX(),d.getFocusY());moved=true;return true;}});
+    }
+    private Bitmap bitmap(Tile t){
+        Bitmap cached=bitmaps.get(t);if(cached!=null)return cached;int[] pixels=new int[256];
+        for(int i=0;i<256;i++){int base=catalog.color(t.chunk.ids[i]);float light=0.72f+Math.max(0,t.chunk.heights[i])/512f;
+            pixels[i]=t.chunk.heights[i]<0?0xff172b30:Color.rgb(Math.min(255,(int)(Color.red(base)*light)),Math.min(255,(int)(Color.green(base)*light)),Math.min(255,(int)(Color.blue(base)*light)));}
+        cached=Bitmap.createBitmap(pixels,16,16,Bitmap.Config.ARGB_8888);bitmaps.put(t,cached);return cached;
     }
     public void setDimension(int value){dimension=value;fit();}
     double[] viewport(){return ready?new double[]{centerX,centerZ,scale}:null;}
@@ -50,7 +53,7 @@ public final class SurfaceMapView extends View {
         for(Tile t:tiles){ChunkSurface c=t.chunk;if(c.dimension!=dimension)continue;shown++;
             float x=(float)((c.x-centerX)*scale+getWidth()/2.0),z=(float)((c.z-centerZ)*scale+getHeight()/2.0),size=(float)(16*scale);
             if(x>getWidth()||z>getHeight()||x+size<0||z+size<0)continue;
-            canvas.drawBitmap(t.bitmap,null,new RectF(x,z,x+size,z+size),paint);
+            canvas.drawBitmap(bitmap(t),null,new RectF(x,z,x+size,z+size),paint);
             if(textures&&scale>=8)for(int row=0;row<16;row++)for(int col=0;col<16;col++){
                 float bx=x+(float)(col*scale),bz=z+(float)(row*scale),bs=(float)scale;
                 if(bx>getWidth()||bz>getHeight()||bx+bs<0||bz+bs<0)continue;

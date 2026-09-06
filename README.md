@@ -95,3 +95,9 @@ Filter the point navigator to signs, chests, beds or crafting tables. Previous/N
 ### Large map
 
 Open a snapshot, select Map, then **Large map**. The map fills the app panel; **Show tools** reveals dimensions, settings, coordinate navigation and point filters. Zoom and Fit remain available with tools hidden. Use **Small map** or Android Back to return. The map keeps its center and zoom when the panel resizes or when returning from another feature tab. **Go to X/Z** centers on a location within the saved map; excluded areas remain blank.
+
+### Search and map performance
+
+Use **Search points** for block names, IDs and readable sign text, or **Find chest items** for item names and IDs. Both searches cover both dimensions within the loaded area. Results open their details and center the map. Item search reports matching stack quantities and totals; unknown chest contents are excluded and explicitly counted. Only the first 100 results are displayed; refine the query for more specific matches. Render and point limits also limit search coverage.
+
+Decoded chunks use an 8 MiB process-local cache keyed by verified file checksum, coordinates and height. Source files are still checked on every load; the cache does not survive process termination. Map bitmaps are created on visibility and retained in a 4,096-tile LRU cache (4 MiB of pixel data).
