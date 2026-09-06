@@ -1,0 +1,27 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'io.github.realmcraft.companion'
+    compileSdk 35
+    useLibrary "android.test.runner"
+    useLibrary "android.test.base"
+    defaultConfig {
+        applicationId 'io.github.realmcraft.companion'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+        testInstrumentationRunner 'android.test.InstrumentationTestRunner'
+    }
+    buildFeatures { aidl true; buildConfig true }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes { release { minifyEnabled false } }
+    lint { abortOnError true }
+}
+dependencies {
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+    testImplementation 'junit:junit:4.13.2'
+}
