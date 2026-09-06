@@ -1,15 +1,27 @@
+**Project family:** [macOS Companion · main project](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion) · [Android / Quest · APK](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android) · [Website · try the demo](https://friedensbringer-peacemaker.github.io/RealmCraft-Companion/)
+
+---
+
 # RealmCraft Companion for Android & Quest
+
+**100% vibe-coded with OpenAI Codex · 100 % mit OpenAI Codex entwickelt.**
+
+AI contributor: **Codex Astra**
+
+| Get the app | Explore without installing | Main project |
+| --- | --- | --- |
+| [Download the latest APK](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases/latest) | [Open the browser demo](https://friedensbringer-peacemaker.github.io/RealmCraft-Companion/) | [macOS Companion](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion) |
 
 A small, independent Android prototype for testing a Companion window on Meta Quest and Android phones. This repository is separate from the [macOS Companion](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion) because its UI, toolchain and device permissions differ.
 
-**Status: 0.3.0 experimental.** This includes read-only maps, player equipment and inventory for imported copies; it is not the complete Mac Companion. It is not affiliated with Tellurion Mobile or Meta.
+**Status: 0.9.0 experimental.** This includes read-only maps, player equipment and inventory for imported copies; it is not the complete Mac Companion. It is not affiliated with Tellurion Mobile or Meta.
 
 ## Try the APK
 
-Download the APK from [Releases](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases). The first APK is a debug-signed test build for sideloading, not a store release.
+Download the APK from [Releases](https://github.com/friedensbringer-peacemaker/RealmCraft-Companion-Android/releases). The APK is an experimental test build for sideloading, not a store release.
 
 - **Android phone:** open the downloaded APK and allow installation from that source when Android asks.
-- **Quest:** enable developer mode and authorize USB debugging, then install with SideQuest or `adb install -r RealmCraft-Companion-Android-0.3.0.apk`. Open **! ★ RealmCraft Companion Lab** from the headset's installed/unknown-source apps. The exact launcher label depends on Horizon OS.
+- **Quest:** enable developer mode and authorize USB debugging, then install with SideQuest or `adb install -r RealmCraft-Companion-Android-0.9.0.apk`. Open **! ★ RealmCraft Companion Lab** from the headset's installed/unknown-source apps. The exact launcher label depends on Horizon OS.
 - Generate a synthetic ZIP for testing the document picker with `python3 tools/create_test_zip.py synthetic-test-world.zip`. It contains placeholder data and must never be restored into the game. Use the built-in sample for the map/player preview.
 - Choose **Try synthetic sample** / **Synthetische Testwelt öffnen** first. No game data or Shizuku is needed for this test.
 - Resize the panel, inspect the sample, close the Companion and reopen it. The sample should remain in the local library.
