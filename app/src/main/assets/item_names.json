@@ -1,0 +1,4826 @@
+{
+  "3165": {
+    "en": "Gold Ingot",
+    "de": "Goldbarren"
+  },
+  "0": {
+    "en": "Air",
+    "de": "Luft"
+  },
+  "1": {
+    "en": "Stone",
+    "de": "Stein"
+  },
+  "2": {
+    "en": "Granite",
+    "de": "Granite"
+  },
+  "3": {
+    "en": "Polished Granite",
+    "de": "Polierter Granite"
+  },
+  "4": {
+    "en": "Diorite",
+    "de": "Diorite"
+  },
+  "5": {
+    "en": "Polished Diorite",
+    "de": "Polierter Diorite"
+  },
+  "6": {
+    "en": "Andesite",
+    "de": "Andesite"
+  },
+  "7": {
+    "en": "Polished Andesite",
+    "de": "Polierter Andesite"
+  },
+  "8": {
+    "en": "Grass Block",
+    "de": "Grasblock"
+  },
+  "9": {
+    "en": "Dirt",
+    "de": "Erde"
+  },
+  "10": {
+    "en": "Coarse Dirt",
+    "de": "Grobe Erde"
+  },
+  "11": {
+    "en": "Podzol",
+    "de": "Podzol"
+  },
+  "12": {
+    "en": "Cobblestone",
+    "de": "Bruchstein"
+  },
+  "13": {
+    "en": "Oak Planks",
+    "de": "Eichen Bretter"
+  },
+  "14": {
+    "en": "Spruce Planks",
+    "de": "Fichten Bretter"
+  },
+  "15": {
+    "en": "Birch Planks",
+    "de": "Birken Bretter"
+  },
+  "16": {
+    "en": "Jungle Planks",
+    "de": "Tropen Bretter"
+  },
+  "17": {
+    "en": "Acacia Planks",
+    "de": "Akazien Bretter"
+  },
+  "18": {
+    "en": "Dark Oak Planks",
+    "de": "Dunkle Eichen Bretter"
+  },
+  "19": {
+    "en": "Oak Sapling",
+    "de": "Eichen Setzling"
+  },
+  "20": {
+    "en": "Spruce Sapling",
+    "de": "Fichten Setzling"
+  },
+  "21": {
+    "en": "Birch Sapling",
+    "de": "Birken Setzling"
+  },
+  "22": {
+    "en": "Jungle Sapling",
+    "de": "Tropen Setzling"
+  },
+  "23": {
+    "en": "Acacia Sapling",
+    "de": "Akazien Setzling"
+  },
+  "24": {
+    "en": "Dark Oak Sapling",
+    "de": "Dunkle Eichen Setzling"
+  },
+  "25": {
+    "en": "Bedrock",
+    "de": "Grundgestein"
+  },
+  "26": {
+    "en": "Water",
+    "de": "Wasser"
+  },
+  "27": {
+    "en": "Lava",
+    "de": "Lava"
+  },
+  "28": {
+    "en": "Sand",
+    "de": "Sand"
+  },
+  "29": {
+    "en": "Red Sand",
+    "de": "Rot Sand"
+  },
+  "30": {
+    "en": "Gravel",
+    "de": "Kies"
+  },
+  "31": {
+    "en": "Gold Ore",
+    "de": "Golderz"
+  },
+  "32": {
+    "en": "Deepslate Gold Ore",
+    "de": "Tiefenschiefer-Golderz"
+  },
+  "33": {
+    "en": "Iron Ore",
+    "de": "Eisen Erz"
+  },
+  "34": {
+    "en": "Deepslate Iron Ore",
+    "de": "Tiefenschiefer Eisen Erz"
+  },
+  "35": {
+    "en": "Coal Ore",
+    "de": "Kohle Erz"
+  },
+  "36": {
+    "en": "Deepslate Coal Ore",
+    "de": "Tiefenschiefer Kohle Erz"
+  },
+  "37": {
+    "en": "Nether Gold Ore",
+    "de": "Nether-Golderz"
+  },
+  "38": {
+    "en": "Oak Log",
+    "de": "Eichen Stamm"
+  },
+  "39": {
+    "en": "Spruce Log",
+    "de": "Fichten Stamm"
+  },
+  "40": {
+    "en": "Birch Log",
+    "de": "Birken Stamm"
+  },
+  "41": {
+    "en": "Jungle Log",
+    "de": "Tropen Stamm"
+  },
+  "42": {
+    "en": "Acacia Log",
+    "de": "Akazien Stamm"
+  },
+  "43": {
+    "en": "Dark Oak Log",
+    "de": "Dunkle Eichen Stamm"
+  },
+  "44": {
+    "en": "Stripped Spruce Log",
+    "de": "Entrindetes Fichten Stamm"
+  },
+  "45": {
+    "en": "Stripped Birch Log",
+    "de": "Entrindetes Birken Stamm"
+  },
+  "46": {
+    "en": "Stripped Jungle Log",
+    "de": "Entrindetes Tropen Stamm"
+  },
+  "47": {
+    "en": "Stripped Acacia Log",
+    "de": "Entrindetes Akazien Stamm"
+  },
+  "48": {
+    "en": "Stripped Dark Oak Log",
+    "de": "Entrindetes Dunkle Eichen Stamm"
+  },
+  "49": {
+    "en": "Stripped Oak Log",
+    "de": "Entrindetes Eichen Stamm"
+  },
+  "50": {
+    "en": "Oak Wood",
+    "de": "Eichen Holz"
+  },
+  "51": {
+    "en": "Spruce Wood",
+    "de": "Fichten Holz"
+  },
+  "52": {
+    "en": "Birch Wood",
+    "de": "Birken Holz"
+  },
+  "53": {
+    "en": "Jungle Wood",
+    "de": "Tropen Holz"
+  },
+  "54": {
+    "en": "Acacia Wood",
+    "de": "Akazien Holz"
+  },
+  "55": {
+    "en": "Dark Oak Wood",
+    "de": "Dunkle Eichen Holz"
+  },
+  "56": {
+    "en": "Stripped Oak Wood",
+    "de": "Entrindetes Eichen Holz"
+  },
+  "57": {
+    "en": "Stripped Spruce Wood",
+    "de": "Entrindetes Fichten Holz"
+  },
+  "58": {
+    "en": "Stripped Birch Wood",
+    "de": "Entrindetes Birken Holz"
+  },
+  "59": {
+    "en": "Stripped Jungle Wood",
+    "de": "Entrindetes Tropen Holz"
+  },
+  "60": {
+    "en": "Stripped Acacia Wood",
+    "de": "Entrindetes Akazien Holz"
+  },
+  "61": {
+    "en": "Stripped Dark Oak Wood",
+    "de": "Entrindetes Dunkle Eichen Holz"
+  },
+  "62": {
+    "en": "Oak Leaves",
+    "de": "Eichen Laub"
+  },
+  "63": {
+    "en": "Spruce Leaves",
+    "de": "Fichten Laub"
+  },
+  "64": {
+    "en": "Birch Leaves",
+    "de": "Birken Laub"
+  },
+  "65": {
+    "en": "Jungle Leaves",
+    "de": "Tropen Laub"
+  },
+  "66": {
+    "en": "Acacia Leaves",
+    "de": "Akazien Laub"
+  },
+  "67": {
+    "en": "Dark Oak Leaves",
+    "de": "Dunkle Eichen Laub"
+  },
+  "68": {
+    "en": "Azalea Leaves",
+    "de": "Azalea Laub"
+  },
+  "69": {
+    "en": "Flowering Azalea Leaves",
+    "de": "Blühende Azalea Laub"
+  },
+  "70": {
+    "en": "Sponge",
+    "de": "Schwamm"
+  },
+  "71": {
+    "en": "Wet Sponge",
+    "de": "Nasser Schwamm"
+  },
+  "72": {
+    "en": "Glass",
+    "de": "Glas"
+  },
+  "73": {
+    "en": "Lapis Ore",
+    "de": "Lapis Erz"
+  },
+  "74": {
+    "en": "Deepslate Lapis Ore",
+    "de": "Tiefenschiefer Lapis Erz"
+  },
+  "75": {
+    "en": "Lapis Block",
+    "de": "Lapis Block"
+  },
+  "76": {
+    "en": "Dispenser",
+    "de": "Werfer"
+  },
+  "77": {
+    "en": "Sandstone",
+    "de": "Sandstein"
+  },
+  "78": {
+    "en": "Chiseled Sandstone",
+    "de": "Gemeißelter Sandstein"
+  },
+  "79": {
+    "en": "Cut Sandstone",
+    "de": "Geschnittener Sandstein"
+  },
+  "80": {
+    "en": "Note Block",
+    "de": "Noten Block"
+  },
+  "81": {
+    "en": "White Bed",
+    "de": "Weiß Bett"
+  },
+  "82": {
+    "en": "Orange Bed",
+    "de": "Orange Bett"
+  },
+  "83": {
+    "en": "Magenta Bed",
+    "de": "Magenta Bett"
+  },
+  "84": {
+    "en": "Light Blue Bed",
+    "de": "Hell Blau Bett"
+  },
+  "85": {
+    "en": "Yellow Bed",
+    "de": "Gelb Bett"
+  },
+  "86": {
+    "en": "Lime Bed",
+    "de": "Hellgrün Bett"
+  },
+  "87": {
+    "en": "Pink Bed",
+    "de": "Rosa Bett"
+  },
+  "88": {
+    "en": "Gray Bed",
+    "de": "Grau Bett"
+  },
+  "89": {
+    "en": "Light Gray Bed",
+    "de": "Hell Grau Bett"
+  },
+  "90": {
+    "en": "Cyan Bed",
+    "de": "Cyan Bett"
+  },
+  "91": {
+    "en": "Purple Bed",
+    "de": "Violett Bett"
+  },
+  "92": {
+    "en": "Blue Bed",
+    "de": "Blau Bett"
+  },
+  "93": {
+    "en": "Brown Bed",
+    "de": "Braun Bett"
+  },
+  "94": {
+    "en": "Green Bed",
+    "de": "Grün Bett"
+  },
+  "95": {
+    "en": "Red Bed",
+    "de": "Rot Bett"
+  },
+  "96": {
+    "en": "Black Bed",
+    "de": "Schwarz Bett"
+  },
+  "97": {
+    "en": "Powered Rail",
+    "de": "Antriebs Schiene"
+  },
+  "98": {
+    "en": "Detector Rail",
+    "de": "Sensor Schiene"
+  },
+  "99": {
+    "en": "Sticky Piston",
+    "de": "Klebriger Kolben"
+  },
+  "100": {
+    "en": "Cobweb",
+    "de": "Spinnennetz"
+  },
+  "101": {
+    "en": "Grass",
+    "de": "Gras"
+  },
+  "102": {
+    "en": "Fern",
+    "de": "Farn"
+  },
+  "103": {
+    "en": "Dead Bush",
+    "de": "Tote Busch"
+  },
+  "104": {
+    "en": "Seagrass",
+    "de": "Seegras"
+  },
+  "105": {
+    "en": "Tall Seagrass",
+    "de": "Hohes Seegras"
+  },
+  "106": {
+    "en": "Piston",
+    "de": "Kolben"
+  },
+  "107": {
+    "en": "Piston Head",
+    "de": "Kolben Kopf"
+  },
+  "108": {
+    "en": "White Wool",
+    "de": "Weiß Wolle"
+  },
+  "109": {
+    "en": "Orange Wool",
+    "de": "Orange Wolle"
+  },
+  "110": {
+    "en": "Magenta Wool",
+    "de": "Magenta Wolle"
+  },
+  "111": {
+    "en": "Light Blue Wool",
+    "de": "Hell Blau Wolle"
+  },
+  "112": {
+    "en": "Yellow Wool",
+    "de": "Gelb Wolle"
+  },
+  "113": {
+    "en": "Lime Wool",
+    "de": "Hellgrün Wolle"
+  },
+  "114": {
+    "en": "Pink Wool",
+    "de": "Rosa Wolle"
+  },
+  "115": {
+    "en": "Gray Wool",
+    "de": "Grau Wolle"
+  },
+  "116": {
+    "en": "Light Gray Wool",
+    "de": "Hell Grau Wolle"
+  },
+  "117": {
+    "en": "Cyan Wool",
+    "de": "Cyan Wolle"
+  },
+  "118": {
+    "en": "Purple Wool",
+    "de": "Violett Wolle"
+  },
+  "119": {
+    "en": "Blue Wool",
+    "de": "Blau Wolle"
+  },
+  "120": {
+    "en": "Brown Wool",
+    "de": "Braun Wolle"
+  },
+  "121": {
+    "en": "Green Wool",
+    "de": "Grün Wolle"
+  },
+  "122": {
+    "en": "Red Wool",
+    "de": "Rot Wolle"
+  },
+  "123": {
+    "en": "Black Wool",
+    "de": "Schwarz Wolle"
+  },
+  "124": {
+    "en": "Moving Piston",
+    "de": "Bewegender Kolben"
+  },
+  "125": {
+    "en": "Dandelion",
+    "de": "Löwenzahn"
+  },
+  "126": {
+    "en": "Poppy",
+    "de": "Mohn"
+  },
+  "127": {
+    "en": "Blue Orchid",
+    "de": "Blau Orchidee"
+  },
+  "128": {
+    "en": "Allium",
+    "de": "Allium"
+  },
+  "129": {
+    "en": "Azure Bluet",
+    "de": "Azur Porzellansternchen"
+  },
+  "130": {
+    "en": "Red Tulip",
+    "de": "Rot Tulpe"
+  },
+  "131": {
+    "en": "Orange Tulip",
+    "de": "Orange Tulpe"
+  },
+  "132": {
+    "en": "White Tulip",
+    "de": "Weiß Tulpe"
+  },
+  "133": {
+    "en": "Pink Tulip",
+    "de": "Rosa Tulpe"
+  },
+  "134": {
+    "en": "Oxeye Daisy",
+    "de": "Margeriten Margerite"
+  },
+  "135": {
+    "en": "Cornflower",
+    "de": "Kornblume"
+  },
+  "136": {
+    "en": "Wither Rose",
+    "de": "Wither Rose"
+  },
+  "137": {
+    "en": "Lily Of The Valley",
+    "de": "Lilie mit der Tal"
+  },
+  "138": {
+    "en": "Brown Mushroom",
+    "de": "Braun Pilz"
+  },
+  "139": {
+    "en": "Red Mushroom",
+    "de": "Rot Pilz"
+  },
+  "140": {
+    "en": "Gold Block",
+    "de": "Goldblock"
+  },
+  "141": {
+    "en": "Iron Block",
+    "de": "Eisen Block"
+  },
+  "142": {
+    "en": "Bricks",
+    "de": "Ziegel"
+  },
+  "143": {
+    "en": "Tnt",
+    "de": "Tnt"
+  },
+  "144": {
+    "en": "Bookshelf",
+    "de": "Bücherregal"
+  },
+  "145": {
+    "en": "Mossy Cobblestone",
+    "de": "Bemooster Bruchstein"
+  },
+  "146": {
+    "en": "Obsidian",
+    "de": "Obsidian"
+  },
+  "147": {
+    "en": "Torch",
+    "de": "Fackel"
+  },
+  "148": {
+    "en": "Wall Torch",
+    "de": "Wand Fackel"
+  },
+  "149": {
+    "en": "Fire",
+    "de": "Feuer"
+  },
+  "150": {
+    "en": "Soul Fire",
+    "de": "Seelen Feuer"
+  },
+  "151": {
+    "en": "Spawner",
+    "de": "Spawner"
+  },
+  "152": {
+    "en": "Oak Stairs",
+    "de": "Eichen Treppe"
+  },
+  "153": {
+    "en": "Chest",
+    "de": "Truhe"
+  },
+  "154": {
+    "en": "Redstone Wire",
+    "de": "Redstone Draht"
+  },
+  "155": {
+    "en": "Diamond Ore",
+    "de": "Diamant Erz"
+  },
+  "156": {
+    "en": "Deepslate Diamond Ore",
+    "de": "Tiefenschiefer Diamant Erz"
+  },
+  "157": {
+    "en": "Diamond Block",
+    "de": "Diamant Block"
+  },
+  "158": {
+    "en": "Crafting Table",
+    "de": "Werkbank"
+  },
+  "159": {
+    "en": "Wheat Seeds",
+    "de": "Weizen Samen"
+  },
+  "160": {
+    "en": "Farmland",
+    "de": "Ackerboden"
+  },
+  "161": {
+    "en": "Furnace",
+    "de": "Ofen"
+  },
+  "162": {
+    "en": "Oak Sign",
+    "de": "Eichen Schild"
+  },
+  "163": {
+    "en": "Spruce Sign",
+    "de": "Fichten Schild"
+  },
+  "164": {
+    "en": "Birch Sign",
+    "de": "Birken Schild"
+  },
+  "165": {
+    "en": "Acacia Sign",
+    "de": "Akazien Schild"
+  },
+  "166": {
+    "en": "Jungle Sign",
+    "de": "Tropen Schild"
+  },
+  "167": {
+    "en": "Dark Oak Sign",
+    "de": "Dunkle Eichen Schild"
+  },
+  "168": {
+    "en": "Oak Door",
+    "de": "Eichen Tür"
+  },
+  "169": {
+    "en": "Ladder",
+    "de": "Leiter"
+  },
+  "170": {
+    "en": "Rail",
+    "de": "Schiene"
+  },
+  "171": {
+    "en": "Cobblestone Stairs",
+    "de": "Bruchstein Treppe"
+  },
+  "172": {
+    "en": "Oak Wall Sign",
+    "de": "Eichen Wand Schild"
+  },
+  "173": {
+    "en": "Spruce Wall Sign",
+    "de": "Fichten Wand Schild"
+  },
+  "174": {
+    "en": "Birch Wall Sign",
+    "de": "Birken Wand Schild"
+  },
+  "175": {
+    "en": "Acacia Wall Sign",
+    "de": "Akazien Wand Schild"
+  },
+  "176": {
+    "en": "Jungle Wall Sign",
+    "de": "Tropen Wand Schild"
+  },
+  "177": {
+    "en": "Dark Oak Wall Sign",
+    "de": "Dunkle Eichen Wand Schild"
+  },
+  "178": {
+    "en": "Lever",
+    "de": "Hebel"
+  },
+  "179": {
+    "en": "Stone Pressure Plate",
+    "de": "Stein Druck Platte"
+  },
+  "180": {
+    "en": "Iron Door",
+    "de": "Eisen Tür"
+  },
+  "181": {
+    "en": "Oak Pressure Plate",
+    "de": "Eichen Druck Platte"
+  },
+  "182": {
+    "en": "Spruce Pressure Plate",
+    "de": "Fichten Druck Platte"
+  },
+  "183": {
+    "en": "Birch Pressure Plate",
+    "de": "Birken Druck Platte"
+  },
+  "184": {
+    "en": "Jungle Pressure Plate",
+    "de": "Tropen Druck Platte"
+  },
+  "185": {
+    "en": "Acacia Pressure Plate",
+    "de": "Akazien Druck Platte"
+  },
+  "186": {
+    "en": "Dark Oak Pressure Plate",
+    "de": "Dunkle Eichen Druck Platte"
+  },
+  "187": {
+    "en": "Redstone Ore",
+    "de": "Redstone Erz"
+  },
+  "188": {
+    "en": "Deepslate Redstone Ore",
+    "de": "Tiefenschiefer Redstone Erz"
+  },
+  "189": {
+    "en": "Redstone Torch",
+    "de": "Redstone Fackel"
+  },
+  "190": {
+    "en": "Redstone Wall Torch",
+    "de": "Redstone Wand Fackel"
+  },
+  "191": {
+    "en": "Stone Button",
+    "de": "Stein Knopf"
+  },
+  "192": {
+    "en": "Snow",
+    "de": "Schnee"
+  },
+  "193": {
+    "en": "Ice",
+    "de": "Eis"
+  },
+  "194": {
+    "en": "Snow Block",
+    "de": "Schnee Block"
+  },
+  "195": {
+    "en": "Cactus",
+    "de": "Kaktus"
+  },
+  "196": {
+    "en": "Clay",
+    "de": "Ton"
+  },
+  "197": {
+    "en": "Sugar Cane",
+    "de": "Zuckerrohr"
+  },
+  "198": {
+    "en": "Jukebox",
+    "de": "Plattenspieler"
+  },
+  "199": {
+    "en": "Oak Fence",
+    "de": "Eichen Zaun"
+  },
+  "200": {
+    "en": "Pumpkin",
+    "de": "Kürbis"
+  },
+  "201": {
+    "en": "Netherrack",
+    "de": "Netherrack"
+  },
+  "202": {
+    "en": "Soul Sand",
+    "de": "Seelen Sand"
+  },
+  "203": {
+    "en": "Soul Soil",
+    "de": "Seelen Erde"
+  },
+  "204": {
+    "en": "Basalt",
+    "de": "Basalt"
+  },
+  "205": {
+    "en": "Polished Basalt",
+    "de": "Polierter Basalt"
+  },
+  "206": {
+    "en": "Soul Torch",
+    "de": "Seelen Fackel"
+  },
+  "207": {
+    "en": "Soul Wall Torch",
+    "de": "Seelen Wand Fackel"
+  },
+  "208": {
+    "en": "Glowstone",
+    "de": "Leuchtstein"
+  },
+  "209": {
+    "en": "Nether Portal",
+    "de": "Nether Portal"
+  },
+  "210": {
+    "en": "Carved Pumpkin",
+    "de": "Geschnitzter Kürbis"
+  },
+  "211": {
+    "en": "Jack O Lantern",
+    "de": "Jack O Laterne"
+  },
+  "212": {
+    "en": "Cake",
+    "de": "Kuchen"
+  },
+  "213": {
+    "en": "Repeater",
+    "de": "Verstärker"
+  },
+  "214": {
+    "en": "White Stained Glass",
+    "de": "Weiß Gefärbtes Glas"
+  },
+  "215": {
+    "en": "Orange Stained Glass",
+    "de": "Orange Gefärbtes Glas"
+  },
+  "216": {
+    "en": "Magenta Stained Glass",
+    "de": "Magenta Gefärbtes Glas"
+  },
+  "217": {
+    "en": "Light Blue Stained Glass",
+    "de": "Hell Blau Gefärbtes Glas"
+  },
+  "218": {
+    "en": "Yellow Stained Glass",
+    "de": "Gelb Gefärbtes Glas"
+  },
+  "219": {
+    "en": "Lime Stained Glass",
+    "de": "Hellgrün Gefärbtes Glas"
+  },
+  "220": {
+    "en": "Pink Stained Glass",
+    "de": "Rosa Gefärbtes Glas"
+  },
+  "221": {
+    "en": "Gray Stained Glass",
+    "de": "Grau Gefärbtes Glas"
+  },
+  "222": {
+    "en": "Light Gray Stained Glass",
+    "de": "Hell Grau Gefärbtes Glas"
+  },
+  "223": {
+    "en": "Cyan Stained Glass",
+    "de": "Cyan Gefärbtes Glas"
+  },
+  "224": {
+    "en": "Purple Stained Glass",
+    "de": "Violett Gefärbtes Glas"
+  },
+  "225": {
+    "en": "Blue Stained Glass",
+    "de": "Blau Gefärbtes Glas"
+  },
+  "226": {
+    "en": "Brown Stained Glass",
+    "de": "Braun Gefärbtes Glas"
+  },
+  "227": {
+    "en": "Green Stained Glass",
+    "de": "Grün Gefärbtes Glas"
+  },
+  "228": {
+    "en": "Red Stained Glass",
+    "de": "Rot Gefärbtes Glas"
+  },
+  "229": {
+    "en": "Black Stained Glass",
+    "de": "Schwarz Gefärbtes Glas"
+  },
+  "230": {
+    "en": "Oak Trapdoor",
+    "de": "Eichen Falltür"
+  },
+  "231": {
+    "en": "Spruce Trapdoor",
+    "de": "Fichten Falltür"
+  },
+  "232": {
+    "en": "Birch Trapdoor",
+    "de": "Birken Falltür"
+  },
+  "233": {
+    "en": "Jungle Trapdoor",
+    "de": "Tropen Falltür"
+  },
+  "234": {
+    "en": "Acacia Trapdoor",
+    "de": "Akazien Falltür"
+  },
+  "235": {
+    "en": "Dark Oak Trapdoor",
+    "de": "Dunkle Eichen Falltür"
+  },
+  "236": {
+    "en": "Stone Bricks",
+    "de": "Stein Ziegel"
+  },
+  "237": {
+    "en": "Mossy Stone Bricks",
+    "de": "Bemooster Stein Ziegel"
+  },
+  "238": {
+    "en": "Cracked Stone Bricks",
+    "de": "Rissiger Stein Ziegel"
+  },
+  "239": {
+    "en": "Chiseled Stone Bricks",
+    "de": "Gemeißelter Stein Ziegel"
+  },
+  "240": {
+    "en": "Infested Stone",
+    "de": "Befallener Stein"
+  },
+  "241": {
+    "en": "Infested Cobblestone",
+    "de": "Befallener Bruchstein"
+  },
+  "242": {
+    "en": "Infested Stone Bricks",
+    "de": "Befallener Stein Ziegel"
+  },
+  "243": {
+    "en": "Infested Mossy Stone Bricks",
+    "de": "Befallener Bemooster Stein Ziegel"
+  },
+  "244": {
+    "en": "Infested Cracked Stone Bricks",
+    "de": "Befallener Rissiger Stein Ziegel"
+  },
+  "245": {
+    "en": "Infested Chiseled Stone Bricks",
+    "de": "Befallener Gemeißelter Stein Ziegel"
+  },
+  "246": {
+    "en": "Brown Mushroom Block",
+    "de": "Braun Pilz Block"
+  },
+  "247": {
+    "en": "Red Mushroom Block",
+    "de": "Rot Pilz Block"
+  },
+  "248": {
+    "en": "Mushroom Stem",
+    "de": "Pilz Stiel"
+  },
+  "249": {
+    "en": "Iron Bars",
+    "de": "Eisen Gitter"
+  },
+  "250": {
+    "en": "Chain",
+    "de": "Kette"
+  },
+  "251": {
+    "en": "Glass Pane",
+    "de": "Glas Scheibe"
+  },
+  "252": {
+    "en": "Melon",
+    "de": "Melonen"
+  },
+  "253": {
+    "en": "Attached Pumpkin Stem",
+    "de": "Verbundener Kürbis Stiel"
+  },
+  "254": {
+    "en": "Attached Melon Stem",
+    "de": "Verbundener Melonen Stiel"
+  },
+  "255": {
+    "en": "Pumpkin Stem",
+    "de": "Kürbis Stiel"
+  },
+  "256": {
+    "en": "Melon Stem",
+    "de": "Melonen Stiel"
+  },
+  "257": {
+    "en": "Vine",
+    "de": "Ranke"
+  },
+  "258": {
+    "en": "Glow Lichen",
+    "de": "Leucht Flechte"
+  },
+  "259": {
+    "en": "Oak Fence Gate",
+    "de": "Eichen Zaun Tor"
+  },
+  "260": {
+    "en": "Brick Stairs",
+    "de": "Ziegel Treppe"
+  },
+  "261": {
+    "en": "Stone Brick Stairs",
+    "de": "Stein Ziegel Treppe"
+  },
+  "262": {
+    "en": "Mycelium",
+    "de": "Myzel"
+  },
+  "263": {
+    "en": "Lily Pad",
+    "de": "Lilie Blatt"
+  },
+  "264": {
+    "en": "Nether Bricks",
+    "de": "Nether Ziegel"
+  },
+  "265": {
+    "en": "Nether Brick Fence",
+    "de": "Nether Ziegel Zaun"
+  },
+  "266": {
+    "en": "Nether Brick Stairs",
+    "de": "Nether Ziegel Treppe"
+  },
+  "267": {
+    "en": "Nether Wart",
+    "de": "Nether Warze"
+  },
+  "268": {
+    "en": "Enchanting Table",
+    "de": "Zaubertisch"
+  },
+  "269": {
+    "en": "Brewing Stand",
+    "de": "Brau Stand"
+  },
+  "270": {
+    "en": "Cauldron",
+    "de": "Kessel"
+  },
+  "271": {
+    "en": "Water Cauldron",
+    "de": "Wasser Kessel"
+  },
+  "272": {
+    "en": "Lava Cauldron",
+    "de": "Lava Kessel"
+  },
+  "273": {
+    "en": "Powder Snow Cauldron",
+    "de": "Pulver Schnee Kessel"
+  },
+  "274": {
+    "en": "End Portal",
+    "de": "End Portal"
+  },
+  "275": {
+    "en": "End Portal Frame",
+    "de": "End Portal Rahmen"
+  },
+  "276": {
+    "en": "End Stone",
+    "de": "End Stein"
+  },
+  "277": {
+    "en": "Dragon Egg",
+    "de": "Drachen Ei"
+  },
+  "278": {
+    "en": "Redstone Lamp",
+    "de": "Redstone Lampe"
+  },
+  "279": {
+    "en": "Cocoa",
+    "de": "Kakao"
+  },
+  "280": {
+    "en": "Sandstone Stairs",
+    "de": "Sandstein Treppe"
+  },
+  "281": {
+    "en": "Emerald Ore",
+    "de": "Smaragd Erz"
+  },
+  "282": {
+    "en": "Deepslate Emerald Ore",
+    "de": "Tiefenschiefer Smaragd Erz"
+  },
+  "283": {
+    "en": "Ender Chest",
+    "de": "Endertruhe"
+  },
+  "284": {
+    "en": "Tripwire Hook",
+    "de": "Stolperdraht Haken"
+  },
+  "285": {
+    "en": "Tripwire",
+    "de": "Stolperdraht"
+  },
+  "286": {
+    "en": "Emerald Block",
+    "de": "Smaragd Block"
+  },
+  "287": {
+    "en": "Spruce Stairs",
+    "de": "Fichten Treppe"
+  },
+  "288": {
+    "en": "Birch Stairs",
+    "de": "Birken Treppe"
+  },
+  "289": {
+    "en": "Jungle Stairs",
+    "de": "Tropen Treppe"
+  },
+  "290": {
+    "en": "Command Block",
+    "de": "Befehls Block"
+  },
+  "291": {
+    "en": "Beacon",
+    "de": "Leuchtfeuer"
+  },
+  "292": {
+    "en": "Cobblestone Wall",
+    "de": "Bruchstein Wand"
+  },
+  "293": {
+    "en": "Mossy Cobblestone Wall",
+    "de": "Bemooster Bruchstein Wand"
+  },
+  "294": {
+    "en": "Flower Pot",
+    "de": "Blume Topf"
+  },
+  "295": {
+    "en": "Potted Oak Sapling",
+    "de": "Eingetopfte Eichen Setzling"
+  },
+  "296": {
+    "en": "Potted Spruce Sapling",
+    "de": "Eingetopfte Fichten Setzling"
+  },
+  "297": {
+    "en": "Potted Birch Sapling",
+    "de": "Eingetopfte Birken Setzling"
+  },
+  "298": {
+    "en": "Potted Jungle Sapling",
+    "de": "Eingetopfte Tropen Setzling"
+  },
+  "299": {
+    "en": "Potted Acacia Sapling",
+    "de": "Eingetopfte Akazien Setzling"
+  },
+  "300": {
+    "en": "Potted Dark Oak Sapling",
+    "de": "Eingetopfte Dunkle Eichen Setzling"
+  },
+  "301": {
+    "en": "Potted Fern",
+    "de": "Eingetopfte Farn"
+  },
+  "302": {
+    "en": "Potted Dandelion",
+    "de": "Eingetopfte Löwenzahn"
+  },
+  "303": {
+    "en": "Potted Poppy",
+    "de": "Eingetopfte Mohn"
+  },
+  "304": {
+    "en": "Potted Blue Orchid",
+    "de": "Eingetopfte Blau Orchidee"
+  },
+  "305": {
+    "en": "Potted Allium",
+    "de": "Eingetopfte Allium"
+  },
+  "306": {
+    "en": "Potted Azure Bluet",
+    "de": "Eingetopfte Azur Porzellansternchen"
+  },
+  "307": {
+    "en": "Potted Red Tulip",
+    "de": "Eingetopfte Rot Tulpe"
+  },
+  "308": {
+    "en": "Potted Orange Tulip",
+    "de": "Eingetopfte Orange Tulpe"
+  },
+  "309": {
+    "en": "Potted White Tulip",
+    "de": "Eingetopfte Weiß Tulpe"
+  },
+  "310": {
+    "en": "Potted Pink Tulip",
+    "de": "Eingetopfte Rosa Tulpe"
+  },
+  "311": {
+    "en": "Potted Oxeye Daisy",
+    "de": "Eingetopfte Margeriten Margerite"
+  },
+  "312": {
+    "en": "Potted Cornflower",
+    "de": "Eingetopfte Kornblume"
+  },
+  "313": {
+    "en": "Potted Lily Of The Valley",
+    "de": "Eingetopfte Lilie mit der Tal"
+  },
+  "314": {
+    "en": "Potted Wither Rose",
+    "de": "Eingetopfte Wither Rose"
+  },
+  "315": {
+    "en": "Potted Red Mushroom",
+    "de": "Eingetopfte Rot Pilz"
+  },
+  "316": {
+    "en": "Potted Brown Mushroom",
+    "de": "Eingetopfte Braun Pilz"
+  },
+  "317": {
+    "en": "Potted Dead Bush",
+    "de": "Eingetopfte Tote Busch"
+  },
+  "318": {
+    "en": "Potted Cactus",
+    "de": "Eingetopfte Kaktus"
+  },
+  "319": {
+    "en": "Carrots",
+    "de": "Karotten"
+  },
+  "320": {
+    "en": "Potatoes",
+    "de": "Kartoffeln"
+  },
+  "321": {
+    "en": "Oak Button",
+    "de": "Eichen Knopf"
+  },
+  "322": {
+    "en": "Spruce Button",
+    "de": "Fichten Knopf"
+  },
+  "323": {
+    "en": "Birch Button",
+    "de": "Birken Knopf"
+  },
+  "324": {
+    "en": "Jungle Button",
+    "de": "Tropen Knopf"
+  },
+  "325": {
+    "en": "Acacia Button",
+    "de": "Akazien Knopf"
+  },
+  "326": {
+    "en": "Dark Oak Button",
+    "de": "Dunkle Eichen Knopf"
+  },
+  "327": {
+    "en": "Skeleton Skull",
+    "de": "Skelett Schädel"
+  },
+  "328": {
+    "en": "Skeleton Wall Skull",
+    "de": "Skelett Wand Schädel"
+  },
+  "329": {
+    "en": "Wither Skeleton Skull",
+    "de": "Wither Skelett Schädel"
+  },
+  "330": {
+    "en": "Wither Skeleton Wall Skull",
+    "de": "Wither Skelett Wand Schädel"
+  },
+  "331": {
+    "en": "Zombie Head",
+    "de": "Zombie Kopf"
+  },
+  "332": {
+    "en": "Zombie Wall Head",
+    "de": "Zombie Wand Kopf"
+  },
+  "333": {
+    "en": "Player Head",
+    "de": "Spieler Kopf"
+  },
+  "334": {
+    "en": "Player Wall Head",
+    "de": "Spieler Wand Kopf"
+  },
+  "335": {
+    "en": "Creeper Head",
+    "de": "Creeper Kopf"
+  },
+  "336": {
+    "en": "Creeper Wall Head",
+    "de": "Creeper Wand Kopf"
+  },
+  "337": {
+    "en": "Dragon Head",
+    "de": "Drachen Kopf"
+  },
+  "338": {
+    "en": "Dragon Wall Head",
+    "de": "Drachen Wand Kopf"
+  },
+  "339": {
+    "en": "Anvil",
+    "de": "Amboss"
+  },
+  "340": {
+    "en": "Chipped Anvil",
+    "de": "Angeschlagener Amboss"
+  },
+  "341": {
+    "en": "Damaged Anvil",
+    "de": "Beschädigter Amboss"
+  },
+  "342": {
+    "en": "Trapped Chest",
+    "de": "Redstone-Truhe"
+  },
+  "343": {
+    "en": "Light Weighted Pressure Plate",
+    "de": "Hell Wäge Druck Platte"
+  },
+  "344": {
+    "en": "Heavy Weighted Pressure Plate",
+    "de": "Schwere Wäge Druck Platte"
+  },
+  "345": {
+    "en": "Comparator",
+    "de": "Komparator"
+  },
+  "346": {
+    "en": "Daylight Detector",
+    "de": "Tageslicht Sensor"
+  },
+  "347": {
+    "en": "Redstone Block",
+    "de": "Redstone Block"
+  },
+  "348": {
+    "en": "Nether Quartz Ore",
+    "de": "Nether Quarz Erz"
+  },
+  "349": {
+    "en": "Hopper",
+    "de": "Trichter"
+  },
+  "350": {
+    "en": "Quartz Block",
+    "de": "Quarz Block"
+  },
+  "351": {
+    "en": "Chiseled Quartz Block",
+    "de": "Gemeißelter Quarz Block"
+  },
+  "352": {
+    "en": "Quartz Pillar",
+    "de": "Quarz Säule"
+  },
+  "353": {
+    "en": "Quartz Stairs",
+    "de": "Quarz Treppe"
+  },
+  "354": {
+    "en": "Activator Rail",
+    "de": "Activator Schiene"
+  },
+  "355": {
+    "en": "Dropper",
+    "de": "Spender"
+  },
+  "356": {
+    "en": "White Terracotta",
+    "de": "Weiß Keramik"
+  },
+  "357": {
+    "en": "Orange Terracotta",
+    "de": "Orange Keramik"
+  },
+  "358": {
+    "en": "Magenta Terracotta",
+    "de": "Magenta Keramik"
+  },
+  "359": {
+    "en": "Light Blue Terracotta",
+    "de": "Hell Blau Keramik"
+  },
+  "360": {
+    "en": "Yellow Terracotta",
+    "de": "Gelb Keramik"
+  },
+  "361": {
+    "en": "Lime Terracotta",
+    "de": "Hellgrün Keramik"
+  },
+  "362": {
+    "en": "Pink Terracotta",
+    "de": "Rosa Keramik"
+  },
+  "363": {
+    "en": "Gray Terracotta",
+    "de": "Grau Keramik"
+  },
+  "364": {
+    "en": "Light Gray Terracotta",
+    "de": "Hell Grau Keramik"
+  },
+  "365": {
+    "en": "Cyan Terracotta",
+    "de": "Cyan Keramik"
+  },
+  "366": {
+    "en": "Purple Terracotta",
+    "de": "Violett Keramik"
+  },
+  "367": {
+    "en": "Blue Terracotta",
+    "de": "Blau Keramik"
+  },
+  "368": {
+    "en": "Brown Terracotta",
+    "de": "Braun Keramik"
+  },
+  "369": {
+    "en": "Green Terracotta",
+    "de": "Grün Keramik"
+  },
+  "370": {
+    "en": "Red Terracotta",
+    "de": "Rot Keramik"
+  },
+  "371": {
+    "en": "Black Terracotta",
+    "de": "Schwarz Keramik"
+  },
+  "372": {
+    "en": "White Stained Glass Pane",
+    "de": "Weiß Gefärbtes Glas Scheibe"
+  },
+  "373": {
+    "en": "Orange Stained Glass Pane",
+    "de": "Orange Gefärbtes Glas Scheibe"
+  },
+  "374": {
+    "en": "Magenta Stained Glass Pane",
+    "de": "Magenta Gefärbtes Glas Scheibe"
+  },
+  "375": {
+    "en": "Light Blue Stained Glass Pane",
+    "de": "Hell Blau Gefärbtes Glas Scheibe"
+  },
+  "376": {
+    "en": "Yellow Stained Glass Pane",
+    "de": "Gelb Gefärbtes Glas Scheibe"
+  },
+  "377": {
+    "en": "Lime Stained Glass Pane",
+    "de": "Hellgrün Gefärbtes Glas Scheibe"
+  },
+  "378": {
+    "en": "Pink Stained Glass Pane",
+    "de": "Rosa Gefärbtes Glas Scheibe"
+  },
+  "379": {
+    "en": "Gray Stained Glass Pane",
+    "de": "Grau Gefärbtes Glas Scheibe"
+  },
+  "380": {
+    "en": "Light Gray Stained Glass Pane",
+    "de": "Hell Grau Gefärbtes Glas Scheibe"
+  },
+  "381": {
+    "en": "Cyan Stained Glass Pane",
+    "de": "Cyan Gefärbtes Glas Scheibe"
+  },
+  "382": {
+    "en": "Purple Stained Glass Pane",
+    "de": "Violett Gefärbtes Glas Scheibe"
+  },
+  "383": {
+    "en": "Blue Stained Glass Pane",
+    "de": "Blau Gefärbtes Glas Scheibe"
+  },
+  "384": {
+    "en": "Brown Stained Glass Pane",
+    "de": "Braun Gefärbtes Glas Scheibe"
+  },
+  "385": {
+    "en": "Green Stained Glass Pane",
+    "de": "Grün Gefärbtes Glas Scheibe"
+  },
+  "386": {
+    "en": "Red Stained Glass Pane",
+    "de": "Rot Gefärbtes Glas Scheibe"
+  },
+  "387": {
+    "en": "Black Stained Glass Pane",
+    "de": "Schwarz Gefärbtes Glas Scheibe"
+  },
+  "388": {
+    "en": "Acacia Stairs",
+    "de": "Akazien Treppe"
+  },
+  "389": {
+    "en": "Dark Oak Stairs",
+    "de": "Dunkle Eichen Treppe"
+  },
+  "390": {
+    "en": "Slime Block",
+    "de": "Schleim Block"
+  },
+  "391": {
+    "en": "Barrier",
+    "de": "Barriere"
+  },
+  "392": {
+    "en": "Light",
+    "de": "Hell"
+  },
+  "393": {
+    "en": "Iron Trapdoor",
+    "de": "Eisen Falltür"
+  },
+  "394": {
+    "en": "Prismarine",
+    "de": "Prismarine"
+  },
+  "395": {
+    "en": "Prismarine Bricks",
+    "de": "Prismarine Ziegel"
+  },
+  "396": {
+    "en": "Dark Prismarine",
+    "de": "Dunkle Prismarine"
+  },
+  "397": {
+    "en": "Prismarine Stairs",
+    "de": "Prismarine Treppe"
+  },
+  "398": {
+    "en": "Prismarine Brick Stairs",
+    "de": "Prismarine Ziegel Treppe"
+  },
+  "399": {
+    "en": "Dark Prismarine Stairs",
+    "de": "Dunkle Prismarine Treppe"
+  },
+  "400": {
+    "en": "Prismarine Slab",
+    "de": "Prismarine Stufe"
+  },
+  "401": {
+    "en": "Prismarine Brick Slab",
+    "de": "Prismarine Ziegel Stufe"
+  },
+  "402": {
+    "en": "Dark Prismarine Slab",
+    "de": "Dunkle Prismarine Stufe"
+  },
+  "403": {
+    "en": "Sea Lantern",
+    "de": "See Laterne"
+  },
+  "404": {
+    "en": "Hay Block",
+    "de": "Heu Block"
+  },
+  "405": {
+    "en": "White Carpet",
+    "de": "Weiß Teppich"
+  },
+  "406": {
+    "en": "Orange Carpet",
+    "de": "Orange Teppich"
+  },
+  "407": {
+    "en": "Magenta Carpet",
+    "de": "Magenta Teppich"
+  },
+  "408": {
+    "en": "Light Blue Carpet",
+    "de": "Hell Blau Teppich"
+  },
+  "409": {
+    "en": "Yellow Carpet",
+    "de": "Gelb Teppich"
+  },
+  "410": {
+    "en": "Lime Carpet",
+    "de": "Hellgrün Teppich"
+  },
+  "411": {
+    "en": "Pink Carpet",
+    "de": "Rosa Teppich"
+  },
+  "412": {
+    "en": "Gray Carpet",
+    "de": "Grau Teppich"
+  },
+  "413": {
+    "en": "Light Gray Carpet",
+    "de": "Hell Grau Teppich"
+  },
+  "414": {
+    "en": "Cyan Carpet",
+    "de": "Cyan Teppich"
+  },
+  "415": {
+    "en": "Purple Carpet",
+    "de": "Violett Teppich"
+  },
+  "416": {
+    "en": "Blue Carpet",
+    "de": "Blau Teppich"
+  },
+  "417": {
+    "en": "Brown Carpet",
+    "de": "Braun Teppich"
+  },
+  "418": {
+    "en": "Green Carpet",
+    "de": "Grün Teppich"
+  },
+  "419": {
+    "en": "Red Carpet",
+    "de": "Rot Teppich"
+  },
+  "420": {
+    "en": "Black Carpet",
+    "de": "Schwarz Teppich"
+  },
+  "421": {
+    "en": "Terracotta",
+    "de": "Keramik"
+  },
+  "422": {
+    "en": "Coal Block",
+    "de": "Kohle Block"
+  },
+  "423": {
+    "en": "Packed Ice",
+    "de": "Pack Eis"
+  },
+  "424": {
+    "en": "Sunflower",
+    "de": "Sonnenblume"
+  },
+  "425": {
+    "en": "Lilac",
+    "de": "Flieder"
+  },
+  "426": {
+    "en": "Rose Bush",
+    "de": "Rose Busch"
+  },
+  "427": {
+    "en": "Peony",
+    "de": "Pfingstrose"
+  },
+  "428": {
+    "en": "Tall Grass",
+    "de": "Hohes Gras"
+  },
+  "429": {
+    "en": "Large Fern",
+    "de": "Große Farn"
+  },
+  "430": {
+    "en": "White Banner",
+    "de": "Weiß Banner"
+  },
+  "431": {
+    "en": "Orange Banner",
+    "de": "Orange Banner"
+  },
+  "432": {
+    "en": "Magenta Banner",
+    "de": "Magenta Banner"
+  },
+  "433": {
+    "en": "Light Blue Banner",
+    "de": "Hell Blau Banner"
+  },
+  "434": {
+    "en": "Yellow Banner",
+    "de": "Gelb Banner"
+  },
+  "435": {
+    "en": "Lime Banner",
+    "de": "Hellgrün Banner"
+  },
+  "436": {
+    "en": "Pink Banner",
+    "de": "Rosa Banner"
+  },
+  "437": {
+    "en": "Gray Banner",
+    "de": "Grau Banner"
+  },
+  "438": {
+    "en": "Light Gray Banner",
+    "de": "Hell Grau Banner"
+  },
+  "439": {
+    "en": "Cyan Banner",
+    "de": "Cyan Banner"
+  },
+  "440": {
+    "en": "Purple Banner",
+    "de": "Violett Banner"
+  },
+  "441": {
+    "en": "Blue Banner",
+    "de": "Blau Banner"
+  },
+  "442": {
+    "en": "Brown Banner",
+    "de": "Braun Banner"
+  },
+  "443": {
+    "en": "Green Banner",
+    "de": "Grün Banner"
+  },
+  "444": {
+    "en": "Red Banner",
+    "de": "Rot Banner"
+  },
+  "445": {
+    "en": "Black Banner",
+    "de": "Schwarz Banner"
+  },
+  "446": {
+    "en": "White Wall Banner",
+    "de": "Weiß Wand Banner"
+  },
+  "447": {
+    "en": "Orange Wall Banner",
+    "de": "Orange Wand Banner"
+  },
+  "448": {
+    "en": "Magenta Wall Banner",
+    "de": "Magenta Wand Banner"
+  },
+  "449": {
+    "en": "Light Blue Wall Banner",
+    "de": "Hell Blau Wand Banner"
+  },
+  "450": {
+    "en": "Yellow Wall Banner",
+    "de": "Gelb Wand Banner"
+  },
+  "451": {
+    "en": "Lime Wall Banner",
+    "de": "Hellgrün Wand Banner"
+  },
+  "452": {
+    "en": "Pink Wall Banner",
+    "de": "Rosa Wand Banner"
+  },
+  "453": {
+    "en": "Gray Wall Banner",
+    "de": "Grau Wand Banner"
+  },
+  "454": {
+    "en": "Light Gray Wall Banner",
+    "de": "Hell Grau Wand Banner"
+  },
+  "455": {
+    "en": "Cyan Wall Banner",
+    "de": "Cyan Wand Banner"
+  },
+  "456": {
+    "en": "Purple Wall Banner",
+    "de": "Violett Wand Banner"
+  },
+  "457": {
+    "en": "Blue Wall Banner",
+    "de": "Blau Wand Banner"
+  },
+  "458": {
+    "en": "Brown Wall Banner",
+    "de": "Braun Wand Banner"
+  },
+  "459": {
+    "en": "Green Wall Banner",
+    "de": "Grün Wand Banner"
+  },
+  "460": {
+    "en": "Red Wall Banner",
+    "de": "Rot Wand Banner"
+  },
+  "461": {
+    "en": "Black Wall Banner",
+    "de": "Schwarz Wand Banner"
+  },
+  "462": {
+    "en": "Red Sandstone",
+    "de": "Rot Sandstein"
+  },
+  "463": {
+    "en": "Chiseled Red Sandstone",
+    "de": "Gemeißelter Rot Sandstein"
+  },
+  "464": {
+    "en": "Cut Red Sandstone",
+    "de": "Geschnittener Rot Sandstein"
+  },
+  "465": {
+    "en": "Red Sandstone Stairs",
+    "de": "Rot Sandstein Treppe"
+  },
+  "466": {
+    "en": "Oak Slab",
+    "de": "Eichen Stufe"
+  },
+  "467": {
+    "en": "Spruce Slab",
+    "de": "Fichten Stufe"
+  },
+  "468": {
+    "en": "Birch Slab",
+    "de": "Birken Stufe"
+  },
+  "469": {
+    "en": "Jungle Slab",
+    "de": "Tropen Stufe"
+  },
+  "470": {
+    "en": "Acacia Slab",
+    "de": "Akazien Stufe"
+  },
+  "471": {
+    "en": "Dark Oak Slab",
+    "de": "Dunkle Eichen Stufe"
+  },
+  "472": {
+    "en": "Stone Slab",
+    "de": "Stein Stufe"
+  },
+  "473": {
+    "en": "Smooth Stone Slab",
+    "de": "Glatter Stein Stufe"
+  },
+  "474": {
+    "en": "Sandstone Slab",
+    "de": "Sandstein Stufe"
+  },
+  "475": {
+    "en": "Cut Sandstone Slab",
+    "de": "Geschnittener Sandstein Stufe"
+  },
+  "476": {
+    "en": "Petrified Oak Slab",
+    "de": "Versteinerte Eichen Stufe"
+  },
+  "477": {
+    "en": "Cobblestone Slab",
+    "de": "Bruchstein Stufe"
+  },
+  "478": {
+    "en": "Brick Slab",
+    "de": "Ziegel Stufe"
+  },
+  "479": {
+    "en": "Stone Brick Slab",
+    "de": "Stein Ziegel Stufe"
+  },
+  "480": {
+    "en": "Nether Brick Slab",
+    "de": "Nether Ziegel Stufe"
+  },
+  "481": {
+    "en": "Quartz Slab",
+    "de": "Quarz Stufe"
+  },
+  "482": {
+    "en": "Red Sandstone Slab",
+    "de": "Rot Sandstein Stufe"
+  },
+  "483": {
+    "en": "Cut Red Sandstone Slab",
+    "de": "Geschnittener Rot Sandstein Stufe"
+  },
+  "484": {
+    "en": "Purpur Slab",
+    "de": "Purpur Stufe"
+  },
+  "485": {
+    "en": "Smooth Stone",
+    "de": "Glatter Stein"
+  },
+  "486": {
+    "en": "Smooth Sandstone",
+    "de": "Glatter Sandstein"
+  },
+  "487": {
+    "en": "Smooth Quartz",
+    "de": "Glatter Quarz"
+  },
+  "488": {
+    "en": "Smooth Red Sandstone",
+    "de": "Glatter Rot Sandstein"
+  },
+  "489": {
+    "en": "Spruce Fence Gate",
+    "de": "Fichten Zaun Tor"
+  },
+  "490": {
+    "en": "Birch Fence Gate",
+    "de": "Birken Zaun Tor"
+  },
+  "491": {
+    "en": "Jungle Fence Gate",
+    "de": "Tropen Zaun Tor"
+  },
+  "492": {
+    "en": "Acacia Fence Gate",
+    "de": "Akazien Zaun Tor"
+  },
+  "493": {
+    "en": "Dark Oak Fence Gate",
+    "de": "Dunkle Eichen Zaun Tor"
+  },
+  "494": {
+    "en": "Spruce Fence",
+    "de": "Fichten Zaun"
+  },
+  "495": {
+    "en": "Birch Fence",
+    "de": "Birken Zaun"
+  },
+  "496": {
+    "en": "Jungle Fence",
+    "de": "Tropen Zaun"
+  },
+  "497": {
+    "en": "Acacia Fence",
+    "de": "Akazien Zaun"
+  },
+  "498": {
+    "en": "Dark Oak Fence",
+    "de": "Dunkle Eichen Zaun"
+  },
+  "499": {
+    "en": "Spruce Door",
+    "de": "Fichten Tür"
+  },
+  "500": {
+    "en": "Birch Door",
+    "de": "Birken Tür"
+  },
+  "501": {
+    "en": "Jungle Door",
+    "de": "Tropen Tür"
+  },
+  "502": {
+    "en": "Acacia Door",
+    "de": "Akazien Tür"
+  },
+  "503": {
+    "en": "Dark Oak Door",
+    "de": "Dunkle Eichen Tür"
+  },
+  "504": {
+    "en": "End Rod",
+    "de": "End Rute"
+  },
+  "505": {
+    "en": "Chorus Plant",
+    "de": "Chorus Pflanze"
+  },
+  "506": {
+    "en": "Chorus Flower",
+    "de": "Chorus Blume"
+  },
+  "507": {
+    "en": "Purpur Block",
+    "de": "Purpur Block"
+  },
+  "508": {
+    "en": "Purpur Pillar",
+    "de": "Purpur Säule"
+  },
+  "509": {
+    "en": "Purpur Stairs",
+    "de": "Purpur Treppe"
+  },
+  "510": {
+    "en": "End Stone Bricks",
+    "de": "End Stein Ziegel"
+  },
+  "511": {
+    "en": "Beetroots",
+    "de": "Rote Bete"
+  },
+  "512": {
+    "en": "Dirt Path",
+    "de": "Erde Pfad"
+  },
+  "513": {
+    "en": "End Gateway",
+    "de": "End Transitportal"
+  },
+  "514": {
+    "en": "Repeating Command Block",
+    "de": "Wiederholender Befehls Block"
+  },
+  "515": {
+    "en": "Chain Command Block",
+    "de": "Kette Befehls Block"
+  },
+  "516": {
+    "en": "Frosted Ice",
+    "de": "Gefrorenes Eis"
+  },
+  "517": {
+    "en": "Magma Block",
+    "de": "Magma Block"
+  },
+  "518": {
+    "en": "Nether Wart Block",
+    "de": "Nether Warze Block"
+  },
+  "519": {
+    "en": "Red Nether Bricks",
+    "de": "Rot Nether Ziegel"
+  },
+  "520": {
+    "en": "Bone Block",
+    "de": "Knochen Block"
+  },
+  "521": {
+    "en": "Structure Void",
+    "de": "Konstruktions Leeren"
+  },
+  "522": {
+    "en": "Observer",
+    "de": "Beobachter"
+  },
+  "523": {
+    "en": "Shulker Box",
+    "de": "Shulker Kiste"
+  },
+  "524": {
+    "en": "White Shulker Box",
+    "de": "Weiß Shulker Kiste"
+  },
+  "525": {
+    "en": "Orange Shulker Box",
+    "de": "Orange Shulker Kiste"
+  },
+  "526": {
+    "en": "Magenta Shulker Box",
+    "de": "Magenta Shulker Kiste"
+  },
+  "527": {
+    "en": "Light Blue Shulker Box",
+    "de": "Hell Blau Shulker Kiste"
+  },
+  "528": {
+    "en": "Yellow Shulker Box",
+    "de": "Gelb Shulker Kiste"
+  },
+  "529": {
+    "en": "Lime Shulker Box",
+    "de": "Hellgrün Shulker Kiste"
+  },
+  "530": {
+    "en": "Pink Shulker Box",
+    "de": "Rosa Shulker Kiste"
+  },
+  "531": {
+    "en": "Gray Shulker Box",
+    "de": "Grau Shulker Kiste"
+  },
+  "532": {
+    "en": "Light Gray Shulker Box",
+    "de": "Hell Grau Shulker Kiste"
+  },
+  "533": {
+    "en": "Cyan Shulker Box",
+    "de": "Cyan Shulker Kiste"
+  },
+  "534": {
+    "en": "Purple Shulker Box",
+    "de": "Violett Shulker Kiste"
+  },
+  "535": {
+    "en": "Blue Shulker Box",
+    "de": "Blau Shulker Kiste"
+  },
+  "536": {
+    "en": "Brown Shulker Box",
+    "de": "Braun Shulker Kiste"
+  },
+  "537": {
+    "en": "Green Shulker Box",
+    "de": "Grün Shulker Kiste"
+  },
+  "538": {
+    "en": "Red Shulker Box",
+    "de": "Rot Shulker Kiste"
+  },
+  "539": {
+    "en": "Black Shulker Box",
+    "de": "Schwarz Shulker Kiste"
+  },
+  "540": {
+    "en": "White Glazed Terracotta",
+    "de": "Weiß Glasierte Keramik"
+  },
+  "541": {
+    "en": "Orange Glazed Terracotta",
+    "de": "Orange Glasierte Keramik"
+  },
+  "542": {
+    "en": "Magenta Glazed Terracotta",
+    "de": "Magenta Glasierte Keramik"
+  },
+  "543": {
+    "en": "Light Blue Glazed Terracotta",
+    "de": "Hell Blau Glasierte Keramik"
+  },
+  "544": {
+    "en": "Yellow Glazed Terracotta",
+    "de": "Gelb Glasierte Keramik"
+  },
+  "545": {
+    "en": "Lime Glazed Terracotta",
+    "de": "Hellgrün Glasierte Keramik"
+  },
+  "546": {
+    "en": "Pink Glazed Terracotta",
+    "de": "Rosa Glasierte Keramik"
+  },
+  "547": {
+    "en": "Gray Glazed Terracotta",
+    "de": "Grau Glasierte Keramik"
+  },
+  "548": {
+    "en": "Light Gray Glazed Terracotta",
+    "de": "Hell Grau Glasierte Keramik"
+  },
+  "549": {
+    "en": "Cyan Glazed Terracotta",
+    "de": "Cyan Glasierte Keramik"
+  },
+  "550": {
+    "en": "Purple Glazed Terracotta",
+    "de": "Violett Glasierte Keramik"
+  },
+  "551": {
+    "en": "Blue Glazed Terracotta",
+    "de": "Blau Glasierte Keramik"
+  },
+  "552": {
+    "en": "Brown Glazed Terracotta",
+    "de": "Braun Glasierte Keramik"
+  },
+  "553": {
+    "en": "Green Glazed Terracotta",
+    "de": "Grün Glasierte Keramik"
+  },
+  "554": {
+    "en": "Red Glazed Terracotta",
+    "de": "Rot Glasierte Keramik"
+  },
+  "555": {
+    "en": "Black Glazed Terracotta",
+    "de": "Schwarz Glasierte Keramik"
+  },
+  "556": {
+    "en": "White Concrete",
+    "de": "Weiß Beton"
+  },
+  "557": {
+    "en": "Orange Concrete",
+    "de": "Orange Beton"
+  },
+  "558": {
+    "en": "Magenta Concrete",
+    "de": "Magenta Beton"
+  },
+  "559": {
+    "en": "Light Blue Concrete",
+    "de": "Hell Blau Beton"
+  },
+  "560": {
+    "en": "Yellow Concrete",
+    "de": "Gelb Beton"
+  },
+  "561": {
+    "en": "Lime Concrete",
+    "de": "Hellgrün Beton"
+  },
+  "562": {
+    "en": "Pink Concrete",
+    "de": "Rosa Beton"
+  },
+  "563": {
+    "en": "Gray Concrete",
+    "de": "Grau Beton"
+  },
+  "564": {
+    "en": "Light Gray Concrete",
+    "de": "Hell Grau Beton"
+  },
+  "565": {
+    "en": "Cyan Concrete",
+    "de": "Cyan Beton"
+  },
+  "566": {
+    "en": "Purple Concrete",
+    "de": "Violett Beton"
+  },
+  "567": {
+    "en": "Blue Concrete",
+    "de": "Blau Beton"
+  },
+  "568": {
+    "en": "Brown Concrete",
+    "de": "Braun Beton"
+  },
+  "569": {
+    "en": "Green Concrete",
+    "de": "Grün Beton"
+  },
+  "570": {
+    "en": "Red Concrete",
+    "de": "Rot Beton"
+  },
+  "571": {
+    "en": "Black Concrete",
+    "de": "Schwarz Beton"
+  },
+  "572": {
+    "en": "White Concrete Powder",
+    "de": "Weiß Beton Pulver"
+  },
+  "573": {
+    "en": "Orange Concrete Powder",
+    "de": "Orange Beton Pulver"
+  },
+  "574": {
+    "en": "Magenta Concrete Powder",
+    "de": "Magenta Beton Pulver"
+  },
+  "575": {
+    "en": "Light Blue Concrete Powder",
+    "de": "Hell Blau Beton Pulver"
+  },
+  "576": {
+    "en": "Yellow Concrete Powder",
+    "de": "Gelb Beton Pulver"
+  },
+  "577": {
+    "en": "Lime Concrete Powder",
+    "de": "Hellgrün Beton Pulver"
+  },
+  "578": {
+    "en": "Pink Concrete Powder",
+    "de": "Rosa Beton Pulver"
+  },
+  "579": {
+    "en": "Gray Concrete Powder",
+    "de": "Grau Beton Pulver"
+  },
+  "580": {
+    "en": "Light Gray Concrete Powder",
+    "de": "Hell Grau Beton Pulver"
+  },
+  "581": {
+    "en": "Cyan Concrete Powder",
+    "de": "Cyan Beton Pulver"
+  },
+  "582": {
+    "en": "Purple Concrete Powder",
+    "de": "Violett Beton Pulver"
+  },
+  "583": {
+    "en": "Blue Concrete Powder",
+    "de": "Blau Beton Pulver"
+  },
+  "584": {
+    "en": "Brown Concrete Powder",
+    "de": "Braun Beton Pulver"
+  },
+  "585": {
+    "en": "Green Concrete Powder",
+    "de": "Grün Beton Pulver"
+  },
+  "586": {
+    "en": "Red Concrete Powder",
+    "de": "Rot Beton Pulver"
+  },
+  "587": {
+    "en": "Black Concrete Powder",
+    "de": "Schwarz Beton Pulver"
+  },
+  "588": {
+    "en": "Kelp",
+    "de": "Seetang"
+  },
+  "589": {
+    "en": "Kelp Plant",
+    "de": "Seetang Pflanze"
+  },
+  "590": {
+    "en": "Dried Kelp Block",
+    "de": "Getrockneter Seetang Block"
+  },
+  "591": {
+    "en": "Turtle Egg",
+    "de": "Schildkröten Ei"
+  },
+  "592": {
+    "en": "Dead Tube Coral Block",
+    "de": "Tote Orgel Koralle Block"
+  },
+  "593": {
+    "en": "Dead Brain Coral Block",
+    "de": "Tote Hirn Koralle Block"
+  },
+  "594": {
+    "en": "Dead Bubble Coral Block",
+    "de": "Tote Blasen Koralle Block"
+  },
+  "595": {
+    "en": "Dead Fire Coral Block",
+    "de": "Tote Feuer Koralle Block"
+  },
+  "596": {
+    "en": "Dead Horn Coral Block",
+    "de": "Tote Horn Koralle Block"
+  },
+  "597": {
+    "en": "Tube Coral Block",
+    "de": "Orgel Koralle Block"
+  },
+  "598": {
+    "en": "Brain Coral Block",
+    "de": "Hirn Koralle Block"
+  },
+  "599": {
+    "en": "Bubble Coral Block",
+    "de": "Blasen Koralle Block"
+  },
+  "600": {
+    "en": "Fire Coral Block",
+    "de": "Feuer Koralle Block"
+  },
+  "601": {
+    "en": "Horn Coral Block",
+    "de": "Horn Koralle Block"
+  },
+  "602": {
+    "en": "Dead Tube Coral",
+    "de": "Tote Orgel Koralle"
+  },
+  "603": {
+    "en": "Dead Brain Coral",
+    "de": "Tote Hirn Koralle"
+  },
+  "604": {
+    "en": "Dead Bubble Coral",
+    "de": "Tote Blasen Koralle"
+  },
+  "605": {
+    "en": "Dead Fire Coral",
+    "de": "Tote Feuer Koralle"
+  },
+  "606": {
+    "en": "Dead Horn Coral",
+    "de": "Tote Horn Koralle"
+  },
+  "607": {
+    "en": "Tube Coral",
+    "de": "Orgel Koralle"
+  },
+  "608": {
+    "en": "Brain Coral",
+    "de": "Hirn Koralle"
+  },
+  "609": {
+    "en": "Bubble Coral",
+    "de": "Blasen Koralle"
+  },
+  "610": {
+    "en": "Fire Coral",
+    "de": "Feuer Koralle"
+  },
+  "611": {
+    "en": "Horn Coral",
+    "de": "Horn Koralle"
+  },
+  "612": {
+    "en": "Dead Tube Coral Fan",
+    "de": "Tote Orgel Koralle Fächer"
+  },
+  "613": {
+    "en": "Dead Brain Coral Fan",
+    "de": "Tote Hirn Koralle Fächer"
+  },
+  "614": {
+    "en": "Dead Bubble Coral Fan",
+    "de": "Tote Blasen Koralle Fächer"
+  },
+  "615": {
+    "en": "Dead Fire Coral Fan",
+    "de": "Tote Feuer Koralle Fächer"
+  },
+  "616": {
+    "en": "Dead Horn Coral Fan",
+    "de": "Tote Horn Koralle Fächer"
+  },
+  "617": {
+    "en": "Tube Coral Fan",
+    "de": "Orgel Koralle Fächer"
+  },
+  "618": {
+    "en": "Brain Coral Fan",
+    "de": "Hirn Koralle Fächer"
+  },
+  "619": {
+    "en": "Bubble Coral Fan",
+    "de": "Blasen Koralle Fächer"
+  },
+  "620": {
+    "en": "Fire Coral Fan",
+    "de": "Feuer Koralle Fächer"
+  },
+  "621": {
+    "en": "Horn Coral Fan",
+    "de": "Horn Koralle Fächer"
+  },
+  "622": {
+    "en": "Dead Tube Coral Wall Fan",
+    "de": "Tote Orgel Koralle Wand Fächer"
+  },
+  "623": {
+    "en": "Dead Brain Coral Wall Fan",
+    "de": "Tote Hirn Koralle Wand Fächer"
+  },
+  "624": {
+    "en": "Dead Bubble Coral Wall Fan",
+    "de": "Tote Blasen Koralle Wand Fächer"
+  },
+  "625": {
+    "en": "Dead Fire Coral Wall Fan",
+    "de": "Tote Feuer Koralle Wand Fächer"
+  },
+  "626": {
+    "en": "Dead Horn Coral Wall Fan",
+    "de": "Tote Horn Koralle Wand Fächer"
+  },
+  "627": {
+    "en": "Tube Coral Wall Fan",
+    "de": "Orgel Koralle Wand Fächer"
+  },
+  "628": {
+    "en": "Brain Coral Wall Fan",
+    "de": "Hirn Koralle Wand Fächer"
+  },
+  "629": {
+    "en": "Bubble Coral Wall Fan",
+    "de": "Blasen Koralle Wand Fächer"
+  },
+  "630": {
+    "en": "Fire Coral Wall Fan",
+    "de": "Feuer Koralle Wand Fächer"
+  },
+  "631": {
+    "en": "Horn Coral Wall Fan",
+    "de": "Horn Koralle Wand Fächer"
+  },
+  "632": {
+    "en": "Sea Pickle",
+    "de": "See Gurke"
+  },
+  "633": {
+    "en": "Blue Ice",
+    "de": "Blau Eis"
+  },
+  "634": {
+    "en": "Conduit",
+    "de": "Aquisator"
+  },
+  "635": {
+    "en": "Bamboo Sapling",
+    "de": "Bambus Setzling"
+  },
+  "636": {
+    "en": "Bamboo",
+    "de": "Bambus"
+  },
+  "637": {
+    "en": "Potted Bamboo",
+    "de": "Eingetopfte Bambus"
+  },
+  "638": {
+    "en": "Void Air",
+    "de": "Leeren Luft"
+  },
+  "639": {
+    "en": "Cave Air",
+    "de": "Höhlen Luft"
+  },
+  "640": {
+    "en": "Bubble Column",
+    "de": "Blasen Säule"
+  },
+  "641": {
+    "en": "Polished Granite Stairs",
+    "de": "Polierter Granite Treppe"
+  },
+  "642": {
+    "en": "Smooth Red Sandstone Stairs",
+    "de": "Glatter Rot Sandstein Treppe"
+  },
+  "643": {
+    "en": "Mossy Stone Brick Stairs",
+    "de": "Bemooster Stein Ziegel Treppe"
+  },
+  "644": {
+    "en": "Polished Diorite Stairs",
+    "de": "Polierter Diorite Treppe"
+  },
+  "645": {
+    "en": "Mossy Cobblestone Stairs",
+    "de": "Bemooster Bruchstein Treppe"
+  },
+  "646": {
+    "en": "End Stone Brick Stairs",
+    "de": "End Stein Ziegel Treppe"
+  },
+  "647": {
+    "en": "Stone Stairs",
+    "de": "Stein Treppe"
+  },
+  "648": {
+    "en": "Smooth Sandstone Stairs",
+    "de": "Glatter Sandstein Treppe"
+  },
+  "649": {
+    "en": "Smooth Quartz Stairs",
+    "de": "Glatter Quarz Treppe"
+  },
+  "650": {
+    "en": "Granite Stairs",
+    "de": "Granite Treppe"
+  },
+  "651": {
+    "en": "Andesite Stairs",
+    "de": "Andesite Treppe"
+  },
+  "652": {
+    "en": "Red Nether Brick Stairs",
+    "de": "Rot Nether Ziegel Treppe"
+  },
+  "653": {
+    "en": "Polished Andesite Stairs",
+    "de": "Polierter Andesite Treppe"
+  },
+  "654": {
+    "en": "Diorite Stairs",
+    "de": "Diorite Treppe"
+  },
+  "655": {
+    "en": "Polished Granite Slab",
+    "de": "Polierter Granite Stufe"
+  },
+  "656": {
+    "en": "Smooth Red Sandstone Slab",
+    "de": "Glatter Rot Sandstein Stufe"
+  },
+  "657": {
+    "en": "Mossy Stone Brick Slab",
+    "de": "Bemooster Stein Ziegel Stufe"
+  },
+  "658": {
+    "en": "Polished Diorite Slab",
+    "de": "Polierter Diorite Stufe"
+  },
+  "659": {
+    "en": "Mossy Cobblestone Slab",
+    "de": "Bemooster Bruchstein Stufe"
+  },
+  "660": {
+    "en": "End Stone Brick Slab",
+    "de": "End Stein Ziegel Stufe"
+  },
+  "661": {
+    "en": "Smooth Sandstone Slab",
+    "de": "Glatter Sandstein Stufe"
+  },
+  "662": {
+    "en": "Smooth Quartz Slab",
+    "de": "Glatter Quarz Stufe"
+  },
+  "663": {
+    "en": "Granite Slab",
+    "de": "Granite Stufe"
+  },
+  "664": {
+    "en": "Andesite Slab",
+    "de": "Andesite Stufe"
+  },
+  "665": {
+    "en": "Red Nether Brick Slab",
+    "de": "Rot Nether Ziegel Stufe"
+  },
+  "666": {
+    "en": "Polished Andesite Slab",
+    "de": "Polierter Andesite Stufe"
+  },
+  "667": {
+    "en": "Diorite Slab",
+    "de": "Diorite Stufe"
+  },
+  "668": {
+    "en": "Brick Wall",
+    "de": "Ziegel Wand"
+  },
+  "669": {
+    "en": "Prismarine Wall",
+    "de": "Prismarine Wand"
+  },
+  "670": {
+    "en": "Red Sandstone Wall",
+    "de": "Rot Sandstein Wand"
+  },
+  "671": {
+    "en": "Mossy Stone Brick Wall",
+    "de": "Bemooster Stein Ziegel Wand"
+  },
+  "672": {
+    "en": "Granite Wall",
+    "de": "Granite Wand"
+  },
+  "673": {
+    "en": "Stone Brick Wall",
+    "de": "Stein Ziegel Wand"
+  },
+  "674": {
+    "en": "Nether Brick Wall",
+    "de": "Nether Ziegel Wand"
+  },
+  "675": {
+    "en": "Andesite Wall",
+    "de": "Andesite Wand"
+  },
+  "676": {
+    "en": "Red Nether Brick Wall",
+    "de": "Rot Nether Ziegel Wand"
+  },
+  "677": {
+    "en": "Sandstone Wall",
+    "de": "Sandstein Wand"
+  },
+  "678": {
+    "en": "End Stone Brick Wall",
+    "de": "End Stein Ziegel Wand"
+  },
+  "679": {
+    "en": "Diorite Wall",
+    "de": "Diorite Wand"
+  },
+  "680": {
+    "en": "Scaffolding",
+    "de": "Gerüst"
+  },
+  "681": {
+    "en": "Loom",
+    "de": "Webstuhl"
+  },
+  "682": {
+    "en": "Barrel",
+    "de": "Fass"
+  },
+  "683": {
+    "en": "Smoker",
+    "de": "Räucherofen"
+  },
+  "684": {
+    "en": "Blast Furnace",
+    "de": "Schmelz Ofen"
+  },
+  "685": {
+    "en": "Cartography Table",
+    "de": "Kartografie Tisch"
+  },
+  "686": {
+    "en": "Fletching Table",
+    "de": "Bognerei Tisch"
+  },
+  "687": {
+    "en": "Grindstone",
+    "de": "Schleifstein"
+  },
+  "688": {
+    "en": "Lectern",
+    "de": "Lesepult"
+  },
+  "689": {
+    "en": "Smithing Table",
+    "de": "Schmiede Tisch"
+  },
+  "690": {
+    "en": "Stonecutter",
+    "de": "Steinsäge"
+  },
+  "691": {
+    "en": "Bell",
+    "de": "Glocke"
+  },
+  "692": {
+    "en": "Lantern",
+    "de": "Laterne"
+  },
+  "693": {
+    "en": "Soul Lantern",
+    "de": "Seelen Laterne"
+  },
+  "694": {
+    "en": "Campfire",
+    "de": "Lagerfeuer"
+  },
+  "695": {
+    "en": "Soul Campfire",
+    "de": "Seelen Lagerfeuer"
+  },
+  "696": {
+    "en": "Sweet Berry Bush",
+    "de": "Süße Beeren Busch"
+  },
+  "697": {
+    "en": "Warped Stem",
+    "de": "Wirr Stiel"
+  },
+  "698": {
+    "en": "Stripped Warped Stem",
+    "de": "Entrindetes Wirr Stiel"
+  },
+  "699": {
+    "en": "Warped Hyphae",
+    "de": "Wirr Hyphen"
+  },
+  "700": {
+    "en": "Stripped Warped Hyphae",
+    "de": "Entrindetes Wirr Hyphen"
+  },
+  "701": {
+    "en": "Warped Nylium",
+    "de": "Wirr Nylium"
+  },
+  "702": {
+    "en": "Warped Fungus",
+    "de": "Wirr Pilz"
+  },
+  "703": {
+    "en": "Warped Wart Block",
+    "de": "Wirr Warze Block"
+  },
+  "704": {
+    "en": "Warped Roots",
+    "de": "Wirr Wurzeln"
+  },
+  "705": {
+    "en": "Nether Sprouts",
+    "de": "Nether Sprossen"
+  },
+  "706": {
+    "en": "Crimson Stem",
+    "de": "Karmesin Stiel"
+  },
+  "707": {
+    "en": "Stripped Crimson Stem",
+    "de": "Entrindetes Karmesin Stiel"
+  },
+  "708": {
+    "en": "Crimson Hyphae",
+    "de": "Karmesin Hyphen"
+  },
+  "709": {
+    "en": "Stripped Crimson Hyphae",
+    "de": "Entrindetes Karmesin Hyphen"
+  },
+  "710": {
+    "en": "Crimson Nylium",
+    "de": "Karmesin Nylium"
+  },
+  "711": {
+    "en": "Crimson Fungus",
+    "de": "Karmesin Pilz"
+  },
+  "712": {
+    "en": "Shroomlight",
+    "de": "Pilzlicht"
+  },
+  "713": {
+    "en": "Weeping Vines",
+    "de": "Trauer Ranken"
+  },
+  "714": {
+    "en": "Weeping Vines Plant",
+    "de": "Trauer Ranken Pflanze"
+  },
+  "715": {
+    "en": "Twisting Vines",
+    "de": "Zwirbel Ranken"
+  },
+  "716": {
+    "en": "Twisting Vines Plant",
+    "de": "Zwirbel Ranken Pflanze"
+  },
+  "717": {
+    "en": "Crimson Roots",
+    "de": "Karmesin Wurzeln"
+  },
+  "718": {
+    "en": "Crimson Planks",
+    "de": "Karmesin Bretter"
+  },
+  "719": {
+    "en": "Warped Planks",
+    "de": "Wirr Bretter"
+  },
+  "720": {
+    "en": "Crimson Slab",
+    "de": "Karmesin Stufe"
+  },
+  "721": {
+    "en": "Warped Slab",
+    "de": "Wirr Stufe"
+  },
+  "722": {
+    "en": "Crimson Pressure Plate",
+    "de": "Karmesin Druck Platte"
+  },
+  "723": {
+    "en": "Warped Pressure Plate",
+    "de": "Wirr Druck Platte"
+  },
+  "724": {
+    "en": "Crimson Fence",
+    "de": "Karmesin Zaun"
+  },
+  "725": {
+    "en": "Warped Fence",
+    "de": "Wirr Zaun"
+  },
+  "726": {
+    "en": "Crimson Trapdoor",
+    "de": "Karmesin Falltür"
+  },
+  "727": {
+    "en": "Warped Trapdoor",
+    "de": "Wirr Falltür"
+  },
+  "728": {
+    "en": "Crimson Fence Gate",
+    "de": "Karmesin Zaun Tor"
+  },
+  "729": {
+    "en": "Warped Fence Gate",
+    "de": "Wirr Zaun Tor"
+  },
+  "730": {
+    "en": "Crimson Stairs",
+    "de": "Karmesin Treppe"
+  },
+  "731": {
+    "en": "Warped Stairs",
+    "de": "Wirr Treppe"
+  },
+  "732": {
+    "en": "Crimson Button",
+    "de": "Karmesin Knopf"
+  },
+  "733": {
+    "en": "Warped Button",
+    "de": "Wirr Knopf"
+  },
+  "734": {
+    "en": "Crimson Door",
+    "de": "Karmesin Tür"
+  },
+  "735": {
+    "en": "Warped Door",
+    "de": "Wirr Tür"
+  },
+  "736": {
+    "en": "Crimson Sign",
+    "de": "Karmesin Schild"
+  },
+  "737": {
+    "en": "Warped Sign",
+    "de": "Wirr Schild"
+  },
+  "738": {
+    "en": "Crimson Wall Sign",
+    "de": "Karmesin Wand Schild"
+  },
+  "739": {
+    "en": "Warped Wall Sign",
+    "de": "Wirr Wand Schild"
+  },
+  "740": {
+    "en": "Structure Block",
+    "de": "Konstruktions Block"
+  },
+  "741": {
+    "en": "Jigsaw",
+    "de": "Verbundblock"
+  },
+  "742": {
+    "en": "Composter",
+    "de": "Komposter"
+  },
+  "743": {
+    "en": "Target",
+    "de": "Zielblock"
+  },
+  "744": {
+    "en": "Bee Nest",
+    "de": "Biene Nest"
+  },
+  "745": {
+    "en": "Beehive",
+    "de": "Bienenstock"
+  },
+  "746": {
+    "en": "Honey Block",
+    "de": "Honig Block"
+  },
+  "747": {
+    "en": "Honeycomb Block",
+    "de": "Honigwabe Block"
+  },
+  "748": {
+    "en": "Netherite Block",
+    "de": "Netherite Block"
+  },
+  "749": {
+    "en": "Ancient Debris",
+    "de": "Antiker Schrott"
+  },
+  "750": {
+    "en": "Crying Obsidian",
+    "de": "Weinender Obsidian"
+  },
+  "751": {
+    "en": "Respawn Anchor",
+    "de": "Respawn Anchor"
+  },
+  "752": {
+    "en": "Potted Crimson Fungus",
+    "de": "Eingetopfte Karmesin Pilz"
+  },
+  "753": {
+    "en": "Potted Warped Fungus",
+    "de": "Eingetopfte Wirr Pilz"
+  },
+  "754": {
+    "en": "Potted Crimson Roots",
+    "de": "Eingetopfte Karmesin Wurzeln"
+  },
+  "755": {
+    "en": "Potted Warped Roots",
+    "de": "Eingetopfte Wirr Wurzeln"
+  },
+  "756": {
+    "en": "Lodestone",
+    "de": "Leitstein"
+  },
+  "757": {
+    "en": "Blackstone",
+    "de": "Schwarzstein"
+  },
+  "758": {
+    "en": "Blackstone Stairs",
+    "de": "Schwarzstein Treppe"
+  },
+  "759": {
+    "en": "Blackstone Wall",
+    "de": "Schwarzstein Wand"
+  },
+  "760": {
+    "en": "Blackstone Slab",
+    "de": "Schwarzstein Stufe"
+  },
+  "761": {
+    "en": "Polished Blackstone",
+    "de": "Polierter Schwarzstein"
+  },
+  "762": {
+    "en": "Polished Blackstone Bricks",
+    "de": "Polierter Schwarzstein Ziegel"
+  },
+  "763": {
+    "en": "Cracked Polished Blackstone Bricks",
+    "de": "Rissiger Polierter Schwarzstein Ziegel"
+  },
+  "764": {
+    "en": "Chiseled Polished Blackstone",
+    "de": "Gemeißelter Polierter Schwarzstein"
+  },
+  "765": {
+    "en": "Polished Blackstone Brick Slab",
+    "de": "Polierter Schwarzstein Ziegel Stufe"
+  },
+  "766": {
+    "en": "Polished Blackstone Brick Stairs",
+    "de": "Polierter Schwarzstein Ziegel Treppe"
+  },
+  "767": {
+    "en": "Polished Blackstone Brick Wall",
+    "de": "Polierter Schwarzstein Ziegel Wand"
+  },
+  "768": {
+    "en": "Gilded Blackstone",
+    "de": "Vergoldeter Schwarzstein"
+  },
+  "769": {
+    "en": "Polished Blackstone Stairs",
+    "de": "Polierter Schwarzstein Treppe"
+  },
+  "770": {
+    "en": "Polished Blackstone Slab",
+    "de": "Polierter Schwarzstein Stufe"
+  },
+  "771": {
+    "en": "Polished Blackstone Pressure Plate",
+    "de": "Polierter Schwarzstein Druck Platte"
+  },
+  "772": {
+    "en": "Polished Blackstone Button",
+    "de": "Polierter Schwarzstein Knopf"
+  },
+  "773": {
+    "en": "Polished Blackstone Wall",
+    "de": "Polierter Schwarzstein Wand"
+  },
+  "774": {
+    "en": "Chiseled Nether Bricks",
+    "de": "Gemeißelter Nether Ziegel"
+  },
+  "775": {
+    "en": "Cracked Nether Bricks",
+    "de": "Rissiger Nether Ziegel"
+  },
+  "776": {
+    "en": "Quartz Bricks",
+    "de": "Quarz Ziegel"
+  },
+  "777": {
+    "en": "Candle",
+    "de": "Kerze"
+  },
+  "778": {
+    "en": "White Candle",
+    "de": "Weiß Kerze"
+  },
+  "779": {
+    "en": "Orange Candle",
+    "de": "Orange Kerze"
+  },
+  "780": {
+    "en": "Magenta Candle",
+    "de": "Magenta Kerze"
+  },
+  "781": {
+    "en": "Light Blue Candle",
+    "de": "Hell Blau Kerze"
+  },
+  "782": {
+    "en": "Yellow Candle",
+    "de": "Gelb Kerze"
+  },
+  "783": {
+    "en": "Lime Candle",
+    "de": "Hellgrün Kerze"
+  },
+  "784": {
+    "en": "Pink Candle",
+    "de": "Rosa Kerze"
+  },
+  "785": {
+    "en": "Gray Candle",
+    "de": "Grau Kerze"
+  },
+  "786": {
+    "en": "Light Gray Candle",
+    "de": "Hell Grau Kerze"
+  },
+  "787": {
+    "en": "Cyan Candle",
+    "de": "Cyan Kerze"
+  },
+  "788": {
+    "en": "Purple Candle",
+    "de": "Violett Kerze"
+  },
+  "789": {
+    "en": "Blue Candle",
+    "de": "Blau Kerze"
+  },
+  "790": {
+    "en": "Brown Candle",
+    "de": "Braun Kerze"
+  },
+  "791": {
+    "en": "Green Candle",
+    "de": "Grün Kerze"
+  },
+  "792": {
+    "en": "Red Candle",
+    "de": "Rot Kerze"
+  },
+  "793": {
+    "en": "Black Candle",
+    "de": "Schwarz Kerze"
+  },
+  "794": {
+    "en": "Candle Cake",
+    "de": "Kerze Kuchen"
+  },
+  "795": {
+    "en": "White Candle Cake",
+    "de": "Weiß Kerze Kuchen"
+  },
+  "796": {
+    "en": "Orange Candle Cake",
+    "de": "Orange Kerze Kuchen"
+  },
+  "797": {
+    "en": "Magenta Candle Cake",
+    "de": "Magenta Kerze Kuchen"
+  },
+  "798": {
+    "en": "Light Blue Candle Cake",
+    "de": "Hell Blau Kerze Kuchen"
+  },
+  "799": {
+    "en": "Yellow Candle Cake",
+    "de": "Gelb Kerze Kuchen"
+  },
+  "800": {
+    "en": "Lime Candle Cake",
+    "de": "Hellgrün Kerze Kuchen"
+  },
+  "801": {
+    "en": "Pink Candle Cake",
+    "de": "Rosa Kerze Kuchen"
+  },
+  "802": {
+    "en": "Gray Candle Cake",
+    "de": "Grau Kerze Kuchen"
+  },
+  "803": {
+    "en": "Light Gray Candle Cake",
+    "de": "Hell Grau Kerze Kuchen"
+  },
+  "804": {
+    "en": "Cyan Candle Cake",
+    "de": "Cyan Kerze Kuchen"
+  },
+  "805": {
+    "en": "Purple Candle Cake",
+    "de": "Violett Kerze Kuchen"
+  },
+  "806": {
+    "en": "Blue Candle Cake",
+    "de": "Blau Kerze Kuchen"
+  },
+  "807": {
+    "en": "Brown Candle Cake",
+    "de": "Braun Kerze Kuchen"
+  },
+  "808": {
+    "en": "Green Candle Cake",
+    "de": "Grün Kerze Kuchen"
+  },
+  "809": {
+    "en": "Red Candle Cake",
+    "de": "Rot Kerze Kuchen"
+  },
+  "810": {
+    "en": "Black Candle Cake",
+    "de": "Schwarz Kerze Kuchen"
+  },
+  "811": {
+    "en": "Amethyst Block",
+    "de": "Amethyst Block"
+  },
+  "812": {
+    "en": "Budding Amethyst",
+    "de": "Knospenbildender Amethyst"
+  },
+  "813": {
+    "en": "Amethyst Cluster",
+    "de": "Amethyst Haufen"
+  },
+  "814": {
+    "en": "Large Amethyst Bud",
+    "de": "Große Amethyst Knospe"
+  },
+  "815": {
+    "en": "Medium Amethyst Bud",
+    "de": "Mittlere Amethyst Knospe"
+  },
+  "816": {
+    "en": "Small Amethyst Bud",
+    "de": "Kleine Amethyst Knospe"
+  },
+  "817": {
+    "en": "Tuff",
+    "de": "Tuff"
+  },
+  "818": {
+    "en": "Calcite",
+    "de": "Kalzit"
+  },
+  "819": {
+    "en": "Tinted Glass",
+    "de": "Getöntes Glas"
+  },
+  "820": {
+    "en": "Powder Snow",
+    "de": "Pulver Schnee"
+  },
+  "821": {
+    "en": "Sculk Sensor",
+    "de": "Sculk Sensor"
+  },
+  "822": {
+    "en": "Oxidized Copper",
+    "de": "Oxidierter Kupfer"
+  },
+  "823": {
+    "en": "Weathered Copper",
+    "de": "Verwitterter Kupfer"
+  },
+  "824": {
+    "en": "Exposed Copper",
+    "de": "Angelaufener Kupfer"
+  },
+  "825": {
+    "en": "Copper Block",
+    "de": "Kupfer Block"
+  },
+  "826": {
+    "en": "Copper Ore",
+    "de": "Kupfer Erz"
+  },
+  "827": {
+    "en": "Deepslate Copper Ore",
+    "de": "Tiefenschiefer Kupfer Erz"
+  },
+  "828": {
+    "en": "Oxidized Cut Copper",
+    "de": "Oxidierter Geschnittener Kupfer"
+  },
+  "829": {
+    "en": "Weathered Cut Copper",
+    "de": "Verwitterter Geschnittener Kupfer"
+  },
+  "830": {
+    "en": "Exposed Cut Copper",
+    "de": "Angelaufener Geschnittener Kupfer"
+  },
+  "831": {
+    "en": "Cut Copper",
+    "de": "Geschnittener Kupfer"
+  },
+  "832": {
+    "en": "Oxidized Cut Copper Stairs",
+    "de": "Oxidierter Geschnittener Kupfer Treppe"
+  },
+  "833": {
+    "en": "Weathered Cut Copper Stairs",
+    "de": "Verwitterter Geschnittener Kupfer Treppe"
+  },
+  "834": {
+    "en": "Exposed Cut Copper Stairs",
+    "de": "Angelaufener Geschnittener Kupfer Treppe"
+  },
+  "835": {
+    "en": "Cut Copper Stairs",
+    "de": "Geschnittener Kupfer Treppe"
+  },
+  "836": {
+    "en": "Oxidized Cut Copper Slab",
+    "de": "Oxidierter Geschnittener Kupfer Stufe"
+  },
+  "837": {
+    "en": "Weathered Cut Copper Slab",
+    "de": "Verwitterter Geschnittener Kupfer Stufe"
+  },
+  "838": {
+    "en": "Exposed Cut Copper Slab",
+    "de": "Angelaufener Geschnittener Kupfer Stufe"
+  },
+  "839": {
+    "en": "Cut Copper Slab",
+    "de": "Geschnittener Kupfer Stufe"
+  },
+  "840": {
+    "en": "Waxed Copper",
+    "de": "Gewachster Kupfer"
+  },
+  "841": {
+    "en": "Waxed Weathered Copper",
+    "de": "Gewachster Verwitterter Kupfer"
+  },
+  "842": {
+    "en": "Waxed Exposed Copper",
+    "de": "Gewachster Angelaufener Kupfer"
+  },
+  "843": {
+    "en": "Waxed Oxidized Copper",
+    "de": "Gewachster Oxidierter Kupfer"
+  },
+  "844": {
+    "en": "Waxed Oxidized Cut Copper",
+    "de": "Gewachster Oxidierter Geschnittener Kupfer"
+  },
+  "845": {
+    "en": "Waxed Weathered Cut Copper",
+    "de": "Gewachster Verwitterter Geschnittener Kupfer"
+  },
+  "846": {
+    "en": "Waxed Exposed Cut Copper",
+    "de": "Gewachster Angelaufener Geschnittener Kupfer"
+  },
+  "847": {
+    "en": "Waxed Cut Copper",
+    "de": "Gewachster Geschnittener Kupfer"
+  },
+  "848": {
+    "en": "Waxed Oxidized Cut Copper Stairs",
+    "de": "Gewachster Oxidierter Geschnittener Kupfer Treppe"
+  },
+  "849": {
+    "en": "Waxed Weathered Cut Copper Stairs",
+    "de": "Gewachster Verwitterter Geschnittener Kupfer Treppe"
+  },
+  "850": {
+    "en": "Waxed Exposed Cut Copper Stairs",
+    "de": "Gewachster Angelaufener Geschnittener Kupfer Treppe"
+  },
+  "851": {
+    "en": "Waxed Cut Copper Stairs",
+    "de": "Gewachster Geschnittener Kupfer Treppe"
+  },
+  "852": {
+    "en": "Waxed Oxidized Cut Copper Slab",
+    "de": "Gewachster Oxidierter Geschnittener Kupfer Stufe"
+  },
+  "853": {
+    "en": "Waxed Weathered Cut Copper Slab",
+    "de": "Gewachster Verwitterter Geschnittener Kupfer Stufe"
+  },
+  "854": {
+    "en": "Waxed Exposed Cut Copper Slab",
+    "de": "Gewachster Angelaufener Geschnittener Kupfer Stufe"
+  },
+  "855": {
+    "en": "Waxed Cut Copper Slab",
+    "de": "Gewachster Geschnittener Kupfer Stufe"
+  },
+  "856": {
+    "en": "Lightning Rod",
+    "de": "Blitz Rute"
+  },
+  "857": {
+    "en": "Pointed Dripstone",
+    "de": "Spitzer Tropfstein"
+  },
+  "858": {
+    "en": "Dripstone Block",
+    "de": "Tropfstein Block"
+  },
+  "859": {
+    "en": "Cave Vines",
+    "de": "Höhlen Ranken"
+  },
+  "860": {
+    "en": "Cave Vines Plant",
+    "de": "Höhlen Ranken Pflanze"
+  },
+  "861": {
+    "en": "Spore Blossom",
+    "de": "Sporen Blüte"
+  },
+  "862": {
+    "en": "Azalea",
+    "de": "Azalea"
+  },
+  "863": {
+    "en": "Flowering Azalea",
+    "de": "Blühende Azalea"
+  },
+  "864": {
+    "en": "Moss Carpet",
+    "de": "Moos Teppich"
+  },
+  "865": {
+    "en": "Moss Block",
+    "de": "Moos Block"
+  },
+  "866": {
+    "en": "Big Dripleaf",
+    "de": "Großes Tropfblatt"
+  },
+  "867": {
+    "en": "Big Dripleaf Stem",
+    "de": "Großes Tropfblatt Stiel"
+  },
+  "868": {
+    "en": "Small Dripleaf",
+    "de": "Kleine Tropfblatt"
+  },
+  "869": {
+    "en": "Hanging Roots",
+    "de": "Hängende Wurzeln"
+  },
+  "870": {
+    "en": "Rooted Dirt",
+    "de": "Verwurzelte Erde"
+  },
+  "871": {
+    "en": "Deepslate",
+    "de": "Tiefenschiefer"
+  },
+  "872": {
+    "en": "Cobbled Deepslate",
+    "de": "Bruch Tiefenschiefer"
+  },
+  "873": {
+    "en": "Cobbled Deepslate Stairs",
+    "de": "Bruch Tiefenschiefer Treppe"
+  },
+  "874": {
+    "en": "Cobbled Deepslate Slab",
+    "de": "Bruch Tiefenschiefer Stufe"
+  },
+  "875": {
+    "en": "Cobbled Deepslate Wall",
+    "de": "Bruch Tiefenschiefer Wand"
+  },
+  "876": {
+    "en": "Polished Deepslate",
+    "de": "Polierter Tiefenschiefer"
+  },
+  "877": {
+    "en": "Polished Deepslate Stairs",
+    "de": "Polierter Tiefenschiefer Treppe"
+  },
+  "878": {
+    "en": "Polished Deepslate Slab",
+    "de": "Polierter Tiefenschiefer Stufe"
+  },
+  "879": {
+    "en": "Polished Deepslate Wall",
+    "de": "Polierter Tiefenschiefer Wand"
+  },
+  "880": {
+    "en": "Deepslate Tiles",
+    "de": "Tiefenschiefer Fliesen"
+  },
+  "881": {
+    "en": "Deepslate Tile Stairs",
+    "de": "Tiefenschiefer Fliese Treppe"
+  },
+  "882": {
+    "en": "Deepslate Tile Slab",
+    "de": "Tiefenschiefer Fliese Stufe"
+  },
+  "883": {
+    "en": "Deepslate Tile Wall",
+    "de": "Tiefenschiefer Fliese Wand"
+  },
+  "884": {
+    "en": "Deepslate Bricks",
+    "de": "Tiefenschiefer Ziegel"
+  },
+  "885": {
+    "en": "Deepslate Brick Stairs",
+    "de": "Tiefenschiefer Ziegel Treppe"
+  },
+  "886": {
+    "en": "Deepslate Brick Slab",
+    "de": "Tiefenschiefer Ziegel Stufe"
+  },
+  "887": {
+    "en": "Deepslate Brick Wall",
+    "de": "Tiefenschiefer Ziegel Wand"
+  },
+  "888": {
+    "en": "Chiseled Deepslate",
+    "de": "Gemeißelter Tiefenschiefer"
+  },
+  "889": {
+    "en": "Cracked Deepslate Bricks",
+    "de": "Rissiger Tiefenschiefer Ziegel"
+  },
+  "890": {
+    "en": "Cracked Deepslate Tiles",
+    "de": "Rissiger Tiefenschiefer Fliesen"
+  },
+  "891": {
+    "en": "Infested Deepslate",
+    "de": "Befallener Tiefenschiefer"
+  },
+  "892": {
+    "en": "Smooth Basalt",
+    "de": "Glatter Basalt"
+  },
+  "893": {
+    "en": "Raw Iron Block",
+    "de": "Roh Eisen Block"
+  },
+  "894": {
+    "en": "Raw Copper Block",
+    "de": "Roh Kupfer Block"
+  },
+  "895": {
+    "en": "Raw Gold Block",
+    "de": "Rohgoldblock"
+  },
+  "896": {
+    "en": "Potted Azalea Bush",
+    "de": "Eingetopfte Azalea Busch"
+  },
+  "897": {
+    "en": "Potted Flowering Azalea Bush",
+    "de": "Eingetopfte Blühende Azalea Busch"
+  },
+  "898": {
+    "en": "Bamboo Block",
+    "de": "Bambus Block"
+  },
+  "899": {
+    "en": "Stripped Bamboo Block",
+    "de": "Entrindetes Bambus Block"
+  },
+  "900": {
+    "en": "Bamboo Planks",
+    "de": "Bambus Bretter"
+  },
+  "901": {
+    "en": "Beehive With Honey",
+    "de": "Bienenstock mit Honig"
+  },
+  "902": {
+    "en": "Bee Nest With Honey",
+    "de": "Biene Nest mit Honig"
+  },
+  "3000": {
+    "en": "Wooden Pickaxe",
+    "de": "Holz Spitzhacke"
+  },
+  "3001": {
+    "en": "Stone Pickaxe",
+    "de": "Stein Spitzhacke"
+  },
+  "3002": {
+    "en": "Iron Pickaxe",
+    "de": "Eisen Spitzhacke"
+  },
+  "3003": {
+    "en": "Golden Pickaxe",
+    "de": "Gold Spitzhacke"
+  },
+  "3004": {
+    "en": "Diamond Pickaxe",
+    "de": "Diamant Spitzhacke"
+  },
+  "3005": {
+    "en": "Netherite Pickaxe",
+    "de": "Netherite Spitzhacke"
+  },
+  "3006": {
+    "en": "Wooden Axe",
+    "de": "Holz Axt"
+  },
+  "3007": {
+    "en": "Stone Axe",
+    "de": "Stein Axt"
+  },
+  "3008": {
+    "en": "Iron Axe",
+    "de": "Eisen Axt"
+  },
+  "3009": {
+    "en": "Golden Axe",
+    "de": "Gold Axt"
+  },
+  "3010": {
+    "en": "Diamond Axe",
+    "de": "Diamant Axt"
+  },
+  "3011": {
+    "en": "Netherite Axe",
+    "de": "Netherite Axt"
+  },
+  "3012": {
+    "en": "Wooden Hoe",
+    "de": "Holz Hacke"
+  },
+  "3013": {
+    "en": "Stone Hoe",
+    "de": "Stein Hacke"
+  },
+  "3014": {
+    "en": "Iron Hoe",
+    "de": "Eisen Hacke"
+  },
+  "3015": {
+    "en": "Golden Hoe",
+    "de": "Gold Hacke"
+  },
+  "3016": {
+    "en": "Diamond Hoe",
+    "de": "Diamant Hacke"
+  },
+  "3017": {
+    "en": "Netherite Hoe",
+    "de": "Netherite Hacke"
+  },
+  "3018": {
+    "en": "Wooden Shovel",
+    "de": "Holz Schaufel"
+  },
+  "3019": {
+    "en": "Stone Shovel",
+    "de": "Stein Schaufel"
+  },
+  "3020": {
+    "en": "Iron Shovel",
+    "de": "Eisen Schaufel"
+  },
+  "3021": {
+    "en": "Golden Shovel",
+    "de": "Gold Schaufel"
+  },
+  "3022": {
+    "en": "Diamond Shovel",
+    "de": "Diamant Schaufel"
+  },
+  "3023": {
+    "en": "Netherite Shovel",
+    "de": "Netherite Schaufel"
+  },
+  "3024": {
+    "en": "Wooden Sword",
+    "de": "Holz Schwert"
+  },
+  "3025": {
+    "en": "Stone Sword",
+    "de": "Stein Schwert"
+  },
+  "3026": {
+    "en": "Iron Sword",
+    "de": "Eisen Schwert"
+  },
+  "3027": {
+    "en": "Golden Sword",
+    "de": "Gold Schwert"
+  },
+  "3028": {
+    "en": "Diamond Sword",
+    "de": "Diamant Schwert"
+  },
+  "3029": {
+    "en": "Netherite Sword",
+    "de": "Netherite Schwert"
+  },
+  "3030": {
+    "en": "Shears",
+    "de": "Schere"
+  },
+  "3031": {
+    "en": "Leather Cap",
+    "de": "Leder Kappe"
+  },
+  "3032": {
+    "en": "Leather Tunic",
+    "de": "Leder Tunika"
+  },
+  "3033": {
+    "en": "Leather Pants",
+    "de": "Leder Hose"
+  },
+  "3034": {
+    "en": "Leather Boots",
+    "de": "Leder Stiefel"
+  },
+  "3035": {
+    "en": "Chainmail Helmet",
+    "de": "Ketten Helm"
+  },
+  "3036": {
+    "en": "Chainmail Chestplate",
+    "de": "Ketten Brustpanzer"
+  },
+  "3037": {
+    "en": "Chainmail Leggings",
+    "de": "Ketten Beinschutz"
+  },
+  "3038": {
+    "en": "Chainmail Boots",
+    "de": "Ketten Stiefel"
+  },
+  "3039": {
+    "en": "Iron Helmet",
+    "de": "Eisen Helm"
+  },
+  "3040": {
+    "en": "Iron Chestplate",
+    "de": "Eisen Brustpanzer"
+  },
+  "3041": {
+    "en": "Iron Leggings",
+    "de": "Eisen Beinschutz"
+  },
+  "3042": {
+    "en": "Iron Boots",
+    "de": "Eisen Stiefel"
+  },
+  "3043": {
+    "en": "Golden Helmet",
+    "de": "Gold Helm"
+  },
+  "3044": {
+    "en": "Golden Chestplate",
+    "de": "Gold Brustpanzer"
+  },
+  "3045": {
+    "en": "Golden Leggings",
+    "de": "Gold Beinschutz"
+  },
+  "3046": {
+    "en": "Golden Boots",
+    "de": "Gold Stiefel"
+  },
+  "3047": {
+    "en": "Diamond Helmet",
+    "de": "Diamant Helm"
+  },
+  "3048": {
+    "en": "Diamond Chestplate",
+    "de": "Diamant Brustpanzer"
+  },
+  "3049": {
+    "en": "Diamond Leggings",
+    "de": "Diamant Beinschutz"
+  },
+  "3050": {
+    "en": "Diamond Boots",
+    "de": "Diamant Stiefel"
+  },
+  "3051": {
+    "en": "Netherite Helmet",
+    "de": "Netherite Helm"
+  },
+  "3052": {
+    "en": "Netherite Chestplate",
+    "de": "Netherite Brustpanzer"
+  },
+  "3053": {
+    "en": "Netherite Leggings",
+    "de": "Netherite Beinschutz"
+  },
+  "3054": {
+    "en": "Netherite Boots",
+    "de": "Netherite Stiefel"
+  },
+  "3055": {
+    "en": "Turtle Shell",
+    "de": "Schildkröten Panzer"
+  },
+  "3056": {
+    "en": "Bucket",
+    "de": "Eimer"
+  },
+  "3057": {
+    "en": "Water Bucket",
+    "de": "Wasser Eimer"
+  },
+  "3058": {
+    "en": "Lava Bucket",
+    "de": "Lava Eimer"
+  },
+  "3059": {
+    "en": "Milk Bucket",
+    "de": "Milch Eimer"
+  },
+  "3060": {
+    "en": "Powder Snow Bucket",
+    "de": "Pulver Schnee Eimer"
+  },
+  "3061": {
+    "en": "Bucket Of Cod",
+    "de": "Eimer mit Kabeljau"
+  },
+  "3062": {
+    "en": "Bucket Of Salmon",
+    "de": "Eimer mit Lachs"
+  },
+  "3063": {
+    "en": "Bucket Of Pufferfish",
+    "de": "Eimer mit Kugelfisch"
+  },
+  "3064": {
+    "en": "Bucket Of Tropical Fish",
+    "de": "Eimer mit Tropen Fisch"
+  },
+  "3065": {
+    "en": "Bucket Of Axolotl",
+    "de": "Eimer mit Axolotl"
+  },
+  "3066": {
+    "en": "Bucket Of Tadpole",
+    "de": "Eimer mit Kaulquappe"
+  },
+  "3067": {
+    "en": "Flint And Steel",
+    "de": "Feuerzeug"
+  },
+  "3068": {
+    "en": "Arrow",
+    "de": "Pfeil"
+  },
+  "3069": {
+    "en": "Bow",
+    "de": "Bogen"
+  },
+  "3070": {
+    "en": "Allay Spawn Egg",
+    "de": "Allay Spawn Ei"
+  },
+  "3071": {
+    "en": "Axolotl Spawn Egg",
+    "de": "Axolotl Spawn Ei"
+  },
+  "3072": {
+    "en": "Bat Spawn Egg",
+    "de": "Fledermaus Spawn Ei"
+  },
+  "3073": {
+    "en": "Bee Spawn Egg",
+    "de": "Biene Spawn Ei"
+  },
+  "3074": {
+    "en": "Blaze Spawn Egg",
+    "de": "Lohe Spawn Ei"
+  },
+  "3075": {
+    "en": "Cat Spawn Egg",
+    "de": "Katze Spawn Ei"
+  },
+  "3076": {
+    "en": "Cave Spider Spawn Egg",
+    "de": "Höhlen Spinne Spawn Ei"
+  },
+  "3077": {
+    "en": "Chicken Spawn Egg",
+    "de": "Hühnchen Spawn Ei"
+  },
+  "3078": {
+    "en": "Cod Spawn Egg",
+    "de": "Kabeljau Spawn Ei"
+  },
+  "3079": {
+    "en": "Cow Spawn Egg",
+    "de": "Kuh Spawn Ei"
+  },
+  "3080": {
+    "en": "Creeper Spawn Egg",
+    "de": "Creeper Spawn Ei"
+  },
+  "3081": {
+    "en": "Dolphin Spawn Egg",
+    "de": "Delfin Spawn Ei"
+  },
+  "3082": {
+    "en": "Donkey Spawn Egg",
+    "de": "Esel Spawn Ei"
+  },
+  "3083": {
+    "en": "Drowned Spawn Egg",
+    "de": "Ertrunkener Spawn Ei"
+  },
+  "3084": {
+    "en": "Elder Guardian Spawn Egg",
+    "de": "Großer Wächter Spawn Ei"
+  },
+  "3085": {
+    "en": "Enderman Spawn Egg",
+    "de": "Enderman Spawn Ei"
+  },
+  "3086": {
+    "en": "Endermite Spawn Egg",
+    "de": "Endermite Spawn Ei"
+  },
+  "3087": {
+    "en": "Evoker Spawn Egg",
+    "de": "Evoker Spawn Ei"
+  },
+  "3088": {
+    "en": "Fox Spawn Egg",
+    "de": "Fuchs Spawn Ei"
+  },
+  "3089": {
+    "en": "Frog Spawn Egg",
+    "de": "Frosch Spawn Ei"
+  },
+  "3090": {
+    "en": "Ghast Spawn Egg",
+    "de": "Ghast Spawn Ei"
+  },
+  "3091": {
+    "en": "Glow Squid Spawn Egg",
+    "de": "Leucht Tintenfisch Spawn Ei"
+  },
+  "3092": {
+    "en": "Goat Spawn Egg",
+    "de": "Ziege Spawn Ei"
+  },
+  "3093": {
+    "en": "Guardian Spawn Egg",
+    "de": "Wächter Spawn Ei"
+  },
+  "3094": {
+    "en": "Hoglin Spawn Egg",
+    "de": "Hoglin Spawn Ei"
+  },
+  "3095": {
+    "en": "Horse Spawn Egg",
+    "de": "Pferd Spawn Ei"
+  },
+  "3096": {
+    "en": "Husk Spawn Egg",
+    "de": "Wüstenzombie Spawn Ei"
+  },
+  "3097": {
+    "en": "Llama Spawn Egg",
+    "de": "Lama Spawn Ei"
+  },
+  "3098": {
+    "en": "Magma Cube Spawn Egg",
+    "de": "Magma Würfel Spawn Ei"
+  },
+  "3099": {
+    "en": "Mooshroom Spawn Egg",
+    "de": "Mooshroom Spawn Ei"
+  },
+  "3100": {
+    "en": "Mule Spawn Egg",
+    "de": "Maultier Spawn Ei"
+  },
+  "3101": {
+    "en": "Ocelot Spawn Egg",
+    "de": "Ocelot Spawn Ei"
+  },
+  "3102": {
+    "en": "Panda Spawn Egg",
+    "de": "Panda Spawn Ei"
+  },
+  "3103": {
+    "en": "Parrot Spawn Egg",
+    "de": "Papagei Spawn Ei"
+  },
+  "3104": {
+    "en": "Phantom Spawn Egg",
+    "de": "Phantom Spawn Ei"
+  },
+  "3105": {
+    "en": "Pig Spawn Egg",
+    "de": "Schwein Spawn Ei"
+  },
+  "3106": {
+    "en": "Piglin Spawn Egg",
+    "de": "Piglin Spawn Ei"
+  },
+  "3107": {
+    "en": "Piglin Brute Spawn Egg",
+    "de": "Piglin Brutaler Spawn Ei"
+  },
+  "3108": {
+    "en": "Pillager Spawn Egg",
+    "de": "Plünderer Spawn Ei"
+  },
+  "3109": {
+    "en": "Polar Bear Spawn Egg",
+    "de": "Eis Bär Spawn Ei"
+  },
+  "3110": {
+    "en": "Pufferfish Spawn Egg",
+    "de": "Kugelfisch Spawn Ei"
+  },
+  "3111": {
+    "en": "Rabbit Spawn Egg",
+    "de": "Kaninchen Spawn Ei"
+  },
+  "3112": {
+    "en": "Ravager Spawn Egg",
+    "de": "Verwüster Spawn Ei"
+  },
+  "3113": {
+    "en": "Salmon Spawn Egg",
+    "de": "Lachs Spawn Ei"
+  },
+  "3114": {
+    "en": "Sheep Spawn Egg",
+    "de": "Schaf Spawn Ei"
+  },
+  "3115": {
+    "en": "Shulker Spawn Egg",
+    "de": "Shulker Spawn Ei"
+  },
+  "3116": {
+    "en": "Silverfish Spawn Egg",
+    "de": "Silberfischchen Spawn Ei"
+  },
+  "3117": {
+    "en": "Skeleton Spawn Egg",
+    "de": "Skelett Spawn Ei"
+  },
+  "3118": {
+    "en": "Skeleton Horse Spawn Egg",
+    "de": "Skelett Pferd Spawn Ei"
+  },
+  "3119": {
+    "en": "Slime Spawn Egg",
+    "de": "Schleim Spawn Ei"
+  },
+  "3120": {
+    "en": "Spider Spawn Egg",
+    "de": "Spinne Spawn Ei"
+  },
+  "3121": {
+    "en": "Squid Spawn Egg",
+    "de": "Tintenfisch Spawn Ei"
+  },
+  "3122": {
+    "en": "Stray Spawn Egg",
+    "de": "Eiswanderer Spawn Ei"
+  },
+  "3123": {
+    "en": "Strider Spawn Egg",
+    "de": "Schreiter Spawn Ei"
+  },
+  "3124": {
+    "en": "Tadpole Spawn Egg",
+    "de": "Kaulquappe Spawn Ei"
+  },
+  "3125": {
+    "en": "Trader Llama Spawn Egg",
+    "de": "Händler Lama Spawn Ei"
+  },
+  "3126": {
+    "en": "Tropical Fish Spawn Egg",
+    "de": "Tropen Fisch Spawn Ei"
+  },
+  "3127": {
+    "en": "Turtle Spawn Egg",
+    "de": "Schildkröten Spawn Ei"
+  },
+  "3128": {
+    "en": "Vex Spawn Egg",
+    "de": "Vex Spawn Ei"
+  },
+  "3129": {
+    "en": "Villager Spawn Egg",
+    "de": "Dorfbewohner Spawn Ei"
+  },
+  "3130": {
+    "en": "Vindicator Spawn Egg",
+    "de": "Diener Spawn Ei"
+  },
+  "3131": {
+    "en": "Wandering Trader Spawn Egg",
+    "de": "Fahrender Händler Spawn Ei"
+  },
+  "3132": {
+    "en": "Warden Spawn Egg",
+    "de": "Wärter Spawn Ei"
+  },
+  "3133": {
+    "en": "Witch Spawn Egg",
+    "de": "Hexe Spawn Ei"
+  },
+  "3134": {
+    "en": "Wither Skeleton Spawn Egg",
+    "de": "Wither Skelett Spawn Ei"
+  },
+  "3135": {
+    "en": "Wolf Spawn Egg",
+    "de": "Wolf Spawn Ei"
+  },
+  "3136": {
+    "en": "Zoglin Spawn Egg",
+    "de": "Zoglin Spawn Ei"
+  },
+  "3137": {
+    "en": "Zombie Spawn Egg",
+    "de": "Zombie Spawn Ei"
+  },
+  "3138": {
+    "en": "Zombie Horse Spawn Egg",
+    "de": "Zombie Pferd Spawn Ei"
+  },
+  "3139": {
+    "en": "Zombie Villager Spawn Egg",
+    "de": "Zombie Dorfbewohner Spawn Ei"
+  },
+  "3140": {
+    "en": "Zombified Piglin Spawn Egg",
+    "de": "Zombifizierter Piglin Spawn Ei"
+  },
+  "3141": {
+    "en": "Spawn Cat",
+    "de": "Spawn Katze"
+  },
+  "3142": {
+    "en": "Spawn Panda",
+    "de": "Spawn Panda"
+  },
+  "3143": {
+    "en": "Spawn Wandering Trader",
+    "de": "Spawn Fahrender Händler"
+  },
+  "3144": {
+    "en": "Spawn Agent",
+    "de": "Spawn Agent"
+  },
+  "3145": {
+    "en": "Spawn Mask",
+    "de": "Spawn Maske"
+  },
+  "3146": {
+    "en": "Spawn N P C",
+    "de": "Spawn N P C"
+  },
+  "3147": {
+    "en": "Spawn Egg",
+    "de": "Spawn Ei"
+  },
+  "3148": {
+    "en": "Wheat",
+    "de": "Weizen"
+  },
+  "3149": {
+    "en": "Pumpkin Seeds",
+    "de": "Kürbis Samen"
+  },
+  "3150": {
+    "en": "Melon Seeds",
+    "de": "Melonen Samen"
+  },
+  "3151": {
+    "en": "Beetroot Seeds",
+    "de": "Rote Bete Samen"
+  },
+  "3152": {
+    "en": "Sweet Berries",
+    "de": "Süße Beeren"
+  },
+  "3153": {
+    "en": "Bone Meal",
+    "de": "Knochenmehl"
+  },
+  "3154": {
+    "en": "Stick",
+    "de": "Stock"
+  },
+  "3155": {
+    "en": "Coal",
+    "de": "Kohle"
+  },
+  "3156": {
+    "en": "Charcoal",
+    "de": "Holzkohle"
+  },
+  "3157": {
+    "en": "Diamond",
+    "de": "Diamant"
+  },
+  "3158": {
+    "en": "Emerald",
+    "de": "Smaragd"
+  },
+  "3159": {
+    "en": "Iron Ingot",
+    "de": "Eisenbarren"
+  },
+  "3160": {
+    "en": "Gold Nugget",
+    "de": "Goldklumpen"
+  },
+  "3161": {
+    "en": "Sugar",
+    "de": "Zucker"
+  },
+  "3162": {
+    "en": "Egg",
+    "de": "Ei"
+  },
+  "3163": {
+    "en": "Bowl",
+    "de": "Schüssel"
+  },
+  "3164": {
+    "en": "Copper Ingot",
+    "de": "Kupferbarren"
+  },
+  "3166": {
+    "en": "Paper",
+    "de": "Papier"
+  },
+  "3167": {
+    "en": "Book",
+    "de": "Buch"
+  },
+  "3168": {
+    "en": "Flint",
+    "de": "Feuerstein"
+  },
+  "3169": {
+    "en": "Brick",
+    "de": "Ziegel"
+  },
+  "3170": {
+    "en": "Lapis Lazuli",
+    "de": "Lapislazuli"
+  },
+  "3171": {
+    "en": "Ink Sac",
+    "de": "Tintenbeutel"
+  },
+  "3172": {
+    "en": "Leather",
+    "de": "Leder"
+  },
+  "3173": {
+    "en": "Rabbit Hide",
+    "de": "Kaninchen Fell"
+  },
+  "3174": {
+    "en": "Item Frame",
+    "de": "Gegenstands Rahmen"
+  },
+  "3175": {
+    "en": "Iron Nugget",
+    "de": "Eisenklumpen"
+  },
+  "3176": {
+    "en": "Painting",
+    "de": "Gemälde"
+  },
+  "3177": {
+    "en": "Slimeball",
+    "de": "Schleimball"
+  },
+  "3178": {
+    "en": "Raw Copper",
+    "de": "Rohkupfer"
+  },
+  "3179": {
+    "en": "Raw Gold",
+    "de": "Rohgold"
+  },
+  "3180": {
+    "en": "Raw Iron",
+    "de": "Roheisen"
+  },
+  "3181": {
+    "en": "Dried Kelp",
+    "de": "Getrockneter Seetang"
+  },
+  "3182": {
+    "en": "Prismarine Shard",
+    "de": "Prismarine Scherbe"
+  },
+  "3183": {
+    "en": "Prismarine Crystals",
+    "de": "Prismarine Kristalle"
+  },
+  "3184": {
+    "en": "Snowball",
+    "de": "Schneeball"
+  },
+  "3185": {
+    "en": "Melon Slice",
+    "de": "Melonen Scheibe"
+  },
+  "3186": {
+    "en": "Gunpowder",
+    "de": "Schwarzpulver"
+  },
+  "3187": {
+    "en": "Beetroot",
+    "de": "Rote Bete"
+  },
+  "3188": {
+    "en": "Apple",
+    "de": "Apfel"
+  },
+  "3189": {
+    "en": "Black Dye",
+    "de": "Schwarz Farbstoff"
+  },
+  "3190": {
+    "en": "Lime Dye",
+    "de": "Hellgrün Farbstoff"
+  },
+  "3191": {
+    "en": "Pink Dye",
+    "de": "Rosa Farbstoff"
+  },
+  "3192": {
+    "en": "Gray Dye",
+    "de": "Grau Farbstoff"
+  },
+  "3193": {
+    "en": "Light Gray Dye",
+    "de": "Hell Grau Farbstoff"
+  },
+  "3194": {
+    "en": "Cyan Dye",
+    "de": "Cyan Farbstoff"
+  },
+  "3195": {
+    "en": "Purple Dye",
+    "de": "Violett Farbstoff"
+  },
+  "3196": {
+    "en": "Blue Dye",
+    "de": "Blau Farbstoff"
+  },
+  "3197": {
+    "en": "Red Dye",
+    "de": "Rot Farbstoff"
+  },
+  "3198": {
+    "en": "Green Dye",
+    "de": "Grün Farbstoff"
+  },
+  "3199": {
+    "en": "Yellow Dye",
+    "de": "Gelb Farbstoff"
+  },
+  "3200": {
+    "en": "Light Blue Dye",
+    "de": "Hell Blau Farbstoff"
+  },
+  "3201": {
+    "en": "Magenta Dye",
+    "de": "Magenta Farbstoff"
+  },
+  "3202": {
+    "en": "Orange Dye",
+    "de": "Orange Farbstoff"
+  },
+  "3203": {
+    "en": "White Dye",
+    "de": "Weiß Farbstoff"
+  },
+  "3204": {
+    "en": "Glowstone Dust",
+    "de": "Leuchtstein Staub"
+  },
+  "3205": {
+    "en": "Netherite Ingot",
+    "de": "Netherite Barren"
+  },
+  "3206": {
+    "en": "String",
+    "de": "Faden"
+  },
+  "3208": {
+    "en": "Golden Carrot",
+    "de": "Gold Karotte"
+  },
+  "3209": {
+    "en": "Beetroot Soup",
+    "de": "Rote Bete Suppe"
+  },
+  "3210": {
+    "en": "Mushroom Stew",
+    "de": "Pilz Eintopf"
+  },
+  "3211": {
+    "en": "Rabbit Stew",
+    "de": "Kaninchen Eintopf"
+  },
+  "3212": {
+    "en": "Bread",
+    "de": "Brot"
+  },
+  "3213": {
+    "en": "Golden Apple",
+    "de": "Gold Apfel"
+  },
+  "3214": {
+    "en": "Pumpkin Pie",
+    "de": "Kürbis Kuchen"
+  },
+  "3215": {
+    "en": "Cookie",
+    "de": "Keks"
+  },
+  "3216": {
+    "en": "Baked Potato",
+    "de": "Gebackene Kartoffel"
+  },
+  "3217": {
+    "en": "Raw Chicken",
+    "de": "Roh Hühnchen"
+  },
+  "3218": {
+    "en": "Raw Porkchop",
+    "de": "Roh Schweinefleisch"
+  },
+  "3219": {
+    "en": "Raw Beef",
+    "de": "Roh Rindfleisch"
+  },
+  "3220": {
+    "en": "Raw Mutton",
+    "de": "Roh Hammelfleisch"
+  },
+  "3221": {
+    "en": "Raw Rabbit",
+    "de": "Roh Kaninchen"
+  },
+  "3222": {
+    "en": "Raw Cod",
+    "de": "Roh Kabeljau"
+  },
+  "3223": {
+    "en": "Raw Salmon",
+    "de": "Roh Lachs"
+  },
+  "3224": {
+    "en": "Tropical Fish",
+    "de": "Tropen Fisch"
+  },
+  "3225": {
+    "en": "Pufferfish",
+    "de": "Kugelfisch"
+  },
+  "3226": {
+    "en": "Cooked Chicken",
+    "de": "Gebratenes Hühnchen"
+  },
+  "3227": {
+    "en": "Cooked Porkchop",
+    "de": "Gebratenes Schweinefleisch"
+  },
+  "3228": {
+    "en": "Cooked Beef",
+    "de": "Gebratenes Rindfleisch"
+  },
+  "3229": {
+    "en": "Cooked Mutton",
+    "de": "Gebratenes Hammelfleisch"
+  },
+  "3230": {
+    "en": "Cooked Rabbit",
+    "de": "Gebratenes Kaninchen"
+  },
+  "3231": {
+    "en": "Cooked Cod",
+    "de": "Gebratenes Kabeljau"
+  },
+  "3232": {
+    "en": "Cooked Salmon",
+    "de": "Gebratenes Lachs"
+  },
+  "3233": {
+    "en": "Feather",
+    "de": "Feder"
+  },
+  "3234": {
+    "en": "Bone",
+    "de": "Knochen"
+  },
+  "3235": {
+    "en": "Rotten Flesh",
+    "de": "Verrottetes Fleisch"
+  },
+  "3236": {
+    "en": "Rabbits Foot",
+    "de": "Kaninchen Pfote"
+  },
+  "3237": {
+    "en": "Spider Eye",
+    "de": "Spinne Auge"
+  },
+  "3238": {
+    "en": "Honeycomb",
+    "de": "Honigwabe"
+  },
+  "3239": {
+    "en": "Music Disc Avocado",
+    "de": "Musik Schallplatte Avocado"
+  },
+  "3240": {
+    "en": "Music Disc Cheese",
+    "de": "Musik Schallplatte Cheese"
+  },
+  "3241": {
+    "en": "Music Disc Chocolate",
+    "de": "Musik Schallplatte Chocolate"
+  },
+  "3242": {
+    "en": "Music Disc Deep Sadness",
+    "de": "Musik Schallplatte Tief Sadness"
+  },
+  "3243": {
+    "en": "Music Disc Dream Potion",
+    "de": "Musik Schallplatte Dream Trank"
+  },
+  "3244": {
+    "en": "Music Disc Everyday",
+    "de": "Musik Schallplatte Everyday"
+  },
+  "3245": {
+    "en": "Music Disc Hawaii",
+    "de": "Musik Schallplatte Hawaii"
+  },
+  "3246": {
+    "en": "Music Disc Holiday",
+    "de": "Musik Schallplatte Holiday"
+  },
+  "3247": {
+    "en": "Music Disc Island",
+    "de": "Musik Schallplatte Island"
+  },
+  "3248": {
+    "en": "Music Disc Italy",
+    "de": "Musik Schallplatte Italy"
+  },
+  "3249": {
+    "en": "Music Disc Japan",
+    "de": "Musik Schallplatte Japan"
+  },
+  "3250": {
+    "en": "Music Disc Love",
+    "de": "Musik Schallplatte Love"
+  },
+  "3251": {
+    "en": "Music Disc Neon Sunset",
+    "de": "Musik Schallplatte Neon Sunset"
+  },
+  "3252": {
+    "en": "Music Disc Night Song",
+    "de": "Musik Schallplatte Night Song"
+  },
+  "3253": {
+    "en": "Music Disc Restaurant Groove",
+    "de": "Musik Schallplatte Restaurant Groove"
+  },
+  "3254": {
+    "en": "Magma Cream",
+    "de": "Magma Creme"
+  },
+  "3255": {
+    "en": "Lead",
+    "de": "Leine"
+  },
+  "3256": {
+    "en": "Brown Dye",
+    "de": "Braun Farbstoff"
+  },
+  "3257": {
+    "en": "Experience Orb",
+    "de": "Erfahrung Kugel"
+  },
+  "3258": {
+    "en": "Clay Ball",
+    "de": "Ton Kugel"
+  },
+  "3259": {
+    "en": "Saddle",
+    "de": "Sattel"
+  },
+  "3260": {
+    "en": "Fishing Rod",
+    "de": "Angel Rute"
+  },
+  "3261": {
+    "en": "Carrot On Stick",
+    "de": "Karotte an Stock"
+  },
+  "3262": {
+    "en": "Oak Boat",
+    "de": "Eichen Boot"
+  },
+  "3263": {
+    "en": "Spruce Boat",
+    "de": "Fichten Boot"
+  },
+  "3264": {
+    "en": "Birch Boat",
+    "de": "Birken Boot"
+  },
+  "3265": {
+    "en": "Jungle Boat",
+    "de": "Tropen Boot"
+  },
+  "3266": {
+    "en": "Acacia Boat",
+    "de": "Akazien Boot"
+  },
+  "3267": {
+    "en": "Dark Oak Boat",
+    "de": "Dunkle Eichen Boot"
+  },
+  "3270": {
+    "en": "Redstone Dust",
+    "de": "Redstone Staub"
+  },
+  "3271": {
+    "en": "Minecart",
+    "de": "Lore"
+  },
+  "3272": {
+    "en": "Chest Minecart",
+    "de": "Truhe Lore"
+  },
+  "3273": {
+    "en": "Tnt Minecart",
+    "de": "Tnt Lore"
+  },
+  "3274": {
+    "en": "Hopper Minecart",
+    "de": "Trichter Lore"
+  },
+  "3275": {
+    "en": "Command Block Minecart",
+    "de": "Befehls Block Lore"
+  },
+  "3276": {
+    "en": "Bamboo Raft",
+    "de": "Bambus Floß"
+  },
+  "3277": {
+    "en": "Oak Chest Boat",
+    "de": "Eichen Truhe Boot"
+  },
+  "3278": {
+    "en": "Spruce Chest Boat",
+    "de": "Fichten Truhe Boot"
+  },
+  "3279": {
+    "en": "Birch Chest Boat",
+    "de": "Birken Truhe Boot"
+  },
+  "3280": {
+    "en": "Jungle Chest Boat",
+    "de": "Tropen Truhe Boot"
+  },
+  "3281": {
+    "en": "Acacia Chest Boat",
+    "de": "Akazien Truhe Boot"
+  },
+  "3282": {
+    "en": "Dark Oak Chest Boat",
+    "de": "Dunkle Eichen Truhe Boot"
+  },
+  "3283": {
+    "en": "Bamboo Chest Raft",
+    "de": "Bambus Truhe Floß"
+  },
+  "3286": {
+    "en": "Netherite Scrap",
+    "de": "Netherite Schrott"
+  },
+  "3287": {
+    "en": "Nether Quartz",
+    "de": "Nether Quarz"
+  },
+  "3300": {
+    "en": "Shield",
+    "de": "Schild"
+  },
+  "3301": {
+    "en": "White Shield",
+    "de": "Weiß Schild"
+  },
+  "3302": {
+    "en": "Orange Shield",
+    "de": "Orange Schild"
+  },
+  "3303": {
+    "en": "Magenta Shield",
+    "de": "Magenta Schild"
+  },
+  "3304": {
+    "en": "Light Blue Shield",
+    "de": "Hell Blau Schild"
+  },
+  "3305": {
+    "en": "Yellow Shield",
+    "de": "Gelb Schild"
+  },
+  "3306": {
+    "en": "Lime Shield",
+    "de": "Hellgrün Schild"
+  },
+  "3307": {
+    "en": "Pink Shield",
+    "de": "Rosa Schild"
+  },
+  "3308": {
+    "en": "Gray Shield",
+    "de": "Grau Schild"
+  },
+  "3309": {
+    "en": "Light Gray Shield",
+    "de": "Hell Grau Schild"
+  },
+  "3310": {
+    "en": "Cyan Shield",
+    "de": "Cyan Schild"
+  },
+  "3311": {
+    "en": "Purple Shield",
+    "de": "Violett Schild"
+  },
+  "3312": {
+    "en": "Blue Shield",
+    "de": "Blau Schild"
+  },
+  "3313": {
+    "en": "Brown Shield",
+    "de": "Braun Schild"
+  },
+  "3314": {
+    "en": "Green Shield",
+    "de": "Grün Schild"
+  },
+  "3315": {
+    "en": "Red Shield",
+    "de": "Rot Schild"
+  },
+  "3316": {
+    "en": "Black Shield",
+    "de": "Schwarz Schild"
+  },
+  "3320": {
+    "en": "Turtle Scute",
+    "de": "Schildkröten Hornschuppe"
+  },
+  "3321": {
+    "en": "Iron Golem Spawn Egg",
+    "de": "Eisen Golem Spawn Ei"
+  },
+  "3322": {
+    "en": "Enchanted Book",
+    "de": "Verzaubertes Buch"
+  }
+}

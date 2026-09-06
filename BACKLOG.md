@@ -21,3 +21,9 @@ Restore/editing, live position/inventory synchronization, automatic background i
 
 - Support additional explicitly published demo worlds through a reviewed versioned catalog.
 - Add map rendering for imported worlds; current Android snapshots expose metadata and files only.
+
+## Android 0.2 follow-up
+
+- Stream larger map regions beyond the current bounded overview and retain the map viewport across navigation.
+- Add verified player position, selected-height cave/Nether layers, chest inspection and item icons.
+- Decode additional player layouts and personal skins only when validated.

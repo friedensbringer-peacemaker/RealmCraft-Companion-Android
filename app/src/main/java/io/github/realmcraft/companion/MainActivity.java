@@ -106,8 +106,8 @@ public final class MainActivity extends Activity {
             try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(DemoDownload.REPOSITORY))); }
             catch (ActivityNotFoundException e) { message(tr("No browser is available.", "Kein Browser verfügbar.")); }
         }).setId(REPOSITORY_BUTTON);
-        addText(intro, tr("The shared demo downloads from GitHub only when tapped. SHA-256 is checked before importing an independent copy. No Shizuku is needed. You can inspect metadata and files here; this does not add the world to RealmCraft or render a map.",
-            "Die freigegebene Demo wird erst beim Antippen von GitHub geladen. Vor dem Import einer eigenständigen Kopie wird SHA-256 geprüft. Shizuku ist nicht nötig. Hier kannst du Metadaten und Dateien ansehen; die Welt wird weder in RealmCraft eingesetzt noch als Karte dargestellt."), 14, 0xffaac1b8, false);
+        addText(intro, tr("The shared demo downloads from GitHub only when tapped. SHA-256 is checked before importing an independent copy. No Shizuku is needed. Open a copy to explore its map, player and inventory. This does not add the world to RealmCraft.",
+            "Die freigegebene Demo wird erst beim Antippen von GitHub geladen. Vor dem Import einer eigenständigen Kopie wird SHA-256 geprüft. Shizuku ist nicht nötig. Öffne eine Kopie für Karte, Spieler und Inventar. Die Welt wird nicht in RealmCraft eingesetzt."), 14, 0xffaac1b8, false);
 
         addText(intro, tr("One world per ZIP · Up to 1 GiB · Version 9 metadata", "Eine Welt pro ZIP · Bis 1 GiB · Metadaten-Version 9"), 13, 0xffaac1b8, false);
         LinearLayout device = card(page);
@@ -126,8 +126,8 @@ public final class MainActivity extends Activity {
         status = addText(page, tr("Ready.", "Bereit."), 15, 0xffa9e8bc, false); status.setId(STATUS_VIEW);
         addText(page, tr("Your snapshots", "Deine Spielstand-Kopien"), 23, Color.WHITE, true);
         library = new LinearLayout(this); library.setOrientation(LinearLayout.VERTICAL); library.setId(LIBRARY_VIEW); page.addView(library);
-        addText(page, tr("Offline storage · No account · No analytics\nMaps, inventory decoding, restore and live sync are not included in this prototype.",
-            "Lokale Ablage · Kein Konto · Keine Analyse-Dienste\nKarten, Inventar-Auswertung, Wiederherstellung und Live-Synchronisierung sind in diesem Prototyp noch nicht enthalten."), 13, 0xffaac1b8, false);
+        addText(page, tr("Offline storage · No account · No analytics\nMap, player and inventory views read saved copies. Restore and live sync are not included.",
+            "Lokale Ablage · Kein Konto · Keine Analyse-Dienste\nKarte, Spieler und Inventar lesen gespeicherte Kopien. Wiederherstellung und Live-Synchronisierung sind nicht enthalten."), 13, 0xffaac1b8, false);
         updateBridgeStatus();
     }
 
@@ -170,7 +170,12 @@ public final class MainActivity extends Activity {
             Button open = button(item, tr("Inspect snapshot", "Kopie ansehen"), () -> showSnapshot(snapshot));
             // Library actions are lightweight and need not stay in the persistent action registry.
             actions.remove(open);
+            Button features = button(item, tr("Map · Player · Inventory", "Karte · Spieler · Inventar"), () -> openFeatures(snapshot));
+            actions.remove(features);
         }
+    }
+    private void openFeatures(Snapshot snapshot) {
+        startActivity(new Intent(this, SnapshotActivity.class).putExtra("snapshot", snapshot.id));
     }
     private void showSnapshot(Snapshot snapshot) {
         StringBuilder text = new StringBuilder();
@@ -186,7 +191,7 @@ public final class MainActivity extends Activity {
         }
         TextView body = new TextView(this); body.setText(text); body.setTextSize(15); body.setTextIsSelectable(true); body.setPadding(dp(20), dp(12), dp(20), dp(12));
         ScrollView scroll = new ScrollView(this); scroll.addView(body);
-        new AlertDialog.Builder(this).setTitle(snapshot.name).setView(scroll).setPositiveButton(android.R.string.ok, null).show();
+        new AlertDialog.Builder(this).setTitle(snapshot.name).setView(scroll).setNeutralButton(tr("Map · Player · Inventory", "Karte · Spieler · Inventar"), (d,w) -> openFeatures(snapshot)).setPositiveButton(android.R.string.ok, null).show();
     }
     private void connectBridge() {
         try {

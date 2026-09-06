@@ -39,7 +39,7 @@ public class SnapshotStoreTest {
     }
     @Test public void syntheticDemoIsMarkedAndNotPlayable() throws Exception {
         SnapshotStore.Snapshot demo = store.createDemo(); assertTrue(demo.synthetic); assertEquals("42", demo.worldId);
-        assertTrue(demo.files.contains("SYNTHETIC-NOT-PLAYABLE.txt")); assertEquals(3, demo.fileCount);
+        assertTrue(demo.files.contains("SYNTHETIC-NOT-PLAYABLE.txt")); assertEquals(6, demo.fileCount);
     }
     @Test public void rejectsUnsafePaths() throws Exception {
         for (String path : new String[]{"../world_data", "/world_data", "x/../../world_data", "x\\world_data", "./world_data", "x//world_data", "C:/world_data"}) rejects(archive(path, metadata()));

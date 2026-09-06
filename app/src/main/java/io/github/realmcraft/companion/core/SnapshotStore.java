@@ -147,8 +147,11 @@ public final class SnapshotStore {
             byte[] name = "Synthetic test world".getBytes(StandardCharsets.UTF_8);
             ByteBuffer data = ByteBuffer.allocate(17 + name.length + 105); data.put((byte) 9); data.putInt(42); data.position(9); data.putInt(12345); data.putInt(name.length); data.put(name);
             zip.putNextEntry(new ZipEntry("world_data")); zip.write(data.array()); zip.closeEntry();
-            zip.putNextEntry(new ZipEntry("SYNTHETIC-NOT-PLAYABLE.txt")); zip.write("Generated test metadata and placeholder only. This is not a playable savegame.".getBytes(StandardCharsets.UTF_8)); zip.closeEntry();
-            zip.putNextEntry(new ZipEntry("o.0,0")); zip.write("SYNTHETIC CHUNK PLACEHOLDER - NOT PLAYABLE".getBytes(StandardCharsets.US_ASCII)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("SYNTHETIC-NOT-PLAYABLE.txt")); zip.write("Generated test metadata, terrain and player records only. This is not a playable savegame.".getBytes(StandardCharsets.UTF_8)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("o.0,0")); zip.write(SyntheticFeatureData.chunk(0,0,0)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("o.-16,0")); zip.write(SyntheticFeatureData.chunk(-16,0,0)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("n.0,0")); zip.write(SyntheticFeatureData.chunk(0,0,1)); zip.closeEntry();
+            zip.putNextEntry(new ZipEntry("player_data")); zip.write(SyntheticFeatureData.player()); zip.closeEntry();
         }
         return importZip(new ByteArrayInputStream(bytes.toByteArray()), true);
     }

@@ -1,5 +1,12 @@
 # Update log
 
+## 0.2.0 — 2026-09-06
+
+- Add a read-only surface map with pan, zoom, dimension switching and per-block inspection.
+- Add player level, schematic equipped-armor preview and 36-slot inventory with localized names, quantities, durability and enchantment details.
+- Verify file checksums before analysis, report unsupported data and bound map work for large snapshots.
+- Expand the offline synthetic sample and add parser, integrity and feature-page tests.
+
 ## 0.1.3 — 2026-09-06
 
 - Use the larger owner-shared demo snapshot at the existing demo download URL, with 1,025 files and a newly pinned SHA-256 checksum.
