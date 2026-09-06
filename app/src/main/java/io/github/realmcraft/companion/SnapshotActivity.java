@@ -138,6 +138,7 @@ public final class SnapshotActivity extends Activity {
     private void rememberMap(){if(activeMap!=null)viewports[dimension]=activeMap.viewport();}
     private void saveMapState(){if(snapshot==null)return;rememberMap();android.content.SharedPreferences.Editor e=preferences.edit().putInt("dimension",dimension).putBoolean("largeMap",largeMap).putBoolean("showTools",showTools).putString("pointKind",pointKind).putBoolean("compact",compact);
         for(int i=0;i<2;i++)if(viewports[i]!=null)e.putLong("x"+i,Double.doubleToLongBits(viewports[i][0])).putLong("z"+i,Double.doubleToLongBits(viewports[i][1])).putLong("zoom"+i,Double.doubleToLongBits(viewports[i][2]));e.apply();}
+    @Override public void finish(){saveMapState();super.finish();}
     @Override protected void onPause(){saveMapState();super.onPause();}
     private void applyMapMode(){
         libraryButton.setVisibility(largeMap?View.GONE:View.VISIBLE);status.setVisibility(largeMap?View.GONE:View.VISIBLE);tabsView.setVisibility(largeMap?View.GONE:View.VISIBLE);
